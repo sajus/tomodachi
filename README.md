@@ -1,4 +1,1 @@
 # tomodachi
-asdasd
-asdasd
-asdasd

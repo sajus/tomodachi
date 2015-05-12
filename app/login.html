@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="./../app/lib/angular.js"></script>
+	<script src="./../app/lib/angular-route.js"></script>
+	<title>Add Resource</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="./../app/css/mystyle.css">
+
+</head>
+<body>
+<div ng-app="myapp" >
+<br><br>
+<header>
+<h1 style="color: #4682B4" align="center"><i>Online Examination System</i></h1>
+</header>
+<section>
+	<form name="myForm" >
+  	<div class="c">
+  	<img height="100px" class="displayed" src="./../app/img/s.png"/>
+  	<h2 align="center">Login</h2>
+  	<table  align = "center">
+       	<tr>
+			<td><label>Username</label></td>
+       		<td><input type="text" id="username" name="username" ng-model="formData.username" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" required /><label id="star" style="color: red">*</label></td>
+		</tr>
+ 	 	<tr>
+			<td colspan="2">
+				<span  ng-show="myForm.username.$error.required && myForm.username.$dirty">* required</span>
+   				<span  ng-show="!myForm.username.$error.minLength && !myForm.username.$error.maxLength && myForm.username.$error.pattern && myForm.username.$dirty">* Must start with a letter</span>
+   				<span ng-show="!myForm.username.$error.required && (myForm.username.$error.minlength || myForm.username.$error.maxlength) && myForm.username.$dirty">* Must be between 5 and 20 characters.</span>
+     		</td>
+		</tr><br>
+    	<tr>
+			<td><label >Password</label></td>
+    	 	<td><input type="password" id="password" name="password" ng-model="formData.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required  /><label id="star" style="color: red">*</label></td>
+		</tr>
+  		<tr>
+			<td colspan="2">
+				<span ng-show="myForm.password.$error.required && myForm.password.$dirty">* required</span>
+  	 			<span ng-show="!myForm.password.$error.required && (myForm.password.$error.minlength || myForm.password.$error.maxlength) && myForm.password.$dirty">* Must be between 8 and 20 characters.</span>
+   				<span ng-show="!myForm.password.$error.required && !myForm.password.$error.minlength && !myForm.password.$error.maxlength && myForm.password.$error.pattern && myForm.password.$dirty">* Must be alphanumeric</span>
+     		</td>
+		</tr><br>
+       </table>
+      
+       <table align="center">
+		   <tr>
+			   <td><input type="submit" value="Login" name=login" ng-disabled="!myForm.$valid"></td>
+			   <td><input type="reset" value="Reset" name="reset" ng-disabled="!myForm.$valid"></td>
+		   </tr>
+	   </table>
+	</div>
+	</form>
+</section>
+</div>
+</body>
+<script type="text/javascript" src="./../app/js/login.js"></script>
+</html>
