@@ -1,0 +1,123 @@
+body{
+	background: url(../img/login.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;	
+}
+
+.lb-header{
+  position:relative;
+  color: #00415d;
+  margin: 25px 5px 10px 5px;
+  padding-bottom:10px;
+  border-bottom: 1px solid #eee;
+  text-align:center;
+  height:28px;
+}
+.lb-header a{
+  margin: 0 55px;
+  padding: 0 20px;
+  text-decoration: none;
+  color:#797980;
+  font-weight: bold;
+  font-size: 19px;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+.lb-header .active:hover { color: #9999ff; }
+
+.email-login{
+  position:relative;
+  float: left;
+  width: 100%;
+  height:auto;
+  margin-top: 240px;
+  text-align:center;
+}
+
+.email-signup
+{
+	position:relative;
+  float: left;
+  width: 100%;
+  height:auto;
+  margin-top: 200px;
+  text-align:center;
+	
+	
+	
+}
+.u-form-group{
+  width:100%;
+  margin-bottom: 10px;
+}
+.u-form-group input[type="text"],
+.u-form-group input[type="password"]{
+  width:38%;
+  height:45px;
+  outline: none;
+  border: 1px solid #ddd;
+  padding: 0 10px;
+  border-radius: 2px;
+  color: #333;
+  font-size:0.8rem;
+  -webkit-transition:all 0.1s linear;
+  -moz-transition:all 0.1s linear;
+  transition:all 0.1s linear;
+}
+.u-form-group input:focus{
+  border-color: #358efb;
+}
+.u-form-group input[type="submit"]
+{ width:40%;
+  background-color:#268EB8;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.page-footer{
+	position:absolute;
+   	bottom:0;
+   	margin-left:457px;
+   	height:60px;   	
+	color: #4682B4;
+}
+	
+.page-header{
+	color: #4682B4;
+	text-align:center;
+}
+
+
+
+.u-form-group1 .active1
+{ width:300px;
+  background-color:#268EB8;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0;
+  border-radius: 7px;
+  text-transform: uppercase;
+  margin-top: 358px;
+  
+}
+ .u-form-group1 .active1:hover {
+  color: #9999ff; 
+ }
+ 
+h1{
+	color: #4682B4;
+	position: relative;
+	
+}

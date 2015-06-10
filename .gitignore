@@ -1,2 +1,5 @@
 .idea
 app/lib/*
+.settings
+.classpath
+.project

@@ -1,0 +1,60 @@
+<head>
+
+
+<style>
+th {
+    background-color: #7A98B2;
+    color: white;
+    padding:40px 70px;
+}
+td{
+
+padding:40px 40px;
+
+}
+
+</style>
+
+</head>
+
+<div class="top">
+
+<div align="center">
+<button ng-click="newExam()" class="butt" id="signup-box-link"/> New Exam</div><br>
+
+<div align="center" >Search: <input type="text" ng-model="test"></div><br>
+
+<table align="center">
+  <tr>
+    <th>Student Name</th>
+    <th>Template</th>
+    <th>Start Time</th>
+    <th>Conducted</th>
+    <th>Actions</th>
+  </tr>
+  
+  <tr ng-repeat="exam in exams | filter :test">
+    <td>{{exam.user.username}}</td>
+    <td>{{exam.templatesetexam.template_name}}</td>
+    <td>{{exam.start_time}}</td>
+    <td>{{exam.is_conducted}}</td>
+    <td align="center">
+      <a href="#/exam/{{exam.set_exam_id}}/edit"/>Edit</a>
+      <a href="#/exam/show"/>Show</a>
+    </td>
+  </tr>
+  
+  
+  
+</table>
+
+
+
+
+
+
+
+
+
+
+</div>
