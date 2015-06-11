@@ -1,19 +1,11 @@
 package com.domo.dao;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
-import org.codehaus.jackson.map.ObjectMapper;
-
 import com.domo.interfaces.DomoDao;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
@@ -25,11 +17,9 @@ public class DomoDaoImpl implements DomoDao{
 	private EntityManager entityManager;
 	ArrayList<String> authenticUserList= new ArrayList<String>();
 	ArrayList<User> allCandidatesList= new ArrayList<User>();
-
 	public DomoDaoImpl() {
 		// TODO Auto-generated constructor stub
 	}
-
 	@Override
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
@@ -41,7 +31,6 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager.getTransaction().commit();
 		System.out.println("data added");
 	}
-
 	@Override
 	public List<String> signinUser(int userid, String password) 
 	{
@@ -56,32 +45,31 @@ public class DomoDaoImpl implements DomoDao{
 		List<Integer> useridList = userid1.getResultList();
 		int newElement=useridList.get(0);
 		System.out.println(newElement);
-			if(newElement==userid)
+		if(newElement==userid)
+		{
+			System.out.println(newElement==userid);
+			Query role = entityManager.createQuery("select u.role from User u where u.userid='"+ userid +"' AND u.password='"+ password +"'");
+			List<String> roleList = role.getResultList();
+			System.out.println(roleList.get(0));
+			if(roleList.get(0).equals("admin"))
 			{
-				System.out.println(newElement==userid);
-				Query role = entityManager.createQuery("select u.role from User u where u.userid='"+ userid +"' AND u.password='"+ password +"'");
-				List<String> roleList = role.getResultList();
-				System.out.println(roleList.get(0));
-				if(roleList.get(0).equals("admin"))
-				{
-					System.out.println(roleList.get(0).equals("admin"));
-					authenticUserList.add(0,"admin");
-					System.out.println(authenticUserList.get(0));
-				}
-				else
-				{
-					authenticUserList.add(0,"candidate");
-					 System.out.println(authenticUserList.get(0));
-				}
-		    }
-		    else
-		    {
-		        authenticUserList.add(0,"invalid");
-		        System.out.println(authenticUserList.get(0));
-		    }
-			return authenticUserList;
+				System.out.println(roleList.get(0).equals("admin"));
+				authenticUserList.add(0,"admin");
+				System.out.println(authenticUserList.get(0));
+			}
+			else
+			{
+				authenticUserList.add(0,"candidate");
+				System.out.println(authenticUserList.get(0));
+			}
+		}
+		else
+		{
+			authenticUserList.add(0,"invalid");
+			System.out.println(authenticUserList.get(0));
+		}
+		return authenticUserList;
 	}
-	
 	@Override
 	public List<User> getAllCandidatesFromDatabase() {
 		// TODO Auto-generated method stub
@@ -91,10 +79,9 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager.getTransaction().begin();
 		Query getAllCandidate = entityManager.createQuery("select u from User u where u.role='candidate'");
 		List<User> getAllCandidatesList=getAllCandidate.getResultList();
-		
+
 		return getAllCandidatesList;
 	}
-
 	@Override
 	public List<SetExam> getCandidateByIdFromDatabase(int id) {
 		// TODO Auto-generated method stub
@@ -110,9 +97,7 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		return examList;
 	}
-	
 	//exam module
-
 	@Override
 	public List<SetExam> getAllExams() {
 		// TODO Auto-generated method stub
@@ -147,7 +132,7 @@ public class DomoDaoImpl implements DomoDao{
 		SetExam queryResult=(SetExam) query.getResultList();
 		return queryResult;
 	}
-
+	@Override
 	public void editExamService(int id) {
 		// TODO Auto-generated method stub
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -155,8 +140,7 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager.getTransaction().begin();
 		Query query=entityManager.createQuery("update SetExam s");
 	}
-	
-
+	@Override
 	public void newExam(SetExam setexam) {
 		// TODO Auto-generated method stub
 		System.out.println("Inside dao implementation");
@@ -167,7 +151,6 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager.getTransaction().commit();
 		System.out.println("data added");
 	}
-
 	@Override
 	public List<User> getAllStudents() {
 		// TODO Auto-generated method stub
@@ -196,7 +179,7 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		return templateList;
 	}
-
+	@Override
 	public void setExam(SetExam setexam) {
 		// TODO Auto-generated method stub
 		System.out.println("Inside dao implementation");
