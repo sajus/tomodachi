@@ -1,0 +1,37 @@
+
+h2{
+	
+	
+	color: #5A5D5E;
+	margin-top: 184px;
+}
+.next-question:hover { color: #9999ff; }
+
+.startQuiz:hover { color: #9999ff; }
+.startAgain:hover { color: #9999ff; }
+
+.next-question,
+.startQuiz,
+
+.startAgain
+{ width:103px;
+  background-color:#268EB8;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0;
+  border-radius: 7px;
+  text-transform: uppercase;
+  margin-top: 49px;
+  
+}
+
+
+.intro{
+	
+	
+	
+	margin-top:250px;
+}

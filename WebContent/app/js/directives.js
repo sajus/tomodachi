@@ -9,9 +9,16 @@ dirObject.directive("examForm", function() {
 			exams: "=?"
 		},
 	    templateUrl: "app/partials/exam_form.html",
-	    controller: ["$scope", "$routeParams", "$filter",'_', 'examService', function($scope, $routeParams,$filter,  _, examService)
+	    controller: ["$scope", "$routeParams", "$filter",'_', 'examService', '$window',function($scope, $routeParams,$filter,  _, examService,$window)
 	    {	
 			
+	    	
+	    	$scope.getExams = function(){
+	    		$window.location.href = '#/exams';
+	    	}
+	    	
+	    	
+	    	
 	    	$scope.examId = $routeParams.exam_id;
 	    	if($scope.examId !== undefined )
 	    	{
@@ -50,24 +57,114 @@ dirObject.directive("examForm", function() {
 	    }]
 	   };
 
-	}).directive("studentInfo", function() {
-		  return {
-				restrict: 'EA',
-				transclude: true,
-				scope: {
-					users: "=?"
-				},
-			    templateUrl: "app/partials/studentinfo.html",
-			    controller: ["$scope", function($scope) {
-			    	$scope.infos= [ {resultid: 1, examid: 1, marks:89, percentage:75, status:"pass"}  ];
-			     }],
-			     link:["$scope",function(){
-			                	 
-			                	 
-			   	 }]
-		   };
-			                 
-	});
+	}).directive("startExam", function(quizFactory) {
+		return {
+			restrict: 'AE',
+			scope: {},
+			templateUrl: 'app/partials/startexam.html',
+			controller: ["$scope","$window", function($scope,$window) {
+				
+				
+				$scope.again=function(){
+					$window.location.href = 'candidate.html';
+				}
+				
+		     }],
+		    
+			
+			link: function(scope, elem, attrs) {
+				
+				
+				
+				
+				
+
+				
+				
+				
+				scope.startTime = false;
+				
+				scope.start = function() {
+					scope.id = 0;
+					scope.quizOver = false;
+					scope.inProgress = true;
+					scope.getQuestion();
+					scope.isOptionSelected=true;
+					scope.startTime = true;
+				};
+
+				
+				scope.getQuestion = function() {
+					
+					var q = quizFactory.getQuestion(scope.id);
+					if(q) {
+						scope.question = q.question;
+						scope.options = q.options;
+						scope.isOptionSelected=true;
+						
+					} 
+					else {
+						
+						scope.quizOver=true;
+						scope.startTime = false;
+					}
+				};
+
+				scope.nextQuestion = function() 
+				{
+					scope.id++;
+					scope.getQuestion();
+					
+				}
+				scope.onOptionSelect=function(option)
+				{
+					
+					scope.isOptionSelected= false;
+				}
+
+				
+			}
+		}
+	}).factory('quizFactory', function() {
+		var questions = [
+			{
+				question: "Which is the largest country in the world by population?",
+				options: ["India", "USA", "China", "Russia"],
+				
+			},
+			{
+				question: "When did the second world war end?",
+				options: ["1945", "1939", "1944", "1942"],
+				
+			},
+			{
+				question: "Which was the first country to issue paper currency?",
+				options: ["USA", "France", "Italy", "China"],
+				
+			},
+			{
+				question: "Which city hosted the 1996 Summer Olympics?",
+				options: ["Atlanta", "Sydney", "Athens", "Beijing"],
+				
+			},
+			{	
+				question: "Who invented telephone?",
+				options: ["Albert Einstein", "Alexander Graham Bell", "Isaac Newton", "Marie Curie"],
+				
+			}
+		];
+
+		return {
+			getQuestion: function(id) {
+				if(id < questions.length) {
+					return questions[id];
+				} else 
+				{
+					return false;
+				}
+			}
+		};
+	})
 	dirObject.directive("getExam", function() {
 		  return {
 			restrict: 'EA',
