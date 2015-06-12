@@ -1,6 +1,4 @@
 var dirObject = angular.module("myapp.directives", []);
-
-
 dirObject.directive("examForm", function() {
 	return {
 		restrict: 'EA',
@@ -35,8 +33,6 @@ dirObject.directive("examForm", function() {
 				$scope.setExam=function(){
 					$scope.exam.start_date = $filter('date')($scope.exam.start_date, "MM/dd/yyyy");
 					$scope.exam.start_time = $filter('date')($scope.exam.start_time, "HH:mm:ss");
-					$scope.exam.template_id = parseInt($scope.exam.template_id);
-					$scope.exam.userid = parseInt($scope.exam.userid);
 					examService.setexam($scope.exam);
 					console.log($scope.exam);
 					$scope.exam={};
@@ -49,23 +45,6 @@ dirObject.directive("examForm", function() {
 		             link: ["$scope",  function($scope){
 
 		             }]
-	};
-
-}).directive("studentInfo", function() {
-	return {
-		restrict: 'EA',
-		transclude: true,
-		scope: {
-			users: "=?"
-		},
-		templateUrl: "app/partials/studentinfo.html",
-		controller: ["$scope", function($scope) {
-			$scope.infos= [ {resultid: 1, examid: 1, marks:89, percentage:75, status:"pass"}  ];
-		}],
-		link:["$scope",function(){
-
-
-		}]
 	};
 
 });
@@ -93,7 +72,6 @@ dirObject.directive("getExam", function() {
 	};
 
 }); 
-
 dirObject.directive("examDetails", function(){
 	return {
 		restrict: 'EA',
@@ -111,7 +89,6 @@ dirObject.directive("examDetails", function(){
 		            }]
 	};
 });
-
 dirObject.directive("studentInfo", function() {
 	return {
 		restrict: 'EA',
@@ -129,7 +106,6 @@ dirObject.directive("studentInfo", function() {
 		}]
 	};
 });
-
 dirObject.directive("studentsAll", function( ) {
 	return {
 		restrict: 'EA',
