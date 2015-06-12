@@ -4,18 +4,9 @@
 <title>DOMO Exam Portal</title>
 <meta name="viewport"
 	content="width=device-width, height=device-height, initial-scale=1.0">
-
-
 <!-- Angular JS library -->
-
-
-
 <link rel="stylesheet" type="text/css" href="app/css/mystyle1.css">
-
-
-
 </head>
-
 <body ng-controller="examcontroller">
 	<header class="page-header">
 		<h1>
@@ -23,20 +14,15 @@
 		</h1>
 		<br>
 	</header>
-	<div class="login-box">
-		<div class="lb-header">
-			<a href="#/exams" class="active" id="login-box-link">Exam</a> 
-			<a href="#/students" class="active" id="login-box-link">Student Information</a> 
-		</div>
+	<div class="lb-header">
+		<a href="#/exams" class="active" id="login-box-link">Exam</a> 
+		<a href="#/students" class="active" id="login-box-link">Student Information</a>
 	</div>
-
-	<div ng-view="">
-		</div>
+	<div ng-view=""></div>
 	<br>
 	<footer class="page-footer">
 		<p>© 2015 Domo Software Pvt Ltd All Rights Reserved.</p>
 	</footer>
-
 	<script src="app/lib/angular.js"></script>
 	<script src="app/lib/angular-route.js"></script>
 	<script src="app/lib/angular-resource.js"></script>

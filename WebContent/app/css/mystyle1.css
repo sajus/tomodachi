@@ -1,151 +1,138 @@
-
-
-.top{
-	
-	
+.top {
 	margin-top: 100px;
 }
 
-
-.box select
-{
-	 border: 1px solid #88BCCB;
-  
-	width:300px;
+.box select {
+	border: 1px solid #88BCCB;
+	width: 300px;
 	border-radius: 6px;
-	padding:8px;
+	padding: 8px;
 }
 
-
-.box
-
-{
-	
+.box {
 	margin-top: 150px;
 }
 
-.lb-header{
-  position:relative;
-  color: #00415d;
-  margin: 25px 5px 10px 5px;
-  padding-bottom:10px;
-  border-bottom: 1px solid #eee;
-  text-align:center;
-  height:28px;
+.lb-header {
+	position: relative;
+	color: #00415d;
+	margin: 25px 5px 10px 5px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+	text-align: center;
+	height: 28px;
 }
-.lb-header a{
-  margin: 0 55px;
-  padding: 0 20px;
-  text-decoration: none;
-  color:#797980;
-  font-weight: bold;
-  font-size: 19px;
-  -webkit-transition: all 0.1s linear;
-  -moz-transition: all 0.1s linear;
-  transition: all 0.1s linear;
+
+.lb-header a {
+	margin: 0 55px;
+	padding: 0 20px;
+	text-decoration: none;
+	color: #797980;
+	font-weight: bold;
+	font-size: 19px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
 }
-.lb-header .active:hover { color: #9999ff; }
 
+.lb-header .active:hover {
+	color: #9999ff;
+}
 
-
-
-.page-footer{
-	position:absolute;;
-   	bottom:0;
-   	margin-left:457px;
-   	height:60px;   	
+.page-footer {
+	position: absolute;;
+	bottom: 0;
+	margin-left: 457px;
+	height: 60px;
 	color: #4682B4;
-	margin-top:620px;
-	
+	margin-top: 620px;
 }
-	
-.page-header{
+
+.page-header {
 	color: #4682B4;
-	text-align:center;
-}
-.box input[type="text"],
-.box input[type="time"],
-.box input[type="date"]
-
-{
-  width:93%;
-  height:35px;
-  outline: none;
-  border: 1px solid #88BCCB;
-  padding: 0 10px;
-  border-radius: 8px;
-  color: #333;
-  font-size:1.2rem;
-  -webkit-transition:all 0.1s linear;
-  -moz-transition:all 0.1s linear;
-  transition:all 0.1s linear;
- 
+	text-align: center;
 }
 
-.u-form-group1 .active1
-{ width:300px;
-  background-color:#268EB8;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 14px;
-  font-weight: normal;
-  padding: 14px 0;
-  border-radius: 7px;
-  text-transform: uppercase;
-  margin-top: 358px;
-  
-}
-.top input[type="text"]
-{
-  width:20%;
-  height:35px;
-  outline: none;
-  border: 1px solid #88BCCB;
-  padding: 0 10px;
-  border-radius: 8px;
-  color: #333;
-  font-size:1.2rem;
-  -webkit-transition:all 0.1s linear;
-  -moz-transition:all 0.1s linear;
-  transition:all 0.1s linear;
- 
-}
-.box .butt
-{ width:100px;
-  background-color:#268EB8;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 14px;
-  font-weight: normal;
-  padding: 14px 0;
-  border-radius: 7px;
-  text-transform: uppercase;
-  
-  
+.box input[type="text"], .box input[type="time"], .box input[type="date"]
+	{
+	width: 93%;
+	height: 35px;
+	outline: none;
+	border: 1px solid #88BCCB;
+	padding: 0 10px;
+	border-radius: 8px;
+	color: #333;
+	font-size: 1.2rem;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
 }
 
+.u-form-group1 .active1 {
+	width: 300px;
+	background-color: #268EB8;
+	border: none;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 14px 0;
+	border-radius: 7px;
+	text-transform: uppercase;
+	margin-top: 358px;
+}
 
-.top .new
-{ width:100px;
-  background-color:#268EB8;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 14px;
-  font-weight: normal;
-  padding: 14px 0;
-  border-radius: 7px;
-  text-transform: uppercase;
-  
- .u-form-group1 .active1:hover {
-  color: #9999ff; 
- }
- 
-h1{
+.top input[type="text"] {
+	width: 20%;
+	height: 35px;
+	outline: none;
+	border: 1px solid #88BCCB;
+	padding: 0 10px;
+	border-radius: 8px;
+	color: #333;
+	font-size: 1.2rem;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+
+.box .butt {
+	width: 100px;
+	background-color: #268EB8;
+	border: none;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 14px 0;
+	border-radius: 7px;
+	text-transform: uppercase;
+}
+
+.top .new {
+	width: 100px;
+	background-color: #268EB8;
+	border: none;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 14px 0;
+	border-radius: 7px;
+	text-transform: uppercase; .
+	u-form-group1 .active1: hover{
+  color: #9999ff;
+}
+
+h1 {
 	color: #4682B4;
 	position: relative;
-	
 }
-.top input[type="text"]
+.top
+ 
+input
+[
+type
+=
+"text"
+]

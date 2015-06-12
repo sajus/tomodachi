@@ -1,29 +1,27 @@
 <head>
 <style>
 th {
-    background-color: #7A98B2;
-    color: white;
-    padding:20px ;
+	background-color: #7A98B2;
+	color: white;
+	padding: 20px;
 }
-.box .butt{
-width:50px;
-}
-td{
-padding:20px 20px;
+
+td {
+	padding: 20px 20px;
 }
 </style>
 </head>
 <div class="box" align="center">
-<table >
-<tr>
-<th>ExamId</th>
-<th>Marks</th>
-<th>IsConducted</th>
-</tr>
-<tr ng-repeat="candidateInfos in candidateInfo">
-  <td>{{candidateInfos.set_exam_id}}</td>
-  <td>{{candidateInfos.marks}}</td>
-  <td>{{candidateInfos.is_conducted}}</td>
-</tr>
-</table>
+	<table>
+		<tr>
+			<th>ExamId</th>
+			<th>Marks</th>
+			<th>IsConducted</th>
+		</tr>
+		<tr ng-repeat="candidateInfos in candidateInfo">
+			<td>{{candidateInfos.set_exam_id}}</td>
+			<td>{{candidateInfos.marks}}</td>
+			<td>{{candidateInfos.is_conducted}}</td>
+		</tr>
+	</table>
 </div>
