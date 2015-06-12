@@ -14,10 +14,10 @@ public class SetExam implements Serializable{
 	@Column(name="set_exam_id")
 	private int set_exam_id;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="userid")
+	@PrimaryKeyJoinColumn(name="userid")
 	public User user;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="template_id")
+	@PrimaryKeyJoinColumn(name="template_id")
 	private Template templatesetexam;
 	@Column(name="start_date")
 	@DateTimeFormat(pattern = "MM/dd/yyyy")

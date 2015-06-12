@@ -186,7 +186,7 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.merge(setexam);
+		entityManager.persist(setexam);
 		entityManager.getTransaction().commit();
 		System.out.println("data added");
 	}
