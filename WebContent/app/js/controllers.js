@@ -8,7 +8,6 @@ cntrlObject.controller('signupcontroller',["domoExamService", "$scope",
 												domoExamService.submit($scope.newUser);
 												alert("Signed up! Welcome " + $scope.newUser.username);
 												$scope.newUser = {};
-												$window.location.href = '#/';
 											};
 }])
 .controller('signincontroller',["domoExamService", "$scope", "$routeParams", "$window", "$rootScope",
