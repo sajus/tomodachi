@@ -1,16 +1,13 @@
 angular.module('myapp.services', []).service('domoExamService',
 		function($resource) {
 	console.log("i am in domo exam service");
-
 	return $resource('', {}, {
-
 		submit : {
 			method : 'POST',
 			url : 'rest/user'
 		},
-
+		
 		signin : {
-
 			method : 'POST',
 			url : 'rest/usersign',
 			params : {
@@ -19,12 +16,8 @@ angular.module('myapp.services', []).service('domoExamService',
 			},
 			isArray : true
 		}
-
-
 	});
-
 }).service('candidateInfoService', function($resource) {
-
 			return $resource('',{},
 					{
 				getallCandidates:
@@ -33,6 +26,7 @@ angular.module('myapp.services', []).service('domoExamService',
 					url:'rest/candidates',
 					isArray : true
 				},
+				
 				getCandidateInfo:
 				{
 					method:'GET',
@@ -45,14 +39,13 @@ angular.module('myapp.services', []).service('domoExamService',
 			});
 		}).service('examService', function($resource) {
 			return $resource('',{},
-					
 		{
 			createExam:
 			{		
 				method   :'POST',
 				url    :'/'
-			},		
-					
+			},	
+			
 			getallExam:
 			{		
 				method:'GET',
@@ -93,22 +86,3 @@ angular.module('myapp.services', []).service('domoExamService',
 			},			
 		});
 	});
-				
-				
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

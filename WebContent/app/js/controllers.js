@@ -1,7 +1,7 @@
 /* Controllers */
 
 var cntrlObject =angular.module('myapp.controllers', []);
-cntrlObject.controller('signupcontroller',["domoExamService", "$scope",function(domoExamService, $scope) {
+cntrlObject.controller('signupcontroller',["domoExamService", "$scope", "$window",function(domoExamService, $scope, $window) {
 
 		$scope.addUser = function() {
 			domoExamService.submit($scope.newUser);

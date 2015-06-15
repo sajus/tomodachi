@@ -50,24 +50,7 @@ dirObject.directive("examForm", function() {
 	    }]
 	   };
 
-	}).directive("studentInfo", function() {
-		  return {
-				restrict: 'EA',
-				transclude: true,
-				scope: {
-					users: "=?"
-				},
-			    templateUrl: "app/partials/studentinfo.html",
-			    controller: ["$scope", function($scope) {
-			    	$scope.infos= [ {resultid: 1, examid: 1, marks:89, percentage:75, status:"pass"}  ];
-			     }],
-			     link:["$scope",function(){
-			                	 
-			                	 
-			   	 }]
-		   };
-			                 
-	});
+	})
 	dirObject.directive("getExam", function() {
 		  return {
 			restrict: 'EA',

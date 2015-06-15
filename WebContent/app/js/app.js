@@ -13,7 +13,6 @@ myapp.config(['$routeProvider',function($routeProvider) {
         when('/signup', {templateUrl: 'app/partials/signup.html',controller:'signupcontroller'}).
         when('/admin', {templateUrl: 'app/partials/adminsignin.html'}).  
         when('/candidate', {templateUrl: 'app/partials/candidatesignin.html'}).
-        
         when('/exam', {templateUrl: 'app/partials/get_exam.html'}). 
         when('/exam/new', {templateUrl: 'app/partials/new_exam.html'}).
         when('/exam/:exam_id/edit', {templateUrl: 'app/partials/edit_exam.html'}).
@@ -21,7 +20,6 @@ myapp.config(['$routeProvider',function($routeProvider) {
         when('/student/:id/show', {templateUrl: 'app/partials/student_info.html'}).
         when('/start_exam/:user_exam_id', {templateUrl: 'app/partials/start_exam.html', controller:'examcontroller'}).
         when('/students', {templateUrl: 'app/partials/students_all.html'}). 
-        
         when('/invalid', {templateUrl: 'app/partials/invalid.html'}).
         otherwise({
             redirectTo: ''

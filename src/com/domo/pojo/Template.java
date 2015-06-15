@@ -1,12 +1,8 @@
 package com.domo.pojo;
-
 import java.io.Serializable;
 import java.util.Set;
-
 import com.domo.pojo.TemplateModules;
-
 import javax.persistence.*;
-
 @Entity
 @Table(name="template")
 public class Template implements Serializable{
@@ -25,31 +21,24 @@ public class Template implements Serializable{
 	private Set<TemplateModuleLevel> templatemodulelevel;
 	@OneToMany(mappedBy="templatesetexam")
 	private Set<SetExam> setexam;
-	
 	//default ctor
 	public Template() {
-		
 	}
-	
 	//parameterized ctor
 	public Template(int template_id, String template_name, int question_count) {
 		this.template_name = template_name;
 		this.question_count = question_count;
 	}
-
 	//getters and setters
 	public String getTemplate_name() {
 		return template_name;
 	}
-
 	public void setTemplate_name(String template_name) {
 		this.template_name = template_name;
 	}
-
 	public int getQuestion_count() {
 		return question_count;
 	}
-	
 	public int getTemplate_id() {
 		return template_id;
 	}
@@ -59,7 +48,6 @@ public class Template implements Serializable{
 	public void setQuestion_count(int question_count) {
 		this.question_count = question_count;
 	}
-	
 	//toString method
 	@Override
 	public String toString() {
