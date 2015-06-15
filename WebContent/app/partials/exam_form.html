@@ -1,29 +1,41 @@
 <head>
 <style>
-td{
-width:150px;
+td {
+	width: 150px;
 }
 </style>
 </head>
 <div class="box" align="center">
-	<table >
-	<tr><td>Select student:</td>
-	<td>
-	<select ng-model="exam.userid" name="exam.userid">
-		<option ng-repeat="student in students" value={{student.userid}} ng-selected="selectedStudent == student.userid">{{student.username}}</option>
-	</select>
-	</td></tr>
-	<tr><td>Select Template</td>
-	<td>
-	<select ng-model="exam.template_id" name="exam.template_id">
-		<option ng-repeat="template in templates" value="{{template.template_id}}" ng-selected="selectedTemplate==template.template_id">{{template.template_name}}</option>
-	</select>
-	</td></tr>
-	<tr><td>Start Date:</td><td><input type="date" ng-model="exam.start_date" name="exam.start_date"></td></tr><br><br>
-	<tr><td>Start Time:</td><td><input type="time" ng-model="exam.start_time" name="exam.start_time"></td></tr>
-	<tr><td>Duration:</td><td><input type="text" ng-model="exam.duration" name="exam.duration"></td></tr>
+	<table>
+		<tr>
+			<td>Select student:</td>
+			<td><select ng-model="exam.userid" name="exam.userid">
+					<option ng-repeat="student in students" value={{student.userid}} ng-selected="selectedStudent == student.userid">{{student.username}}</option>
+			    </select>
+			</td>
+		</tr>
+		<tr>
+			<td>Select Template</td>
+			<td><select ng-model="exam.template_id" name="exam.template_id">
+					<option ng-repeat="template in templates" value="{{template.template_id}}" ng-selected="selectedTemplate==template.template_id">{{template.template_name}}</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Start Date:</td>
+			<td><input type="date" ng-model="exam.start_date" name="exam.start_date"></td>
+		</tr>
+		<tr>
+			<td>Start Time:</td>
+			<td><input type="time" ng-model="exam.start_time" name="exam.start_time"></td>
+		</tr>
+		<tr>
+			<td>Duration:</td>
+			<td><input type="text" ng-model="exam.duration" name="exam.duration"></td>
+		</tr>
 	</table>
-	<br><br>
-	<button class="butt" ng-click="setExam()">Done</button>  
-	<button ng-click="getExams()" class="butt" /> Back
+	<br>
+	<br>
+	<button class="butt" ng-click="setExam()"/>Done
+	<button ng-click="getExams()" class="butt" />Back
 </div>
