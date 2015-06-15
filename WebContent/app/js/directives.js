@@ -23,9 +23,11 @@ dirObject.directive("examForm", function() {
 			else
 */
 	    templateUrl: "app/partials/exam_form.html",
-	    controller: ["$scope", "$routeParams", "$filter",'_', 'examService', function($scope, $routeParams,$filter,  _, examService)
+	    controller: ["$scope", "$routeParams", "$filter",'_', 'examService', '$window',function($scope, $routeParams,$filter,  _, examService,$window)
 	    {	
-			
+	    	$scope.getExams = function(){
+				$window.location.href = '#/exam';
+			}
 	    	$scope.examId = $routeParams.exam_id;
 	    	if($scope.examId !== undefined )
 	    	{
@@ -64,7 +66,7 @@ dirObject.directive("examForm", function() {
 	    }]
 	   };
 
-	})
+	});
 	dirObject.directive("getExam", function() {
 		  return {
 			restrict: 'EA',
@@ -88,9 +90,7 @@ dirObject.directive("examForm", function() {
 		    }]
 		   };
 
-	}); 
-			    	
-	dirObject.directive("examDetails", function(){
+	}); 	dirObject.directive("examDetails", function(){
 		return {
 			restrict: 'EA',
 			transclude: true,
@@ -194,42 +194,9 @@ dirObject.directive("examForm", function() {
 			}
 		}
 	};
-})
-dirObject.directive("getExam", function() {
-	return {
-		restrict: 'EA',
-		transclude: true,
-
-		templateUrl: "app/partials/exams.html",
-		controller: ["$scope", "$routeParams", '_', 'examService', '$window', function($scope, $routeParams, _, examService, $window)
-		             {
-			$scope.newExam = function(){
-				$window.location.href = "#/exam/new";
-			}
-			$scope.exams=examService.getallExam(function(){
-				//getting the exams here...
-			});		    	
-		             }],
-		             link: ["$scope",  function($scope){		    	
-		             }]
-	};
-}); 
-dirObject.directive("examDetails", function(){
-	return {
-		restrict: 'EA',
-		transclude: true,
-		templateUrl: "app/partials/setexam.html",
-		controller:["$scope", "examService", function($scope, examService)
-		            {
-			$scope.setexams=examService.getallExam(function(){
-				//getting the exam details here...
-			});
-			console.log($scope.setexams);
-		            }],
-		            link: ["$scope", function($scope){
-		            }]
-	};
 });
+
+
 dirObject.directive("studentInfo", function() {
 	return {
 		restrict: 'EA',
