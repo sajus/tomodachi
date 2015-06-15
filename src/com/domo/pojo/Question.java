@@ -1,17 +1,14 @@
 package com.domo.pojo;
-
 import java.io.Serializable;
 import java.util.Set;
-
 import javax.persistence.*;
-
 @Entity
 @Table(name="question")
 public class Question implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="question_id")
-	private String question_id;
+	private  int question_id;
 	@Column(name="question")
 	private String question;
 	@Column(name="op1")
@@ -24,24 +21,19 @@ public class Question implements Serializable{
 	private String op4;
 	@Column(name="answer")
 	private int answer;
-	
 	@ManyToOne
     @JoinColumn(name="module_id")
 	private Module module;
-	
 	@ManyToOne
 	@JoinColumn(name="level_id")
 	private Level level;
 	@OneToMany(mappedBy="question")
 	private Set<UserAnswer> useranswer;
-	
 	//default ctor
 	public Question() {
-		 
 	}
-	
 	//paramterized ctor
-	public Question(String question_id, String question, String op1, String op2,
+	public Question(int question_id, String question, String op1, String op2,
 			String op3, String op4, int answer) {
 		super();
 		this.question_id = question_id;
@@ -52,12 +44,11 @@ public class Question implements Serializable{
 		this.op4 = op4;
 		this.answer = answer;
 	}
-	
 	//getters and setters
-	public String getquestion_id() {
+	public int getquestion_id() {
 		return question_id;
 	}
-	public void setquestion_id(String question_id) {
+	public void setquestion_id(int question_id) {
 		this.question_id = question_id;
 	}
 	public String getQuestion() {
@@ -104,7 +95,6 @@ public class Question implements Serializable{
 	public void setLevel(Level level) {
 		this.level = level;
 	}
-
 	//toString method
 	@Override
 	public String toString() {

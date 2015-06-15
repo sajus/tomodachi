@@ -6,6 +6,7 @@ angular.module('myapp.services', []).service('domoExamService',
 			method : 'POST',
 			url : 'rest/user'
 		},
+
 		signin : {
 			method : 'POST',
 			url : 'rest/usersign',
@@ -17,7 +18,9 @@ angular.module('myapp.services', []).service('domoExamService',
 		}
 	});
 }).service('candidateInfoService', function($resource) {
+
 	return $resource('',{},
+
 			{
 		getallCandidates:
 		{
@@ -38,6 +41,7 @@ angular.module('myapp.services', []).service('domoExamService',
 }).service('examService', function($resource) {
 	return $resource('',{},
 			{
+
 		createExam:
 		{		
 			method   :'POST',

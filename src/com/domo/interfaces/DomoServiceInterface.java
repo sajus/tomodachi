@@ -1,14 +1,10 @@
 package com.domo.interfaces;
-
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
 import com.domo.pojo.User;
-
 import java.lang.String;
 import java.util.List;
-
 public interface DomoServiceInterface {
-
 	public void addUserService(User user);
 	List<String> signinUserService(int userid, String password);
 	public List<User> getAllCandidatesService();

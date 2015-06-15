@@ -1,11 +1,14 @@
 var cntrlObject =angular.module('myapp.controllers', []);
-cntrlObject.controller('signupcontroller',["domoExamService", "$scope",function(domoExamService, $scope) {
-	$scope.addUser = function() {
-		domoExamService.submit($scope.newUser);
-		alert("Signed up! Welcome " + $scope.newUser.username);
-		$scope.newUser = {};
-		$window.location.href = '#/';
-	};
+
+cntrlObject.controller('signupcontroller',["domoExamService", "$scope", "$window",function(domoExamService, $scope, $window) {
+
+		$scope.addUser = function() {
+			domoExamService.submit($scope.newUser);
+			alert("Signed up! Welcome " + $scope.newUser.username);
+			$scope.newUser = {};
+			$window.location.href = '#/';
+		};
+
 }])
 .controller('signincontroller',["domoExamService", "$scope", "$routeParams", "$window", "$rootScope",
                                 function(domoExamService, $scope, $routeParams, $window, $rootScope) 

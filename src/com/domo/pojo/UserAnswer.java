@@ -1,9 +1,6 @@
 package com.domo.pojo;
-
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 @Entity
 @Table(name="user_answer")
 public class UserAnswer implements Serializable{
@@ -23,12 +20,9 @@ public class UserAnswer implements Serializable{
 	private int user_answer;
 	@Column(name="binary_result")
 	private int binary_result;
-	
 	//default ctor
 	public UserAnswer() {
-		
 	}
-	
 	//parameterized ctor
 	public UserAnswer(int user_answer,
 			int binary_result) {
@@ -36,7 +30,6 @@ public class UserAnswer implements Serializable{
 		this.user_answer = user_answer;
 		this.binary_result = binary_result;
 	}
-	
 	//getters and setters
 	public int getUseranswer() {
 		return user_answer;
@@ -50,7 +43,6 @@ public class UserAnswer implements Serializable{
 	public void setResult(int binary_result) {
 		this.binary_result = binary_result;
 	}
-	
 	//toString method
 	@Override
 	public String toString() {

@@ -1,11 +1,7 @@
 package com.domo.pojo;
-
 import java.io.Serializable;
 import java.util.Set;
-
 import javax.persistence.*;
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 @Entity
 @Table(name="user")
 public class User implements Serializable{
@@ -18,18 +14,13 @@ public class User implements Serializable{
 	private String password;
 	@Column(name="role")
 	private String role="candidate";
-	
 	@OneToMany(mappedBy="user")
 	private Set<SetExam> setexam;
 	@OneToMany(mappedBy="user")
 	private Set<UserAnswer> useranswer;
-
-	
 	//default ctor
 	public User() {
-		
 	}
-
 	//parameterized ctor
 	public User(int userid, String username, String password, String role) {
 		super();
@@ -38,7 +29,6 @@ public class User implements Serializable{
 		this.password = password;
 		this.role = role;
 	}
-	
 	//getters and setters
 	public int getuserid() {
 		return userid;
@@ -61,10 +51,6 @@ public class User implements Serializable{
 	public String getRole() {
 		return role;
 	}
-//	public void setRole(String role) {
-//		this.role = "candidate";
-//	}
-	
 	//toString method
 	@Override
 	public String toString() {
