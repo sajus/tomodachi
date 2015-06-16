@@ -90,7 +90,8 @@ dirObject.directive("examForm", function() {
 		    }]
 		   };
 
-	}); 	dirObject.directive("examDetails", function(){
+	}); 	
+	dirObject.directive("examDetails", function(){
 		return {
 			restrict: 'EA',
 			transclude: true,
@@ -98,23 +99,10 @@ dirObject.directive("examForm", function() {
 			controller:["$scope", "examService", function($scope, examService)
 
 			{
-				$scope.students=examService.getStudents(function(){
-					//get students here...
-				});	    		
-				$scope.templates=examService.getTemplates(function(){
-					//get templates here...
+				$scope.setexams=examService.getallExam(function(){
+					//getting all exams here...
 				});
-				$scope.setExam=function(){
-					$scope.exam.start_date = $filter('date')($scope.exam.start_date, "MM/dd/yyyy");
-					$scope.exam.start_time = $filter('date')($scope.exam.start_time, "HH:mm:ss");
-					$scope.exam.templatesetexam.template_id = parseInt($scope.exam.templatesetexam.template_id);
-					$scope.exam.user.userid = parseInt($scope.exam.user.userid);
-					examService.setexam($scope.exam);
-					$scope.exam={};
-					alert("Succesfully set the exam!");
-				};
-			}
-		             ],
+			}],
 		             link: ["$scope",  function($scope){
 		             }]
 	};
