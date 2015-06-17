@@ -6,12 +6,11 @@ dirObject.directive("examForm", function() {
 		scope: {
 			exams: "=?"
 		},
-/*
 		templateUrl: "app/partials/exam_form.html",
 		controller: ["$scope", "$routeParams", "$filter",'_', 'examService', '$window',function($scope, $routeParams,$filter,  _, examService,$window)
 		             {	
 			$scope.getExams = function(){
-				$window.location.href = '#/exams';
+				$window.location.href = '#/exam';
 			}
 			$scope.examId = $routeParams.exam_id;
 			if($scope.examId !== undefined )
@@ -21,90 +20,61 @@ dirObject.directive("examForm", function() {
 				$scope.selectedTemplate = $scope.template_id;
 			}
 			else
-*/
-	    templateUrl: "app/partials/exam_form.html",
-	    controller: ["$scope", "$routeParams", "$filter",'_', 'examService', '$window',function($scope, $routeParams,$filter,  _, examService,$window)
-	    {	
-	    	$scope.getExams = function(){
-				$window.location.href = '#/exam';
-			}
-	    	$scope.examId = $routeParams.exam_id;
-	    	if($scope.examId !== undefined )
-	    	{
-	    		/*console.log($scope.exams);*/
-	    		//$scope.exam = _.find($scope.exams, {set_exam_id: parseInt($scope.examId)});
-	    		console.log($scope.exam);
-	    		
-	    		$scope.selectedStudent = $scope.userid;
-	    		$scope.selectedTemplate = $scope.template_id;
-	    	}
-	    	else
-	    	{
-	    		$scope.students=examService.getStudents(function(){
-	    			//get students here...
-	    		});
-	    		
-	    		$scope.templates=examService.getTemplates(function(){
-	    			//get templates here...
-	    		});
-	    		
-	    		$scope.setExam=function(){
-	    			$scope.exam.start_date = $filter('date')($scope.exam.start_date, "MM/dd/yyyy");
-	    			$scope.exam.start_time = $filter('date')($scope.exam.start_time, "HH:mm:ss");
-	    			$scope.exam.templatesetexam.template_id = parseInt($scope.exam.templatesetexam.template_id);
-	    			$scope.exam.user.userid = parseInt($scope.exam.user.userid);
-	    			examService.setexam($scope.exam);
-	    			$scope.exam={};
-	    			alert("Succesfully set the exam!");
-	    		};
-	    	}
-	    }],
-	    
-	    
-	    link: ["$scope",  function($scope){
-	    	
-	    }]
-	   };
-
-	});
-	dirObject.directive("getExam", function() {
-		  return {
-			restrict: 'EA',
-			transclude: true,
-			
-		    templateUrl: "app/partials/exams.html",
-		    controller: ["$scope", "$routeParams", '_', 'examService', '$window', function($scope, $routeParams, _, examService, $window)
-		    {
-		    	$scope.newExam = function(){
-		    		$window.location.href = "#/exam/new";
-		    	}
-		    	
-				$scope.exams=examService.getallExam(function(){
-					//getting the exams here...
-				});
-		    	
-		    }],
-		    
-		    link: ["$scope",  function($scope){
-		    	
-		    }]
-		   };
-
-	}); 	
-	dirObject.directive("examDetails", function(){
-		return {
-			restrict: 'EA',
-			transclude: true,
-			templateUrl: "app/partials/setexam.html",
-			controller:["$scope", "examService", function($scope, examService)
-
 			{
-				$scope.setexams=examService.getallExam(function(){
-					//getting all exams here...
+				$scope.students=examService.getStudents(function(){
+					//get students here...
 				});
-			}],
+
+				$scope.templates=examService.getTemplates(function(){
+					//get templates here...
+				});
+
+				$scope.setExam=function(){
+					$scope.exam.start_date = $filter('date')($scope.exam.start_date, "MM/dd/yyyy");
+					$scope.exam.start_time = $filter('date')($scope.exam.start_time, "HH:mm:ss");
+					$scope.exam.templatesetexam.template_id = parseInt($scope.exam.templatesetexam.template_id);
+					$scope.exam.user.userid = parseInt($scope.exam.user.userid);
+					examService.setexam($scope.exam);
+					$scope.exam={};
+					alert("Succesfully set the exam!");
+				};
+			}
+		             }],
 		             link: ["$scope",  function($scope){
 		             }]
+	};
+});
+dirObject.directive("getExam", function() {
+	return {
+		restrict: 'EA',
+		transclude: true,
+		templateUrl: "app/partials/exams.html",
+		controller: ["$scope", "$routeParams", '_', 'examService', '$window', function($scope, $routeParams, _, examService, $window)
+		             {
+			$scope.newExam = function(){
+				$window.location.href = "#/exam/new";
+			}
+			$scope.exams=examService.getallExam(function(){
+				//getting the exams here...
+			});
+		             }],
+		             link: ["$scope",  function($scope){
+		             }]
+	};
+}); 	
+dirObject.directive("examDetails", function(){
+	return {
+		restrict: 'EA',
+		transclude: true,
+		templateUrl: "app/partials/setexam.html",
+		controller:["$scope", "examService", function($scope, examService)
+		            {
+			$scope.setexams=examService.getallExam(function(){
+				//getting all exams here...
+			});
+		            }],
+		            link: ["$scope",  function($scope){
+		            }]
 	};
 }).directive("startExam", function(quizFactory) {
 	return {
@@ -183,18 +153,30 @@ dirObject.directive("examForm", function() {
 		}
 	};
 });
-
-
-dirObject.directive("studentInfo", function() {
+dirObject.directive("studentExamInfo", function() {
 	return {
 		restrict: 'EA',
 		transclude: true,
+		scope: {
+			showStart: "=?",
+			filterVal: "=?"
+		},
 		templateUrl: "app/partials/studentinfo.html",
 		controller: ["$scope","candidateInfoService","$routeParams", function($scope, candidateInfoService, $routeParams)  {
 			alert($routeParams.id)  ;
-			candidateInfoService.getCandidateInfo({id : $routeParams.id}).$promise.then(function(data){
-				console.log(data);
-				$scope.candidateInfo = data;
+
+			$scope.$watch("filterVal", function(){
+				if($scope.filterVal === 'all'){
+					candidateInfoService.getCandidateInfo({id : $routeParams.id}).$promise.then(function(data){
+						console.log(data);
+						$scope.candidateInfo = data;
+					});
+				} else{
+					candidateInfoService.getCandidateInfo({id : $routeParams.id, filter: 'remaining'}).$promise.then(function(data){
+						console.log(data);
+						$scope.candidateInfo = data;
+					});
+				}
 			});
 		}],
 		link:["$scope",function(){		 

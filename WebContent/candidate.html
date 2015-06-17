@@ -18,13 +18,15 @@
 	</header>
 	<section>
 		<div id="a" onclick="a.style.display='none';" class="lb-header">
-			<a href="#/students" class="active" id="login-box-link">ViewExams</a>
-			<a href="#/startexam" class="active" id="login-box-link">Start Exam</a>
+			<a href="#/allexams/10000" class="active" id="login-box-link">ViewAllExams</a>
+			<a href="#/currentexams/10000" class="active" id="login-box-link">ViewCurrentExams</a>
 		</div>
-		<div ng-view=""></div>
+		<div ng-view="">
+		
+		</div>
 		<br>
 		<div class="page-footer">
-			<p>© 2015 Domo Software Pvt Ltd All Rights Reserved.</p>
+           		<p>© 2015 Domo Software Pvt Ltd All Rights Reserved.</p>
 		</div>
 	</section>
 	<script src="app/lib/angular.js"></script>

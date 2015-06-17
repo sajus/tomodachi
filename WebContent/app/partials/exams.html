@@ -17,7 +17,7 @@ td {
 			Search: <input type="text" ng-model="test">
 		</div>
 		<br>
-		<table align="center">
+		<table border="1" align="center">
 			<tr>
 				<th>Student Name</th>
 				<th>Template</th>
@@ -32,12 +32,16 @@ td {
 				<td>{{exam.is_conducted}}</td>
 				<td align="center">
 				    <a href="#/exam/{{exam.set_exam_id}}/edit" />Edit</a>
-					
-					<a href="#/exam/show" />Show</a>
-				</td>
+                    <a href="#/exam/show" />Show</a>
+                </td>
 			</tr>
 		</table>
-		<br> <br> <br> <br> <br> <br>
+		<br> 
+		<br> 
+		<br> 
+		<br> 
+		<br> 
+		<br>
 		<div align="center">
 			<button class="new" ng-click="newExam()" />
 			New Exam
