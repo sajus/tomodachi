@@ -36,13 +36,9 @@ dirObject.directive("examForm", function() {
 	    			$scope.exam.start_date = $filter('date')($scope.exam.start_date, "MM/dd/yyyy");
 	    			$scope.exam.start_time = $filter('date')($scope.exam.start_time, "HH:mm:ss");
 	    			$scope.exam.template_id = parseInt($scope.exam.template_id);
-	    			$scope.exam.templatesetexam = _.findWhere($scope.templates, function(template){	    				
-	    				return template.template_id = $scope.exam.template_id;
-	    			});
+	    			$scope.exam.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.template_id});
 	    			$scope.exam.userid = parseInt($scope.exam.userid);
-	    			$scope.exam.user = _.findWhere($scope.students, function(student){	    				
-	    				return student.userid = $scope.exam.userid;
-	    			});
+	    			$scope.exam.user = _.findWhere($scope.students, {userid: $scope.exam.userid});
 	    			examService.setexam($scope.exam);
 	    			console.log($scope.exam);
 	    			$scope.exam={};
