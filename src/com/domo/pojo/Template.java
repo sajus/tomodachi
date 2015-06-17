@@ -1,8 +1,12 @@
 package com.domo.pojo;
 import java.io.Serializable;
 import java.util.Set;
+
 import com.domo.pojo.TemplateModules;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="template")
 public class Template implements Serializable{

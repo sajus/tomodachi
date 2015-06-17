@@ -16,11 +16,11 @@ public class SetExam implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="set_exam_id")
 	private int set_exam_id;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="userid")
+	@ManyToOne(cascade = CascadeType.ALL, optional=true)
+	@PrimaryKeyJoinColumn(name="userid")
 	public User user;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="template_id")
+	@ManyToOne(cascade = CascadeType.ALL, optional=true)
+	@PrimaryKeyJoinColumn(name="template_id")
 	private Template templatesetexam;
 	@Column(name="start_date")
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
@@ -35,6 +35,7 @@ public class SetExam implements Serializable{
 	private int marks=0;
 	@Column(name="actual_start_time")
 	private String actual_start_time=null;
+	@Column(name="questions")
 		public SetExam() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -55,12 +56,6 @@ public class SetExam implements Serializable{
 		this.actual_start_time = new SimpleDateFormat("HH.mm.SS").format(actual_start_time.getTime());
 		}
 	//getters and setters
-	public int getSet_exam_id() {
-		return set_exam_id;
-	}
-	public void setSet_exam_id(int set_exam_id) {
-		this.set_exam_id = set_exam_id;
-	}
 	public User getUser() {
 		return user;
 	}

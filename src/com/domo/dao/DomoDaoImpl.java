@@ -181,7 +181,7 @@ public class DomoDaoImpl implements DomoDao{
 	@Override
 	public void setExam(SetExam setexam) {
 		// TODO Auto-generated method stub
-		System.out.println("Inside dao implementation");
+		System.out.println("Inside dao implementation-"+setexam);
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();

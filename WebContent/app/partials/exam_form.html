@@ -10,14 +10,14 @@ td {
 		<tr>
 			<td>Select student:</td>
 			<td><select ng-model="exam.userid" name="exam.userid">
-					<option ng-repeat="student in students" value={{student.userid}} ng-selected="selectedStudent == student.userid">{{student.username}}</option>
+					<option ng-repeat="student in students" value={{student}} ng-selected="selectedStudent == student.userid">{{student.username}}</option>
 			    </select>
 			</td>
 		</tr>
 		<tr>
 			<td>Select Template</td>
 			<td><select ng-model="exam.template_id" name="exam.template_id">
-					<option ng-repeat="template in templates" value="{{template.template_id}}" ng-selected="selectedTemplate==template.template_id">{{template.template_name}}</option>
+					<option ng-repeat="template in templates" value="{{template}}" ng-selected="selectedTemplate==template.template_id">{{template.template_name}}</option>
 				</select>
 			</td>
 		</tr>
