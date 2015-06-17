@@ -35,7 +35,6 @@ public class SetExam implements Serializable{
 	private int marks=0;
 	@Column(name="actual_start_time")
 	private String actual_start_time=null;
-	@Column(name="questions")
 		public SetExam() {
 		super();
 		// TODO Auto-generated constructor stub
