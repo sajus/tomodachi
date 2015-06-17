@@ -12,16 +12,18 @@ td {
 </style>
 </head>
 <div class="box" align="center">
-	<table>
+	<table border="1">
 		<tr>
 			<th>ExamId</th>
 			<th>Marks</th>
 			<th>IsConducted</th>
+			<th ng-if="showStart">Action</th>
 		</tr>
 		<tr ng-repeat="candidateInfos in candidateInfo">
 			<td>{{candidateInfos.set_exam_id}}</td>
 			<td>{{candidateInfos.marks}}</td>
 			<td>{{candidateInfos.is_conducted}}</td>
+			<td ng-if="showStart && !candidateInfos.is_conducted"><a href="#/startexam"/>Start Exam</td>
 		</tr>
 	</table>
 </div>
