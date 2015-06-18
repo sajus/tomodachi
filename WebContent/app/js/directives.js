@@ -15,10 +15,7 @@ dirObject.directive("examForm", function() {
 	    	$scope.examId = $routeParams.exam_id;
 	    	if($scope.examId !== undefined )
 	    	{
-	    		/*console.log($scope.exams);*/
-	    		//$scope.exam = _.find($scope.exams, {set_exam_id: parseInt($scope.examId)});
 	    		console.log($scope.exam);
-	    		
 	    		$scope.selectedStudent = $scope.userid;
 	    		$scope.selectedTemplate = $scope.template_id;
 	    	}
@@ -46,7 +43,6 @@ dirObject.directive("examForm", function() {
 	    		};
 	    	}
 	    }],
-	    
 	    
 	    link: ["$scope",  function($scope){
 	    	

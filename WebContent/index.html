@@ -14,7 +14,7 @@
 		<br>
 	</header>
 	<div class="login-box">
-		<div class="lb-header">
+		<div class="lb-header" ng-if="location.path() != '/signin'">
 			<a href="#/signin" class="active" id="login-box-link">Login</a> <a
 				href="#/signup" class="active" id="signup-box-link">Sign Up</a>
 		</div>

@@ -1,7 +1,7 @@
 var cntrlObject =angular.module('myapp.controllers', []);
 
-cntrlObject.controller('signupcontroller',["domoExamService", "$scope", "$window",function(domoExamService, $scope, $window) {
-
+cntrlObject.controller('signupcontroller',["domoExamService", "$scope", "$window","$location",function(domoExamService, $scope, $window,$location) {
+	$scope.location = $location;
 		$scope.addUser = function() {
 			domoExamService.submit($scope.newUser);
 			alert("Signed up! Welcome " + $scope.newUser.username);
@@ -29,8 +29,9 @@ cntrlObject.controller('signupcontroller',["domoExamService", "$scope", "$window
 		});
 		$scope.userRole = {};
 	};
-                                }]).controller('examcontroller',["examService","$scope", "$routeParams", "$window", "$rootScope","$timeout", function(examService, $scope, $routeParams, $window, $rootScope,$timeout)
+                                }]).controller('examcontroller',["examService","$scope", "$routeParams", "$window", "$rootScope","$timeout", "$location",function(examService, $scope, $routeParams, $window, $rootScope,$timeout,$location)
                                                                  {
+                                
                                 	$scope.createexam = function() {				
                                 		examService.createExam($scope.newcandidate);
                                 		$scope.newcandidate= {};
