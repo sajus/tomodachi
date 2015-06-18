@@ -10,7 +10,6 @@ import javax.persistence.*;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.sun.istack.internal.NotNull;
 @Entity
 @Table(name="set_exam")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -21,31 +20,24 @@ public class SetExam implements Serializable{
 	private int set_exam_id;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="userid")
-	@NotNull
 	public User user;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="template_id")
-	@NotNull
 	private Template templatesetexam;
 	@Column(name="start_date")
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
-	@NotNull
 	private String start_date;
 	@Column(name="duration")
-	@NotNull
 	private long duration;
 	@Column(name="start_time")
-	@NotNull
 	private String start_time;
 	@Column(name="is_conducted")
-	@NotNull
 	private boolean is_conducted=false;
 	@Column(name="marks")
 	private int marks=0;
 	@Column(name="actual_start_time")
 	private String actual_start_time=null;
 	@Column(name="questions")
-	@NotNull
 	private String questions;
 		public SetExam() {
 		super();
