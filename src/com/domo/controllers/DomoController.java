@@ -74,8 +74,7 @@ public class DomoController {
 	public void newExam(@RequestBody SetExam setexam) {
 		domoservice.newExamService(setexam);
 	}
-	
-@RequestMapping(value = "exam/new/setexam", method = RequestMethod.POST)
+	@RequestMapping(value = "exam/new/setexam", method = RequestMethod.POST)
 	public void setExam(@RequestBody SetExam setexam){
 		System.out.println(setexam);
 		domoservice.setExamService(setexam);

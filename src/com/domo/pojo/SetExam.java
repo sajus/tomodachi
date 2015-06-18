@@ -1,13 +1,16 @@
 package com.domo.pojo;
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Array;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.Set;
+import java.util.List;
+
 import javax.persistence.*;
-import org.codehaus.jackson.annotate.JsonIgnore;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.sun.istack.internal.NotNull;
 @Entity
 @Table(name="set_exam")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,31 +21,40 @@ public class SetExam implements Serializable{
 	private int set_exam_id;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="userid")
+	@NotNull
 	public User user;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="template_id")
+	@NotNull
 	private Template templatesetexam;
 	@Column(name="start_date")
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	@NotNull
 	private String start_date;
 	@Column(name="duration")
+	@NotNull
 	private long duration;
 	@Column(name="start_time")
+	@NotNull
 	private String start_time;
 	@Column(name="is_conducted")
+	@NotNull
 	private boolean is_conducted=false;
 	@Column(name="marks")
 	private int marks=0;
 	@Column(name="actual_start_time")
 	private String actual_start_time=null;
+	@Column(name="questions")
+	@NotNull
+	private String questions;
 		public SetExam() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	//parameterized ctor
-	public SetExam(int set_exam_id, User user, Template templatesetexam,
+		public SetExam(int set_exam_id, User user, Template templatesetexam,
 			String start_date, long duration, Time start_time,
-			boolean is_conducted, int marks, Time actual_start_time) {
+			boolean is_conducted, int marks, Time actual_start_time, String questions) {
 		super();
 		this.set_exam_id = set_exam_id;
 		this.user = user;
@@ -53,6 +65,7 @@ public class SetExam implements Serializable{
 		this.is_conducted = is_conducted;
 		this.marks = marks;
 		this.actual_start_time = new SimpleDateFormat("HH.mm.SS").format(actual_start_time.getTime());
+		this.questions=questions;
 		}
 	//getters and setters
 	public User getUser() {
@@ -103,6 +116,12 @@ public class SetExam implements Serializable{
 	public void setActual_start_time(String actual_start_time) {
 		this.actual_start_time = actual_start_time;
 	}
+	public String getQuestions() {
+		return questions;
+	}
+	public void setQuestions(String questions) {
+		this.questions = questions;
+	}
 	//toString method
 	@Override
 	public String toString() {
@@ -110,7 +129,7 @@ public class SetExam implements Serializable{
 				+ ", templatesetexam=" + templatesetexam + ", start_date="
 				+ start_date + ", duration=" + duration + ", start_time="
 				+ start_time + ", is_conducted=" + is_conducted + ", marks="
-				+ marks + ", actual_start_time=" + actual_start_time
+				+ marks + ", actual_start_time=" + actual_start_time + "questions" + questions
 				+ "]";
 	}
 }
