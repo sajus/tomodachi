@@ -60,6 +60,9 @@ public class SetExam implements Serializable{
 		this.questions=questions;
 		}
 	//getters and setters
+	public int getSet_exam_id() {
+		return set_exam_id;
+	}
 	public User getUser() {
 		return user;
 	}

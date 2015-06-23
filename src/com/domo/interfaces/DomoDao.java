@@ -16,4 +16,5 @@ public interface DomoDao {
 	public List<Template> getAllTemplates();
 	public void setExam(SetExam setexam);
 	void newExam(SetExam setexam);
+	List<SetExam> getAllExamsStudent(String username);
 }

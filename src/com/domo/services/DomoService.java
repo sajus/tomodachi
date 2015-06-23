@@ -39,6 +39,11 @@ public class DomoService implements DomoServiceInterface{
 		return domodaoimpl.getAllExams();
 	}
 	@Override
+	public List<SetExam> getAllExamStudentService(String userid){
+		System.out.println("inside get exam for particular candidate");
+		return domodaoimpl.getAllExamsStudent(userid);
+	}
+	@Override
 	public SetExam showExamService(int id) {
 		// TODO Auto-generated method stub
 		return domodaoimpl.showExam(id);

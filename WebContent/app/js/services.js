@@ -53,6 +53,15 @@ angular.module('myapp.services', []).service('domoExamService',
 			url:'rest/exams',
 			isArray: 'true'	
 		},
+		getallExamStudent:
+		{		
+			method:'GET',
+			url:'rest/exams/'+'/:userid',
+			params : {
+				userid : "@userid"
+			},
+			isArray: true
+		},
 		getStudents:
 		{
 			method: 'GET',

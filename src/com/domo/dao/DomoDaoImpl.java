@@ -112,6 +112,21 @@ public class DomoDaoImpl implements DomoDao{
 		return examList;
 	}
 	@Override
+	public List<SetExam> getAllExamsStudent(String userid) {
+		// TODO Auto-generated method stub
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		entityManager = factory.createEntityManager();
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createQuery("from SetExam where user.userid='"+userid+"'");
+		List<SetExam> examList = query.getResultList();
+		Iterator<SetExam> itr = examList.iterator();
+		while (itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+		return examList;
+	}
+
+	@Override
 	public void createExam(SetExam setexam) {
 		// TODO Auto-generated method stub
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
