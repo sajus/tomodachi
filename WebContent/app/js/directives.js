@@ -15,7 +15,14 @@ dirObject.directive("examForm", function() {
 	    	$scope.examId = $routeParams.exam_id;
 	    	if($scope.examId !== undefined )
 	    	{
+<<<<<<< HEAD
 	    		console.log($scope.exam);
+=======
+	    		/*console.log($scope.exams);*/
+	    		$scope.selected_exam = _.find($scope.exam, {set_exam_id: parseInt($scope.examId)});
+	    		console.log($scope.selected_exam);
+	    		
+>>>>>>> 48029def8bdcfda947a3e3617a89122b3d632c4e
 	    		$scope.selectedStudent = $scope.userid;
 	    		$scope.selectedTemplate = $scope.template_id;
 	    	}
@@ -74,11 +81,12 @@ dirObject.directive("examDetails", function(){
 		restrict: 'EA',
 		transclude: true,
 		templateUrl: "app/partials/setexam.html",
-		controller:["$scope", "examService", function($scope, examService)
+		controller:["$scope", "examService", "$routeParams", function($scope, examService, $routeParams)
 		            {
-			$scope.setexams=examService.getallExam(function(){
-				//getting all exams here...
-			});
+			$scope.setexams=examService.getallExamStudent({userid : $routeParams.userid}),function(){
+				//getting all exams here according to userid
+			};
+			console.log($scope.setexams);
 		            }],
 		            link: ["$scope",  function($scope){
 		            }]
@@ -169,9 +177,7 @@ dirObject.directive("studentExamInfo", function() {
 			filterVal: "=?"
 		},
 		templateUrl: "app/partials/studentinfo.html",
-		controller: ["$scope","candidateInfoService","$routeParams", function($scope, candidateInfoService, $routeParams)  {
-			alert($routeParams.id)  ;
-
+		controller: ["$scope","candidateInfoService","$routeParams", function($scope, candidateInfoService, $routeParams){
 			$scope.$watch("filterVal", function(){
 				if($scope.filterVal === 'all'){
 					candidateInfoService.getCandidateInfo({id : $routeParams.id}).$promise.then(function(data){

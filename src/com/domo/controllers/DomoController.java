@@ -78,7 +78,14 @@ public class DomoController {
 	public void setExam(@RequestBody SetExam setexam){
 		System.out.println(setexam);
 		domoservice.setExamService(setexam);
-	}	
+	}
+	@RequestMapping(value = "/exams/{userid}", method = RequestMethod.GET)
+	//getAllTemplates method
+	public @ResponseBody List<SetExam> getAllExamStudent(@PathVariable String userid) {
+		List<SetExam> result=domoservice.getAllExamStudentService(userid);
+		System.out.println(result);
+		return result;
+	}
 	//student module
 	@RequestMapping(value = "/exam/new/student", method = RequestMethod.GET)
 		//getAllStudents method
