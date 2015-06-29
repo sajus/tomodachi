@@ -45,11 +45,11 @@ public class Question implements Serializable{
 		this.answer = answer;
 	}
 	//getters and setters
-	public int getquestion_id() {
+	public int getQuestion_id() {
 		return question_id;
 	}
-	public void setquestion_id(int question_id) {
-		this.question_id = question_id;
+	public Module getModule() {
+		return module;
 	}
 	public String getQuestion() {
 		return question;

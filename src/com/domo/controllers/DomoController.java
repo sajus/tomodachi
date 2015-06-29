@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
 import com.domo.pojo.User;
@@ -51,6 +54,13 @@ public class DomoController {
 	@ResponseBody
 	public List<SetExam> showCandidateDetailsById(@PathVariable int id) {
 		List<SetExam> result= domoservice.showCandidateDetailsByIdService(id);
+		System.out.println(result);
+		return result;
+	}
+	@RequestMapping(value = "/candidateDetailsNotConducted/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SetExam> showCandidateDetailsByIdNotConducted(@PathVariable String id) {
+		List<SetExam> result= domoservice.showCandidateDetailsByIdNotConductedService(id);
 		System.out.println(result);
 		return result;
 	}
@@ -98,4 +108,11 @@ public class DomoController {
 	public @ResponseBody List<Template> getAllTemplates() {
 		return domoservice.getAllTemplatesService();
 	}
+	
+	//questions module
+	@RequestMapping(value = "/questions", method = RequestMethod.GET)
+	//index method
+	public @ResponseBody List<Question> getAllQuestions() {
+		return domoservice.getAllQuestionsService();
+}
 }

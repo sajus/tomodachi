@@ -1,4 +1,5 @@
-angular.module('myapp.services', []).service('domoExamService',
+angular.module('myapp.services', [])
+.service('domoExamService',
 		function($resource) {
 	console.log("i am in domo exam service");
 	return $resource('', {}, {
@@ -18,9 +19,7 @@ angular.module('myapp.services', []).service('domoExamService',
 		}
 	});
 }).service('candidateInfoService', function($resource) {
-
 	return $resource('',{},
-
 			{
 		getallCandidates:
 		{
@@ -32,6 +31,15 @@ angular.module('myapp.services', []).service('domoExamService',
 		{
 			method:'GET',
 			url:'rest/candidateDetails/' + '/:id',
+			params : {
+				id : "@id"
+			},
+			isArray : true
+		},
+		getCandidateInfoNotConducted:
+		{
+			method: 'GET',
+			url: 'rest/candidateDetailsNotConducted/' + '/:id',
 			params : {
 				id : "@id"
 			},
@@ -90,4 +98,14 @@ angular.module('myapp.services', []).service('domoExamService',
 			url:'rest/'		
 		},			
 			});
-});
+}).service('questionService', function($resource) {
+	return $resource('',{},
+			{
+				getQuestions:
+				{
+					method : 'GET',
+					url : 'rest/questions',
+					isArray : true
+				}
+			});
+	});

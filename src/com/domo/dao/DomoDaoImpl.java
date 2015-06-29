@@ -2,11 +2,14 @@ package com.domo.dao;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
 import com.domo.interfaces.DomoDao;
+import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
 import com.domo.pojo.User;
@@ -31,7 +34,7 @@ public class DomoDaoImpl implements DomoDao{
 		System.out.println("data added");
 	}
 	@Override
-	public List<String> signinUser(int userid, String password) 
+	public List<String> signinUser(int userid, String password)
 	{
 		// TODO Auto-generated method stub
 		System.out.println("inside signin user details");
@@ -89,6 +92,19 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
 		Query getCandidate = entityManager.createQuery("select s from SetExam s where s.user.userid='"+id+"'");
+		List<SetExam> examList = getCandidate.getResultList();
+		Iterator<SetExam> itr = examList.iterator();
+		while (itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+		return examList;
+	}
+	public List<SetExam> getCandidateByIdNotConductedFromDatabase(String userid){
+		System.out.println("inside get candidate info from database");
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		entityManager = factory.createEntityManager();
+		entityManager.getTransaction().begin();
+		Query getCandidate = entityManager.createQuery("select s from SetExam s where s.user.userid='"+userid+"' and is_conducted = false");
 		List<SetExam> examList = getCandidate.getResultList();
 		Iterator<SetExam> itr = examList.iterator();
 		while (itr.hasNext()) {
@@ -203,5 +219,18 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager.merge(setexam);
 		entityManager.getTransaction().commit();
 		System.out.println("data added");
+	}
+	//question module
+	public List<Question> getQuestions(){
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		entityManager = factory.createEntityManager();
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createQuery("select q from Question q");
+		List<Question> questionList = query.getResultList();
+		Iterator<Question> itr = questionList.iterator();
+		while (itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+		return questionList;
 	}
 }
