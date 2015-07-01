@@ -21,9 +21,6 @@ public class Level implements Serializable{
 	public int getLevel_id() {
 		return level_id;
 	}
-	public void setLevel_id(int level_id) {
-		this.level_id = level_id;
-	}
 	public String getLevel_name() {
 		return level_name;
 	}

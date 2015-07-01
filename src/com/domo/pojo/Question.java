@@ -1,6 +1,8 @@
 package com.domo.pojo;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.*;
 @Entity
 @Table(name="question")
@@ -22,10 +24,10 @@ public class Question implements Serializable{
 	@Column(name="answer")
 	private int answer;
 	@ManyToOne
-    @JoinColumn(name="module_id")
+    @PrimaryKeyJoinColumn(name="module_id")
 	private Module module;
 	@ManyToOne
-	@JoinColumn(name="level_id")
+	@PrimaryKeyJoinColumn(name="level_id")
 	private Level level;
 	@OneToMany(mappedBy="question")
 	private Set<UserAnswer> useranswer;
@@ -34,7 +36,8 @@ public class Question implements Serializable{
 	}
 	//paramterized ctor
 	public Question(int question_id, String question, String op1, String op2,
-			String op3, String op4, int answer) {
+			String op3, String op4, int answer, Module module, Level level,
+			Set<UserAnswer> useranswer) {
 		super();
 		this.question_id = question_id;
 		this.question = question;
@@ -43,6 +46,9 @@ public class Question implements Serializable{
 		this.op3 = op3;
 		this.op4 = op4;
 		this.answer = answer;
+		this.module = module;
+		this.level = level;
+		this.useranswer = useranswer;
 	}
 	//getters and setters
 	public int getQuestion_id() {
@@ -98,8 +104,9 @@ public class Question implements Serializable{
 	//toString method
 	@Override
 	public String toString() {
-		return "Question [question_id=" + question_id + ", question=" + question + ", op1="
-				+ op1 + ", op2=" + op2 + ", op3=" + op3 + ", op4=" + op4
-				+ ", answer=" + answer + ", module_id=" + "]";
+		return "Question [question_id=" + question_id + ", question="
+				+ question + ", op1=" + op1 + ", op2=" + op2 + ", op3=" + op3
+				+ ", op4=" + op4 + ", answer=" + answer + ", module=" + module
+				+ ", level=" + level + ", useranswer=" + useranswer + "]";
 	}
 }

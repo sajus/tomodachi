@@ -132,10 +132,9 @@ dirObject.directive("examDetails", function(){
 			}
 		}
 	}
-}).factory('quizFactory', function($scope) {
+}).factory('quizFactory', function(questionService, _) {
 	var questions=questionService.getQuestions(function(){
 		//getting questions...
-		var options=[questions.opt1,questions.opt2,questions.opt3,questions.opt4];
 	});
 	return {
 		getQuestion: function(id) {

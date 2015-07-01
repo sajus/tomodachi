@@ -30,9 +30,6 @@ public class Module implements Serializable{
 	public int getModule_id() {
 		return module_id;
 	}
-	public void setModule_id(int module_id) {
-		this.module_id = module_id;
-	}
 	public String getModule_name() {
 		return module_name;
 	}

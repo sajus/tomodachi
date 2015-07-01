@@ -104,7 +104,7 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query getCandidate = entityManager.createQuery("select s from SetExam s where s.user.userid='"+userid+"' and is_conducted = false");
+		Query getCandidate = entityManager.createQuery("select s from SetExam s where s.user.userid='"+userid+"' and s.is_conducted=0");
 		List<SetExam> examList = getCandidate.getResultList();
 		Iterator<SetExam> itr = examList.iterator();
 		while (itr.hasNext()) {
