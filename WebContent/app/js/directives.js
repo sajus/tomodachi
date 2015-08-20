@@ -113,7 +113,7 @@ dirObject.directive("examDetails", function(){
 				var q = quizFactory.getQuestion(scope.id);
 				if(q) {
 					scope.question = q.question;
-					scope.options = q.options;
+					scope.options = [q.op1,q.op2,q.op3,q.op4];
 					scope.isOptionSelected=true;
 				} 
 				else {
@@ -136,6 +136,7 @@ dirObject.directive("examDetails", function(){
 	var questions=questionService.getQuestions(function(){
 		//getting questions...
 	});
+	
 	return {
 		getQuestion: function(id) {
 			if(id < questions.length) {
