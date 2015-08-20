@@ -2,7 +2,7 @@ var myapp = angular.module('myapp', ['ngRoute','ngResource',
                                      'myapp.controllers',
                                      'myapp.services',
                                      'myapp.directives',
-                                     'underscore'
+                                     'underscore','ngCookies'
                                      ]);
 myapp.config(['$routeProvider',function($routeProvider) {
 
@@ -22,14 +22,10 @@ myapp.config(['$routeProvider',function($routeProvider) {
 	when('/students', {templateUrl: 'app/partials/students_all.html'}). 
 	when('/over', {templateUrl: 'app/partials/over.html'}).
 	when('/invalid', {templateUrl: 'app/partials/invalid.html'}).
-	when('/startexam', {templateUrl: 'app/partials/start_exam.html', controller:'examcontroller'}).
+	when('/startexam', {templateUrl: 'app/partials/start_exam.html'}).
 	when('/setexam', {templateUrl: 'app/partials/setexam.html'}).
 	otherwise({
 		redirectTo: ''
 	});
 
 }]);
-
-
-
-

@@ -1,5 +1,7 @@
 package com.domo.interfaces;
 import java.util.List;
+
+import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
 import com.domo.pojo.User;
@@ -8,6 +10,7 @@ public interface DomoDao {
 	List<String> signinUser(int userid, String password);
 	public List<User> getAllCandidatesFromDatabase();
 	public List<SetExam> getCandidateByIdFromDatabase(int id);
+	public List<SetExam> getCandidateByIdNotConductedFromDatabase(String id);
 	public List<SetExam> getAllExams();
 	public void createExam(SetExam setexam);
 	public SetExam showExam(int id);
@@ -15,6 +18,7 @@ public interface DomoDao {
 	public List<User> getAllStudents();
 	public List<Template> getAllTemplates();
 	public void setExam(SetExam setexam);
-	void newExam(SetExam setexam);
-	List<SetExam> getAllExamsStudent(String username);
+	public void newExam(SetExam setexam);
+	public List<SetExam> getAllExamsStudent(String username);
+	public List<Question> getQuestions();
 }

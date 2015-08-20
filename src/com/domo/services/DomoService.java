@@ -1,9 +1,12 @@
 package com.domo.services;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.domo.dao.DomoDaoImpl;
 import com.domo.interfaces.DomoServiceInterface;
+import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
 import com.domo.pojo.User;
@@ -33,6 +36,10 @@ public class DomoService implements DomoServiceInterface{
 		// TODO Auto-generated method stub
 		System.out.println("inside get particular candidate detail service");
 		return domodaoimpl.getCandidateByIdFromDatabase(id);
+	}
+	public List<SetExam> showCandidateDetailsByIdNotConductedService(String userid){
+		System.out.println("inside get candidate details by id whose exam not conducted");
+		return domodaoimpl.getCandidateByIdNotConductedFromDatabase(userid);
 	}
 	@Override
 	public List<SetExam> getAllExamsService(){
@@ -72,5 +79,9 @@ public class DomoService implements DomoServiceInterface{
 	public void setExamService(SetExam setexam) {
 		// TODO Auto-generated method stub
 		domodaoimpl.setExam(setexam);
+	}
+	//question module
+	public List<Question> getAllQuestionsService(){
+		return domodaoimpl.getQuestions();
 	}
 }

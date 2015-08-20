@@ -87,6 +87,7 @@ dirObject.directive("examDetails", function(){
 				//getting all exams here according to userid
 			};
 			console.log($scope.setexams);
+			console.log($scope.userid);
 		            }],
 		            link: ["$scope",  function($scope){
 		            }]
@@ -115,7 +116,7 @@ dirObject.directive("examDetails", function(){
 				var q = quizFactory.getQuestion(scope.id);
 				if(q) {
 					scope.question = q.question;
-					scope.options = q.options;
+					scope.options = [q.op1,q.op2,q.op3,q.op4];
 					scope.isOptionSelected=true;
 				} 
 				else {
@@ -134,29 +135,11 @@ dirObject.directive("examDetails", function(){
 			}
 		}
 	}
-}).factory('quizFactory', function() {
-	var questions = [
-	                 {
-	                	 question: "Which is the largest country in the world by population?",
-	                	 options: ["India", "USA", "China", "Russia"],
-	                 },
-	                 {
-	                	 question: "When did the second world war end?",
-	                	 options: ["1945", "1939", "1944", "1942"],
-	                 },
-	                 {
-	                	 question: "Which was the first country to issue paper currency?",
-	                	 options: ["USA", "France", "Italy", "China"],
-	                 },
-	                 {
-	                	 question: "Which city hosted the 1996 Summer Olympics?",
-	                	 options: ["Atlanta", "Sydney", "Athens", "Beijing"],
-	                 },
-	                 {	
-	                	 question: "Who invented telephone?",
-	                	 options: ["Albert Einstein", "Alexander Graham Bell", "Isaac Newton", "Marie Curie"],
-	                 }
-	                 ];
+}).factory('quizFactory', function(questionService, _) {
+	var questions=questionService.getQuestions(function(){
+		//getting questions...
+	});
+	
 	return {
 		getQuestion: function(id) {
 			if(id < questions.length) {
@@ -179,6 +162,7 @@ dirObject.directive("studentExamInfo", function() {
 		templateUrl: "app/partials/studentinfo.html",
 		controller: ["$scope","candidateInfoService","$routeParams", function($scope, candidateInfoService, $routeParams){
 			$scope.$watch("filterVal", function(){
+				console.log($scope.id);
 				if($scope.filterVal === 'all'){
 					candidateInfoService.getCandidateInfo({id : $routeParams.id}).$promise.then(function(data){
 						console.log(data);
@@ -186,6 +170,10 @@ dirObject.directive("studentExamInfo", function() {
 					});
 				} else{
 					candidateInfoService.getCandidateInfo({id : $routeParams.id, filter: 'remaining'}).$promise.then(function(data){
+						console.log(data);
+						$scope.candidateInfo = data;
+					});
+					candidateInfoService.getCandidateInfoNotConducted({id : $routeParams.id, filter: 'remaining'}).$promise.then(function(data){
 						console.log(data);
 						$scope.candidateInfo = data;
 					});
