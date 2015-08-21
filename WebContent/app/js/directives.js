@@ -16,9 +16,7 @@ dirObject.directive("examForm", function() {
 	    	if($scope.examId !== undefined )
 	    	{
 	    		/*console.log($scope.exams);*/
-	    		$scope.selected_exam = _.find($scope.exam, {set_exam_id: parseInt($scope.examId)});
-	    		console.log($scope.selected_exam);
-	    		
+	    		$scope.selected_exam = _.find($scope.exam, {set_exam_id: parseInt($scope.examId)});	
 	    		$scope.selectedStudent = $scope.userid;
 	    		$scope.selectedTemplate = $scope.template_id;
 	    	}
@@ -27,6 +25,7 @@ dirObject.directive("examForm", function() {
 	    		$scope.students=examService.getStudents(function(){
 	    			//get students here...
 	    		});
+	    		console.log($scope.students);
 	    		
 	    		$scope.templates=examService.getTemplates(function(){
 	    			//get templates here...
@@ -103,41 +102,84 @@ dirObject.directive("examDetails", function(){
 			scope.startTime = false;
 			scope.start = function() {
 				scope.id = 0;
+				scope.score = 0;
 				scope.quizOver = false;
 				scope.inProgress = true;
 				scope.getQuestion();
 				scope.isOptionSelected=true;
 				scope.startTime = true;
+				scope.lastQuestion = false;
+				scope.setInterval();
 			};
 			scope.getQuestion = function() {
+				scope.count = quizFactory.getCount();
 				var q = quizFactory.getQuestion(scope.id);
 				if(q) {
-					scope.question = q.question;
+					scope.question = q.question; 
 					scope.options = [q.op1,q.op2,q.op3,q.op4];
 					scope.isOptionSelected=true;
-				} 
+					scope.answer = q.answer;
+					if(scope.id == scope.count-1){
+						scope.lastQuestion = true;
+					}
+				}
 				else {
 					scope.quizOver=true;
 					scope.startTime = false;
 				}
 			};
+			scope.checkAnswer = function() {
+				if(!$('input[name=option]:checked').length) return;
+				var ans = $('input[name=option]:checked').val();
+				if(ans == scope.options[scope.answer]) {
+					scope.score = scope.score + 1;
+				}
+				else {
+					scope.score = scope.score + 0;
+				}
+			};
 			scope.nextQuestion = function() 
 			{
 				scope.id++;
-				scope.getQuestion();					
+				scope.getQuestion();
 			}
 			scope.onOptionSelect=function(option)
 			{
 				scope.isOptionSelected= false;
 			}
+			
+			var interval = setInterval(function() {
+			    var timer = $('span').html();
+			    timer = timer.split(':');
+			    var minutes = parseInt(timer[0], 10);
+			    var seconds = parseInt(timer[1], 10);
+			    seconds -= 1;
+			    if (minutes < 0) return clearInterval(interval);
+			    if (minutes < 10 && minutes.length != 2) minutes = '0' + minutes;
+			    if (seconds < 0 && minutes != 0) {
+			        minutes -= 1;
+			        seconds = 59;
+			    }
+			    else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+			    $('span').html(minutes + ':' + seconds);
+			    
+			    if (minutes == 0 && seconds == 0){
+			        clearInterval(interval);
+			        scope.quizOver = true;
+			        scope.startTime = false;
+			        scope.checkAnswer();
+			    }
+			}, 1000);
 		}
 	}
 }).factory('quizFactory', function(questionService, _) {
 	var questions=questionService.getQuestions(function(){
 		//getting questions...
 	});
-	
 	return {
+		getCount: function() {
+			return questions.length;
+		},
 		getQuestion: function(id) {
 			if(id < questions.length) {
 				return questions[id];

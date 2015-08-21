@@ -15,21 +15,25 @@ li {
 	<div class="quiz-area" ng-show="inProgress">
 		<div ng-show="!quizOver">
 			<div class="time" align="right" style="color: blue">
-				<span id="time" />
+				<span>1:09</span>
 			</div>
 			<h2 id="question">{{question}}</h2>
 			<br> <br>
 			<table>
 				<tr ng-repeat="option in options">
-					<td><input type="radio" ng-model="option" ng-click="onOptionSelect(option)" name="option" value="{{option}}">{{option}}</td>
+					<td><input type="radio" selected="" ng-model="option" ng-click="onOptionSelect(option)" name="option" value="{{option}}">{{option}}</td>
 				</tr>
 			</table>
 			<br> <br> <br>
-			<button align="right" ng-click="nextQuestion()" ng-disabled="isOptionSelected" class="next-question">Next</button>
+			<button align="right" ng-click="checkAnswer(); nextQuestion();" ng-disabled="isOptionSelected" class="next-question" ng-hide="lastQuestion">Next</button>
+			<button align="right" ng-click="checkAnswer(); nextQuestion();" ng-disabled="isOptionSelected" class="next-question" ng-show="lastQuestion">Finish</button>
 		</div>
 		<div ng-show="quizOver">
 			<h2>Quiz is over</h2>
+			<div id="score">
+				Your result is {{score}} / {{count}}
+			</div>
 			<button class="startAgain" ng-click="again()">Start again</button>
-		</div>
+		</div>	
 	</div>
 </div>
