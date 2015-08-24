@@ -28,7 +28,7 @@ public class SetExam implements Serializable{
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private String start_date;
 	@Column(name="duration")
-	private long duration;
+	private String duration;
 	@Column(name="start_time")
 	private String start_time;
 	@Column(name="is_conducted")
@@ -45,7 +45,7 @@ public class SetExam implements Serializable{
 	}
 	//parameterized ctor
 		public SetExam(int set_exam_id, User user, Template templatesetexam,
-			String start_date, long duration, Time start_time,
+			String start_date, String duration, Time start_time,
 			boolean is_conducted, int marks, Time actual_start_time, String questions) {
 		super();
 		this.set_exam_id = set_exam_id;
@@ -81,10 +81,10 @@ public class SetExam implements Serializable{
 	public void setStart_date(String start_date) {
 		this.start_date = start_date;
 	}
-	public long getDuration() {
+	public String getDuration() {
 		return duration;
 	}
-	public void setDuration(long duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 	public String getStart_time() {

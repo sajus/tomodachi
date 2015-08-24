@@ -23,7 +23,7 @@ td {
 			<td>{{candidateInfos.set_exam_id}}</td>
 			<td>{{candidateInfos.marks}}</td>
 			<td>{{candidateInfos.is_conducted}}</td>
-			<td ng-if="showStart && !candidateInfos.is_conducted"><a href="#/startexam"/>Start Exam</td>
+			<td ng-if="showStart && !candidateInfos.is_conducted"><a href="#/startexam/{{candidateInfos.set_exam_id}}"/>Start Exam</td>
 		</tr>
 	</table>
 </div>

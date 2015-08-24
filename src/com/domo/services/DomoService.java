@@ -84,4 +84,9 @@ public class DomoService implements DomoServiceInterface{
 	public List<Question> getAllQuestionsService(){
 		return domodaoimpl.getQuestions();
 	}
+	@Override
+	public List<SetExam> getAllDurationsService(int examid) {
+		// TODO Auto-generated method stub
+		return domodaoimpl.getDurations(examid);
+	}
 }

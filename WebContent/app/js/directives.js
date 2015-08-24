@@ -25,7 +25,6 @@ dirObject.directive("examForm", function() {
 	    		$scope.students=examService.getStudents(function(){
 	    			//get students here...
 	    		});
-	    		console.log($scope.students);
 	    		
 	    		$scope.templates=examService.getTemplates(function(){
 	    			//get templates here...
@@ -82,18 +81,19 @@ dirObject.directive("examDetails", function(){
 			$scope.setexams=examService.getallExamStudent({userid : $routeParams.userid}),function(){
 				//getting all exams here according to userid
 			};
-			console.log($scope.setexams);
-			console.log($scope.userid);
 		            }],
 		            link: ["$scope",  function($scope){
 		            }]
 	};
-}).directive("startExam", function(quizFactory) {
+}).directive("startExam", function(quizFactory, questionService) {
 	return {
 		restrict: 'AE',
 		scope: {},
 		templateUrl: 'app/partials/startexam.html',
-		controller: ["$scope","$window", function($scope,$window) {
+		controller: ["$scope","$window", "questionService", "$routeParams", function($scope,$window,questionService,$routeParams) { 
+			$scope.setexam = questionService.getDurations({examid : $routeParams.examid},function(){
+				
+			});
 			$scope.again=function(){
 				$window.location.href = 'candidate.html';
 			}				
@@ -109,7 +109,6 @@ dirObject.directive("examDetails", function(){
 				scope.isOptionSelected=true;
 				scope.startTime = true;
 				scope.lastQuestion = false;
-				scope.setInterval();
 			};
 			scope.getQuestion = function() {
 				scope.count = quizFactory.getCount();
@@ -137,6 +136,7 @@ dirObject.directive("examDetails", function(){
 				else {
 					scope.score = scope.score + 0;
 				}
+				console.log(scope.score);
 			};
 			scope.nextQuestion = function() 
 			{
@@ -163,11 +163,10 @@ dirObject.directive("examDetails", function(){
 			    else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 			    $('span').html(minutes + ':' + seconds);
 			    
-			    if (minutes == 0 && seconds == 0){
+			    if (minutes == 0 && seconds == 0){	
 			        clearInterval(interval);
-			        scope.quizOver = true;
-			        scope.startTime = false;
-			        scope.checkAnswer();
+			        scope.id = null;
+			        scope.getQuestion();
 			    }
 			}, 1000);
 		}
@@ -187,6 +186,9 @@ dirObject.directive("examDetails", function(){
 			{
 				return false;
 			}
+		},
+		getDurations: function(){
+			return setexams;
 		}
 	};
 });

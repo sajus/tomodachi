@@ -21,4 +21,5 @@ public interface DomoServiceInterface {
 	public List<SetExam> getAllExamStudentService(String userid);
 	public List<SetExam> showCandidateDetailsByIdNotConductedService(String userid);
 	public List<Question> getAllQuestionsService();
+	public List<SetExam> getAllDurationsService(int examid);
 }

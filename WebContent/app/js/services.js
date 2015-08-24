@@ -106,6 +106,15 @@ angular.module('myapp.services', [])
 					method : 'GET',
 					url : 'rest/questions',
 					isArray : true
+				},
+				getDurations:
+				{
+					method: 'GET',
+					url: 'rest/duration/'+'/:examid',
+					params : {
+						examid : "@examid"
+					},
+					isArray: true
 				}
 			});
 	});

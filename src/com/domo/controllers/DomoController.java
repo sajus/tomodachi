@@ -114,5 +114,10 @@ public class DomoController {
 	//index method
 	public @ResponseBody List<Question> getAllQuestions() {
 		return domoservice.getAllQuestionsService();
-}
+	}
+	@RequestMapping(value = "/duration/{examid}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SetExam> getAllDurations(@PathVariable int examid) {
+		return domoservice.getAllDurationsService(examid);
+	}
 }
