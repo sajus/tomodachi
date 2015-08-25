@@ -74,13 +74,13 @@ angular.module('myapp.services', [])
 		{
 			method: 'GET',
 			url: 'rest/exam/new/student',
-			isArray: 'true'
+			isArray: true
 		},
 		getTemplates:
 		{
 			method: 'GET',
 			url: 'rest/exam/new/template',
-			isArray: 'true'
+			isArray: true
 		},
 		setexam:
 		{

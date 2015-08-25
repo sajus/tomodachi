@@ -15,22 +15,18 @@ dirObject.directive("examForm", function() {
 	    	$scope.examId = $routeParams.exam_id;
 	    	if($scope.examId !== undefined )
 	    	{
-	    		/*console.log($scope.exams);*/
 	    		$scope.selected_exam = _.find($scope.exam, {set_exam_id: parseInt($scope.examId)});	
 	    		$scope.selectedStudent = $scope.userid;
 	    		$scope.selectedTemplate = $scope.template_id;
-	    	}
-	    	else
-	    	{
+
 	    		$scope.students=examService.getStudents(function(){
 	    			//get students here...
 	    		});
-	    		
 	    		$scope.templates=examService.getTemplates(function(){
 	    			//get templates here...
 	    		});
-	    		
 	    		$scope.setExam=function(){
+	    			console.log("SetExam clicked!");
 	    			$scope.exam.start_date = $filter('date')($scope.exam.start_date, "MM/dd/yyyy");
 	    			$scope.exam.start_time = $filter('date')($scope.exam.start_time, "HH:mm:ss");
 	    			$scope.exam.template_id = parseInt($scope.exam.template_id);
@@ -42,6 +38,10 @@ dirObject.directive("examForm", function() {
 	    			$scope.exam={};
 	    			alert("Succesfully set the exam!");
 	    		};
+	    	}
+	    	else
+	    	{
+	    		
 	    	}
 	    }],
 	    
