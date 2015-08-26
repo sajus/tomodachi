@@ -100,11 +100,11 @@ body {
 }
 
 .page-footer {
-	bottom: 0;
+	
 	margin-left: 457px;
-	height: 60px;
+	position: absolute;
 	color: #4682B4;
-	margin-top: 697px
+	margin-top: 697px;
 }
 
 .page-header {
@@ -113,9 +113,8 @@ body {
 }
 
 .u-form-group1 .active1 {
-	width: 300px;
+	width: 239px;
 	background-color: #268EB8;
-	border: none;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -123,7 +122,7 @@ body {
 	padding: 14px 0;
 	border-radius: 7px;
 	text-transform: uppercase;
-	margin-top: 358px;
+	margin-top: 277px;
 }
 
 .u-form-group1 .active1:hover {

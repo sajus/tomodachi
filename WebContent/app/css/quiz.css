@@ -10,13 +10,11 @@ h2 {
 .next-question, .startQuiz, .startAgain {
 	width: 103px;
 	background-color: #268EB8;
-	border: none;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
 	font-weight: normal;
 	padding: 14px 0;
-	border-radius: 7px;
 	text-transform: uppercase;
 	margin-top: 49px;
 }
