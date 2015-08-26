@@ -7,18 +7,35 @@ dirObject.directive("examForm", function() {
 			exams: "=?"
 		},
 	    templateUrl: "app/partials/exam_form.html",
-	    controller: ["$scope", "$routeParams", "$filter", "_", 'examService', '$window',function($scope, $routeParams,$filter,  _, examService,$window)
+	    controller: ["$scope", "$routeParams", "$filter", "_", "examService", "$window", function($scope, $routeParams,$filter,  _, examService,$window)
 	    {	
 	    	$scope.getExams = function(){
 				$window.location.href = '#/exam';
 			}
 	    	$scope.examId = $routeParams.exam_id;
-	    	if($scope.examId !== undefined )
+	    	if($scope.examId !== undefined)
 	    	{
-	    		$scope.selected_exam = _.find($scope.exam, {set_exam_id: parseInt($scope.examId)});	
-	    		$scope.selectedStudent = $scope.userid;
-	    		$scope.selectedTemplate = $scope.template_id;
-
+	    		console.log("ififif");
+	    		$scope.students=examService.getStudents(function(){
+	    			//get students here...
+	    		});
+	    		$scope.templates=examService.getTemplates(function(){
+	    			//get templates here...
+	    		});
+	    		$scope.editExams=examService.getallExam(function(response){
+					//getting the exams here...
+	    			$scope.object = _.findWhere(response, {set_exam_id: parseInt($scope.examId)});
+	    			console.log($scope.object,"exam");
+	    			$scope.selectedStudent = $scope.object.user.userid;
+    			    $scope.selectedTemplate = $scope.object.templatesetexam.template_id;
+    			    $scope.selectedDate =  new Date($scope.object.start_date + ' ' + $scope.object.start_time);
+    			    $scope.selectedTime = new Date($scope.object.start_date + ' ' + $scope.object.start_time);
+    			    $scope.selectedDuration = $scope.object.duration;
+				});
+	    	}
+	    	else
+	    	{
+	    		console.log("elseelseelse");
 	    		$scope.students=examService.getStudents(function(){
 	    			//get students here...
 	    		});
@@ -38,10 +55,6 @@ dirObject.directive("examForm", function() {
 	    			$scope.exam={};
 	    			alert("Succesfully set the exam!");
 	    		};
-	    	}
-	    	else
-	    	{
-	    		
 	    	}
 	    }],
 	    

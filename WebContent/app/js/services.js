@@ -59,7 +59,7 @@ angular.module('myapp.services', [])
 		{		
 			method:'GET',
 			url:'rest/exams',
-			isArray: 'true'	
+			isArray: true	
 		},
 		getallExamStudent:
 		{		
@@ -96,7 +96,7 @@ angular.module('myapp.services', [])
 		{			
 			method:'PUT',
 			url:'rest/'		
-		},			
+		}		
 			});
 }).service('questionService', function($resource) {
 	return $resource('',{},
