@@ -100,11 +100,12 @@ body {
 }
 
 .page-footer {
-	
-	margin-left: 457px;
-	position: absolute;
-	color: #4682B4;
-	margin-top: 697px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: #4682B4;
+  text-align: center;
 }
 
 .page-header {
