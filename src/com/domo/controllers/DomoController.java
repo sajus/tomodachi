@@ -102,6 +102,14 @@ public class DomoController {
 	public @ResponseBody List<User> getAllStudents() {
 		return domoservice.getAllStudentsService();
 	}
+	
+	/*@RequestMapping(value = "/students/{studentid}", method = RequestMethod.GET)
+	//getStudent method
+	public @ResponseBody List<SetExam> getStudent(@PathVariable String userid) {
+		List<SetExam> result=domoservice.getAllExamStudentService(userid);
+		System.out.println(result);
+		return result;
+	}*/
 	//template module
 	@RequestMapping(value = "/exam/new/template", method = RequestMethod.GET)
 		//getAllTemplates method
@@ -114,5 +122,10 @@ public class DomoController {
 	//index method
 	public @ResponseBody List<Question> getAllQuestions() {
 		return domoservice.getAllQuestionsService();
-}
+	}
+	@RequestMapping(value = "/duration/{examid}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SetExam> getAllDurations(@PathVariable int examid) {
+		return domoservice.getAllDurationsService(examid);
+	}
 }

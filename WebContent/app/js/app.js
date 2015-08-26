@@ -22,7 +22,7 @@ myapp.config(['$routeProvider',function($routeProvider) {
 	when('/students', {templateUrl: 'app/partials/students_all.html'}). 
 	when('/over', {templateUrl: 'app/partials/over.html'}).
 	when('/invalid', {templateUrl: 'app/partials/invalid.html'}).
-	when('/startexam', {templateUrl: 'app/partials/start_exam.html'}).
+	when('/startexam/:examid', {templateUrl: 'app/partials/start_exam.html'}).
 	when('/setexam', {templateUrl: 'app/partials/setexam.html'}).
 	otherwise({
 		redirectTo: ''
