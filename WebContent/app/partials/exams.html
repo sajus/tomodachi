@@ -31,7 +31,7 @@ td {
 				<td>{{exam.start_time}}</td>
 				<td>{{exam.is_conducted}}</td>
 				<td align="center">
-				    <a href="#/exam/{{exam.set_exam_id}}/edit" />Edit</a>
+				    <a ng-if="!exam.is_conducted" href="#/exam/{{exam.set_exam_id}}/edit" />Edit</a>
                     <a href="#/exam/{{exam.user.userid}}/show" />Show</a>
                 </td>
 			</tr>

@@ -59,7 +59,7 @@ angular.module('myapp.services', [])
 		{		
 			method:'GET',
 			url:'rest/exams',
-			isArray: 'true'	
+			isArray: true	
 		},
 		getallExamStudent:
 		{		
@@ -74,13 +74,13 @@ angular.module('myapp.services', [])
 		{
 			method: 'GET',
 			url: 'rest/exam/new/student',
-			isArray: 'true'
+			isArray: true
 		},
 		getTemplates:
 		{
 			method: 'GET',
 			url: 'rest/exam/new/template',
-			isArray: 'true'
+			isArray: true
 		},
 		setexam:
 		{
@@ -96,7 +96,7 @@ angular.module('myapp.services', [])
 		{			
 			method:'PUT',
 			url:'rest/'		
-		},			
+		}		
 			});
 }).service('questionService', function($resource) {
 	return $resource('',{},
@@ -106,6 +106,15 @@ angular.module('myapp.services', [])
 					method : 'GET',
 					url : 'rest/questions',
 					isArray : true
+				},
+				getDurations:
+				{
+					method: 'GET',
+					url: 'rest/duration/'+'/:examid',
+					params : {
+						examid : "@examid"
+					},
+					isArray: true
 				}
 			});
 	});

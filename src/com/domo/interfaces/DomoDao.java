@@ -21,4 +21,5 @@ public interface DomoDao {
 	public void newExam(SetExam setexam);
 	public List<SetExam> getAllExamsStudent(String username);
 	public List<Question> getQuestions();
+	public List<SetExam> getDurations(int examid);
 }

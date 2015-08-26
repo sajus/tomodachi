@@ -233,4 +233,18 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		return questionList;
 	}
+	@Override
+	public List<SetExam> getDurations(int examid) {
+		// TODO Auto-generated method stub
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		entityManager = factory.createEntityManager();
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createQuery("select s from SetExam s where set_exam_id="+examid);
+		List<SetExam> durationList = query.getResultList();
+		Iterator<SetExam> itr = durationList.iterator();
+		while (itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+		return durationList;
+	}
 }

@@ -7,32 +7,44 @@ dirObject.directive("examForm", function() {
 			exams: "=?"
 		},
 	    templateUrl: "app/partials/exam_form.html",
-	    controller: ["$scope", "$routeParams", "$filter", "_", 'examService', '$window',function($scope, $routeParams,$filter,  _, examService,$window)
+	    controller: ["$scope", "$routeParams", "$filter", "_", "examService", "$window", function($scope, $routeParams,$filter,  _, examService,$window)
 	    {	
 	    	$scope.getExams = function(){
 				$window.location.href = '#/exam';
 			}
 	    	$scope.examId = $routeParams.exam_id;
-	    	if($scope.examId !== undefined )
+	    	if($scope.examId !== undefined)
 	    	{
-	    		/*console.log($scope.exams);*/
-
-	    		$scope.selected_exam = _.find($scope.exam, {set_exam_id: parseInt($scope.examId)});	
-	    		$scope.selectedStudent = $scope.userid;
-	    		$scope.selectedTemplate = $scope.template_id;
-	    	}
-	    	else
-	    	{
+		       console.log("ififif");
 	    		$scope.students=examService.getStudents(function(){
 	    			//get students here...
 	    		});
-	    		console.log($scope.students);
-	    		
 	    		$scope.templates=examService.getTemplates(function(){
 	    			//get templates here...
 	    		});
-	    		
+	    		$scope.editExams=examService.getallExam(function(response){
+					//getting the exams here...
+	    			$scope.object = _.findWhere(response, {set_exam_id: parseInt($scope.examId)});
+	    			console.log($scope.object,"exam");
+	    			$scope.selectedStudent = $scope.object.user.userid;
+    			    $scope.selectedTemplate = $scope.object.templatesetexam.template_id;
+    			    $scope.selectedDate =  new Date($scope.object.start_date + ' ' + $scope.object.start_time);
+    			    $scope.selectedTime = new Date($scope.object.start_date + ' ' + $scope.object.start_time);
+    			    $scope.selectedDuration = $scope.object.duration;
+				});
+
+	    	}
+	    	else
+	    	{
+	    		console.log("elseelseelse");
+	    		$scope.students=examService.getStudents(function(){
+	    			//get students here...
+	    		});
+	    		$scope.templates=examService.getTemplates(function(){
+	    			//get templates here...
+	    		});
 	    		$scope.setExam=function(){
+	    			console.log("SetExam clicked!");
 	    			$scope.exam.start_date = $filter('date')($scope.exam.start_date, "MM/dd/yyyy");
 	    			$scope.exam.start_time = $filter('date')($scope.exam.start_time, "HH:mm:ss");
 	    			$scope.exam.template_id = parseInt($scope.exam.template_id);
@@ -82,18 +94,19 @@ dirObject.directive("examDetails", function(){
 			$scope.setexams=examService.getallExamStudent({userid : $routeParams.userid}),function(){
 				//getting all exams here according to userid
 			};
-			console.log($scope.setexams);
-			console.log($scope.userid);
 		            }],
 		            link: ["$scope",  function($scope){
 		            }]
 	};
-}).directive("startExam", function(quizFactory) {
+}).directive("startExam", function(quizFactory, questionService) {
 	return {
 		restrict: 'AE',
 		scope: {},
 		templateUrl: 'app/partials/startexam.html',
-		controller: ["$scope","$window", function($scope,$window) {
+		controller: ["$scope","$window", "questionService", "$routeParams", function($scope,$window,questionService,$routeParams) { 
+			$scope.setexam = questionService.getDurations({examid : $routeParams.examid},function(){
+				
+			});
 			$scope.again=function(){
 				$window.location.href = 'candidate.html';
 			}				
@@ -109,7 +122,6 @@ dirObject.directive("examDetails", function(){
 				scope.isOptionSelected=true;
 				scope.startTime = true;
 				scope.lastQuestion = false;
-				scope.setInterval();
 			};
 			scope.getQuestion = function() {
 				scope.count = quizFactory.getCount();
@@ -137,6 +149,7 @@ dirObject.directive("examDetails", function(){
 				else {
 					scope.score = scope.score + 0;
 				}
+				console.log(scope.score);
 			};
 			scope.nextQuestion = function() 
 			{
@@ -163,11 +176,10 @@ dirObject.directive("examDetails", function(){
 			    else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 			    $('span').html(minutes + ':' + seconds);
 			    
-			    if (minutes == 0 && seconds == 0){
+			    if (minutes == 0 && seconds == 0){	
 			        clearInterval(interval);
-			        scope.quizOver = true;
-			        scope.startTime = false;
-			        scope.checkAnswer();
+			        scope.id = null;
+			        scope.getQuestion();
 			    }
 			}, 1000);
 		}
@@ -187,6 +199,9 @@ dirObject.directive("examDetails", function(){
 			{
 				return false;
 			}
+		},
+		getDurations: function(){
+			return setexams;
 		}
 	};
 });

@@ -14,14 +14,14 @@ li {
 	</div>
 	<div class="quiz-area" ng-show="inProgress">
 		<div ng-show="!quizOver">
-			<div class="time" align="right" style="color: blue">
-				<span>1:09</span>
+			<div class="time" align="right" style="color: blue" ng-repeat="setexams in setexam">
+				<span>{{setexams.duration}}</span>
 			</div>
 			<h2 id="question">{{question}}</h2>
 			<br> <br>
 			<table>
 				<tr ng-repeat="option in options">
-					<td><input type="radio" selected="" ng-model="option" ng-click="onOptionSelect(option)" name="option" value="{{option}}">{{option}}</td>
+					<td><input type="radio" ng-click="onOptionSelect(option)" name="option" ng-value="option">{{option}}</td>
 				</tr>
 			</table>
 			<br> <br> <br>
