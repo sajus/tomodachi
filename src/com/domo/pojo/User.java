@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class User implements Serializable{
 	@Id
 	@Column(name="userid")
-	private int userid;
+	public int userid;
 	@Column(name="username")
 	private String username;
 	@Column(name="password")

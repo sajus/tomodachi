@@ -8,35 +8,37 @@ td {
 <div align="center" class="box">
 	<table align="center">
 		<tr>
-			<td>Select student:</td>
-			<td><select ng-model="exam.userid" name="exam.userid">
-					<option ng-repeat="student in students" value="student.userid" ng-selected="selectedStudent == student.userid">{{student.username}}</option>
-			    </select>
+			<td>Select Student:</td>
+			<td>
+			<select ng-model="exam.selectedStudent" ng-options="student.userid as student.username for student in students">
+	        	<option value="">--Select Students--</option>
+	    	</select>
 			</td>
 		</tr>
 		<tr>
-			<td>Select Template</td>
-			<td><select ng-model="exam.template_id" name="exam.template_id">
-					<option ng-repeat="template in templates" value="template.template_id" ng-selected="selectedTemplate == template.template_id">{{template.template_name}}</option>
-				</select>
+			<td>Select Template:</td>
+			<td>
+			<select ng-model="exam.selectedTemplate" ng-options="template.template_id as template.template_name for template in templates">
+	        	<option value="">--Select template--</option>
+	    	</select>
 			</td>
 		</tr>
 		<tr>
 			<td>Start Date:</td>
 			<div ng-repeat="editExam in editExams">
-				<td><input type="date" name="exam.start_date" ng-selected="selectedDate == editExam.start_date" ng-model="selectedDate"></td>
+				<td><input type="date" name="exam.start_date" ng-selected="exam.selectedDate == editExam.start_date" ng-model="exam.selectedDate"></td>
 			</div>
 		</tr>
 		<tr>
 			<td>Start Time:</td>
 			<div ng-repeat="editExam in editExams">
-				<td><input type="time" name="exam.start_time" ng-selected="selectedTime == editExam.start_time" ng-model="selectedTime"></td>
+				<td><input type="time" name="exam.start_time" ng-selected="exam.selectedTime == editExam.start_time" ng-model="exam.selectedTime"></td>
 			</div>
 		</tr>
 		<tr>
 			<td>Duration:</td>
 			<div ng-repeat="editExam in editExams">
-				<td><input type="text" name="exam.duration" ng-selected="selectedDuration == editExam.duration" ng-model="selectedDuration"></td>
+				<td><input type="text" name="exam.duration" ng-selected="exam.selectedDuration == editExam.duration" ng-model="exam.selectedDuration"></td>
 			</div>
 		</tr>
 	</table>

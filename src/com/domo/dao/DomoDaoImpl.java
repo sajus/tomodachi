@@ -163,12 +163,22 @@ public class DomoDaoImpl implements DomoDao{
 		return queryResult;
 	}
 	@Override
-	public void editExamService(int id) {
+	public void editExamService(SetExam setexam) {
 		// TODO Auto-generated method stub
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query query=entityManager.createQuery("update SetExam s");
+		Query query=entityManager.createQuery("update SetExam s set start_date=:new_start_date, start_time=:new_start_time, duration=:new_duration, user.userid=:new_userid, templatesetexam.template_id=:new_template_id where s.set_exam_id="+setexam.set_exam_id);
+		query.setParameter("new_start_date", setexam.start_date);
+		query.setParameter("new_start_time", setexam.start_time);
+		query.setParameter("new_duration", setexam.duration);
+		query.setParameter("new_userid", setexam.user.userid);
+		query.setParameter("new_template_id", setexam.templatesetexam.template_id);
+		int updateCount = query.executeUpdate();
+		if(updateCount > 0){
+			System.out.println("record updated");
+		}
+		entityManager.getTransaction().commit();
 	}
 	@Override
 	public void newExam(SetExam setexam) {

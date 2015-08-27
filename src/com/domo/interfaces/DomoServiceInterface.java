@@ -13,7 +13,7 @@ public interface DomoServiceInterface {
 	public List<SetExam> showCandidateDetailsByIdService(int id);
 	public List<SetExam> getAllExamsService();
 	public SetExam showExamService(int id);
-	public void editExamService(int id);
+	public void editExamService(SetExam setexam);
 	public void newExamService(SetExam setexam);
 	public List<User> getAllStudentsService();
 	public List<Template> getAllTemplatesService();

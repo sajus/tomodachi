@@ -17,20 +17,20 @@ public class SetExam implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="set_exam_id")
-	private int set_exam_id;
+	public int set_exam_id;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="userid")
 	public User user;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="template_id")
-	private Template templatesetexam;
+	public Template templatesetexam;
 	@Column(name="start_date")
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
-	private String start_date;
+	public String start_date;
 	@Column(name="duration")
-	private String duration;
+	public String duration;
 	@Column(name="start_time")
-	private String start_time;
+	public String start_time;
 	@Column(name="is_conducted")
 	private boolean is_conducted=false;
 	@Column(name="marks")

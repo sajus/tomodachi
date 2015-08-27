@@ -75,10 +75,9 @@ public class DomoController {
 	public SetExam show(@PathVariable int id) {
 		return domoservice.showExamService(id);
 	}
-	@RequestMapping(value = "/exam/{id}/edit", method = RequestMethod.PUT)
-	@ResponseBody
-	public void edit(@PathVariable int id) {
-		domoservice.editExamService(id);
+	@RequestMapping(value = "/exam/edit", method = RequestMethod.PUT)
+	public void updateexam(@RequestBody SetExam setexam) {
+		domoservice.editExamService(setexam);
 	}
 	@RequestMapping(value = "/exam/new", method = RequestMethod.POST)
 	public void newExam(@RequestBody SetExam setexam) {

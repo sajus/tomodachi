@@ -9,6 +9,12 @@ dirObject.directive("examForm", function() {
 	    templateUrl: "app/partials/exam_form.html",
 	    controller: ["$scope", "$routeParams", "$filter", "_", "examService", "$window", function($scope, $routeParams,$filter,  _, examService,$window)
 	    {	
+	    	$scope.exam = {};
+	    	$scope.setSelectedUserId = function(item) {
+	    		
+	    		debugger;
+	    		
+	    	}
 	    	$scope.getExams = function(){
 				$window.location.href = '#/exam';
 			}
@@ -22,38 +28,63 @@ dirObject.directive("examForm", function() {
 	    		$scope.templates=examService.getTemplates(function(){
 	    			//get templates here...
 	    		});
+	    		
 	    		$scope.editExams=examService.getallExam(function(response){
-					//getting the exams here...
 	    			$scope.object = _.findWhere(response, {set_exam_id: parseInt($scope.examId)});
+	    			
 	    			console.log($scope.object,"exam");
-	    			$scope.selectedStudent = $scope.object.user.userid;
-    			    $scope.selectedTemplate = $scope.object.templatesetexam.template_id;
-    			    $scope.selectedDate =  new Date($scope.object.start_date + ' ' + $scope.object.start_time);
-    			    $scope.selectedTime = new Date($scope.object.start_date + ' ' + $scope.object.start_time);
-    			    $scope.selectedDuration = $scope.object.duration;
+	    			$scope.exam.selectedStudent = $scope.object.user.userid;
+    			    $scope.exam.selectedTemplate = $scope.object.templatesetexam.template_id;
+    			    $scope.exam.selectedDate =  new Date($scope.object.start_date + ' ' + $scope.object.start_time);
+    			    $scope.exam.selectedTime = new Date($scope.object.start_date + ' ' + $scope.object.start_time);
+    			    $scope.exam.selectedDuration = $scope.object.duration;
 				});
+	    		
+	    		$scope.setExam = function(){
+	    			console.log("edit SetExam clicked!");
+	    			console.log($scope.exam,"asdfljasdf");
+	    			$scope.exam.set_exam_id =  $scope.examId;
+	    			$scope.exam.start_date = $filter('date')($scope.exam.selectedDate, "MM/dd/yyyy");
+	    			$scope.exam.start_time = $filter('date')($scope.exam.selectedTime, "HH:mm:ss");
+	    			$scope.exam.duration = $scope.exam.selectedDuration;
+	    			$scope.exam.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate });
+	    			$scope.exam.user =  _.findWhere($scope.students, {userid: parseInt($scope.exam.selectedStudent)});
+	    			/*$scope.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate});
+	    			$scope.exam.selectedTemplate = $scope.templatesetexam.template_id;
+	    			$scope.user = _.findWhere($scope.students, {userid: $scope.exam.selectedStudent});
+	    			$scope.exam.selectedStudent = parseInt($scope.user.userid);*/
+	    			console.log($scope.exam,"updatedexam");
+	    			examService.updateexam({examid : $scope.exam.set_exam_id}, $scope.exam);
+	    			$scope.exam={};
+	    			alert("Successfully updated the exam!");
+	    			$scope.getExams();
+	    		}
 	    	}
 	    	else
 	    	{
 	    		console.log("elseelseelse");
 	    		$scope.students=examService.getStudents(function(){
-	    			//get students here...
+	    			console.log($scope.students);
 	    		});
 	    		$scope.templates=examService.getTemplates(function(){
-	    			//get templates here...
+	    			console.log($scope.templates);
 	    		});
-	    		$scope.setExam=function(){
-	    			console.log("SetExam clicked!");
-	    			$scope.exam.start_date = $filter('date')($scope.exam.start_date, "MM/dd/yyyy");
-	    			$scope.exam.start_time = $filter('date')($scope.exam.start_time, "HH:mm:ss");
-	    			$scope.exam.template_id = parseInt($scope.exam.template_id);
-	    			$scope.exam.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.template_id});
-	    			$scope.exam.userid = parseInt($scope.exam.userid);
-	    			$scope.exam.user = _.findWhere($scope.students, {userid: $scope.exam.userid});
+	    		$scope.setExam = function(){
+	    			console.log("new SetExam clicked!");
+	    			$scope.exam.set_exam_id = $scope.examId;
+	    			$scope.exam.start_date = $filter('date')($scope.exam.selectedDate, "MM/dd/yyyy");
+	    			$scope.exam.start_time = $filter('date')($scope.exam.selectedTime, "HH:mm:ss");
+	    			$scope.exam.duration = $scope.exam.selectedDuration;
+	    			
+	    		/*	$scope.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate });*/
+	    			$scope.exam.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate });//.template_id = parseInt($scope.templatesetexam.template_id);
+	    			/*$scope.user = _.findWhere($scope.students, {userid: parseInt($scope.exam.selectedStudent)});*/
+	    			$scope.exam.user =  _.findWhere($scope.students, {userid: parseInt($scope.exam.selectedStudent)});//.userid = parseInt($scope.user.userid);
 	    			examService.setexam($scope.exam);
 	    			console.log($scope.exam);
 	    			$scope.exam={};
 	    			alert("Succesfully set the exam!");
+	    			$scope.getExams();
 	    		};
 	    	}
 	    }],

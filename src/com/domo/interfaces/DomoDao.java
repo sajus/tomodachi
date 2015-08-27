@@ -14,7 +14,7 @@ public interface DomoDao {
 	public List<SetExam> getAllExams();
 	public void createExam(SetExam setexam);
 	public SetExam showExam(int id);
-	public void editExamService(int id);
+	public void editExamService(SetExam setexam);
 	public List<User> getAllStudents();
 	public List<Template> getAllTemplates();
 	public void setExam(SetExam setexam);

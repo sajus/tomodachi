@@ -56,9 +56,9 @@ public class DomoService implements DomoServiceInterface{
 		return domodaoimpl.showExam(id);
 	}
 	@Override
-	public void editExamService(int id) {
+	public void editExamService(SetExam setexam) {
 		// TODO Auto-generated method stub
-		domodaoimpl.editExamService(id);
+		domodaoimpl.editExamService(setexam);
 	}
 	@Override
 	public void newExamService(SetExam setexam) {

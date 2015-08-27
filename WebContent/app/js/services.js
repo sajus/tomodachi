@@ -95,7 +95,10 @@ angular.module('myapp.services', [])
 		updateexam:			
 		{			
 			method:'PUT',
-			url:'rest/'		
+			url:'rest/exam/edit',
+			params : {
+				exam_id : "@examid"
+			}
 		}		
 			});
 }).service('questionService', function($resource) {
