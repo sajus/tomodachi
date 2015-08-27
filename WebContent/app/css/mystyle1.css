@@ -41,12 +41,12 @@
 }
 
 .page-footer {
-	position: absolute;;
-	bottom: 0;
-	margin-left: 457px;
-	height: 60px;
-	color: #4682B4;
-	margin-top: 620px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: #4682B4;
+  text-align: center;
 }
 
 .page-header {

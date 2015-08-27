@@ -21,7 +21,7 @@ dirObject.directive("examForm", function() {
 	    	$scope.examId = $routeParams.exam_id;
 	    	if($scope.examId !== undefined)
 	    	{
-	    		console.log("ififif");
+		       console.log("ififif");
 	    		$scope.students=examService.getStudents(function(){
 	    			//get students here...
 	    		});
@@ -39,7 +39,7 @@ dirObject.directive("examForm", function() {
     			    $scope.exam.selectedTime = new Date($scope.object.start_date + ' ' + $scope.object.start_time);
     			    $scope.exam.selectedDuration = $scope.object.duration;
 				});
-	    		
+
 	    		$scope.setExam = function(){
 	    			console.log("edit SetExam clicked!");
 	    			console.log($scope.exam,"asdfljasdf");
@@ -88,7 +88,6 @@ dirObject.directive("examForm", function() {
 	    		};
 	    	}
 	    }],
-	    
 	    
 	    link: ["$scope",  function($scope){
 	    	
