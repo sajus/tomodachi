@@ -32,9 +32,9 @@ public class SetExam implements Serializable{
 	@Column(name="start_time")
 	public String start_time;
 	@Column(name="is_conducted")
-	private boolean is_conducted=false;
+	public boolean is_conducted=false;
 	@Column(name="marks")
-	private int marks=0;
+	public int marks=0;
 	@Column(name="actual_start_time")
 	private String actual_start_time=null;
 	@Column(name="questions")

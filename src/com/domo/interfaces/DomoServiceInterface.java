@@ -18,8 +18,9 @@ public interface DomoServiceInterface {
 	public List<User> getAllStudentsService();
 	public List<Template> getAllTemplatesService();
 	public void setExamService(SetExam setexam);
-	public List<SetExam> getAllExamStudentService(String userid);
+	public List<SetExam> getAllExamStudentService(int exam_id);
 	public List<SetExam> showCandidateDetailsByIdNotConductedService(String userid);
 	public List<Question> getAllQuestionsService();
 	public List<SetExam> getAllDurationsService(int examid);
+	public void putMarksService(SetExam setexam);
 }

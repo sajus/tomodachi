@@ -64,9 +64,9 @@ angular.module('myapp.services', [])
 		getallExamStudent:
 		{		
 			method:'GET',
-			url:'rest/exams/'+'/:userid',
+			url:'rest/exams/'+'/:exam_id',
 			params : {
-				userid : "@userid"
+				exam_id : "@exam_id"
 			},
 			isArray: true
 		},
@@ -118,6 +118,14 @@ angular.module('myapp.services', [])
 						examid : "@examid"
 					},
 					isArray: true
+				},
+				putMarks:
+				{
+					method: 'PUT',
+					url: 'rest/marks',
+					params : {
+						exam_id : "@examid"
+					}
 				}
 			});
 	});

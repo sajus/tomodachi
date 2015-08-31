@@ -19,6 +19,7 @@ dirObject.directive("examForm", function() {
 				$window.location.href = '#/exam';
 			}
 	    	$scope.examId = $routeParams.exam_id;
+	    	//edit exam
 	    	if($scope.examId !== undefined)
 	    	{
 		       console.log("ififif");
@@ -49,17 +50,13 @@ dirObject.directive("examForm", function() {
 	    			$scope.exam.duration = $scope.exam.selectedDuration;
 	    			$scope.exam.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate });
 	    			$scope.exam.user =  _.findWhere($scope.students, {userid: parseInt($scope.exam.selectedStudent)});
-	    			/*$scope.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate});
-	    			$scope.exam.selectedTemplate = $scope.templatesetexam.template_id;
-	    			$scope.user = _.findWhere($scope.students, {userid: $scope.exam.selectedStudent});
-	    			$scope.exam.selectedStudent = parseInt($scope.user.userid);*/
 	    			console.log($scope.exam,"updatedexam");
 	    			examService.updateexam({examid : $scope.exam.set_exam_id}, $scope.exam);
 	    			$scope.exam={};
-	    			alert("Successfully updated the exam!");
 	    			$scope.getExams();
 	    		}
 	    	}
+	    	//new exam
 	    	else
 	    	{
 	    		console.log("elseelseelse");
@@ -75,15 +72,10 @@ dirObject.directive("examForm", function() {
 	    			$scope.exam.start_date = $filter('date')($scope.exam.selectedDate, "MM/dd/yyyy");
 	    			$scope.exam.start_time = $filter('date')($scope.exam.selectedTime, "HH:mm:ss");
 	    			$scope.exam.duration = $scope.exam.selectedDuration;
-	    			
-	    		/*	$scope.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate });*/
-	    			$scope.exam.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate });//.template_id = parseInt($scope.templatesetexam.template_id);
-	    			/*$scope.user = _.findWhere($scope.students, {userid: parseInt($scope.exam.selectedStudent)});*/
-	    			$scope.exam.user =  _.findWhere($scope.students, {userid: parseInt($scope.exam.selectedStudent)});//.userid = parseInt($scope.user.userid);
+	    			$scope.exam.templatesetexam = _.findWhere($scope.templates, {template_id: $scope.exam.selectedTemplate });
+	    			$scope.exam.user =  _.findWhere($scope.students, {userid: parseInt($scope.exam.selectedStudent)});
 	    			examService.setexam($scope.exam);
-	    			console.log($scope.exam);
 	    			$scope.exam={};
-	    			alert("Succesfully set the exam!");
 	    			$scope.getExams();
 	    		};
 	    	}
@@ -121,7 +113,7 @@ dirObject.directive("examDetails", function(){
 		templateUrl: "app/partials/setexam.html",
 		controller:["$scope", "examService", "$routeParams", function($scope, examService, $routeParams)
 		            {
-			$scope.setexams=examService.getallExamStudent({userid : $routeParams.userid}),function(){
+			$scope.setexams=examService.getallExamStudent({exam_id : $routeParams.exam_id}),function(){
 				//getting all exams here according to userid
 			};
 		            }],
@@ -137,6 +129,15 @@ dirObject.directive("examDetails", function(){
 			$scope.setexam = questionService.getDurations({examid : $routeParams.examid},function(){
 				
 			});
+            $scope.submitResult=function(){
+            	/*questionService.putMarks({examid : $routeParams.examid},function(data){
+            		$scope.setexam = data;
+            	});
+            	$scope.setexam.marks = $scope.score;*/
+            	questionService.putMarks({examid : $scope.setexam[0].set_exam_id}, $scope.setexam[0].marks = $scope.score, $scope.setexam[0]);
+            	$scope.setexam = {};
+            }
+
 			$scope.again=function(){
 				$window.location.href = 'candidate.html';
 			}				
@@ -179,7 +180,6 @@ dirObject.directive("examDetails", function(){
 				else {
 					scope.score = scope.score + 0;
 				}
-				console.log(scope.score);
 			};
 			scope.nextQuestion = function() 
 			{
@@ -190,7 +190,6 @@ dirObject.directive("examDetails", function(){
 			{
 				scope.isOptionSelected= false;
 			}
-			
 			var interval = setInterval(function() {
 			    var timer = $('span').html();
 			    timer = timer.split(':');

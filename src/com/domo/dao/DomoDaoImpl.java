@@ -128,12 +128,12 @@ public class DomoDaoImpl implements DomoDao{
 		return examList;
 	}
 	@Override
-	public List<SetExam> getAllExamsStudent(String userid) {
+	public List<SetExam> getAllExamsStudent(int exam_id) {
 		// TODO Auto-generated method stub
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query query = entityManager.createQuery("from SetExam where user.userid='"+userid+"'");
+		Query query = entityManager.createQuery("from SetExam where set_exam_id="+exam_id);
 		List<SetExam> examList = query.getResultList();
 		Iterator<SetExam> itr = examList.iterator();
 		while (itr.hasNext()) {
@@ -256,5 +256,19 @@ public class DomoDaoImpl implements DomoDao{
 			System.out.println(itr.next());
 		}
 		return durationList;
+	}
+	public void putMarkService(SetExam setexam) {
+		// TODO Auto-generated method stub
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		entityManager = factory.createEntityManager();
+		entityManager.getTransaction().begin();
+		Query query=entityManager.createQuery("update SetExam s set marks=:new_marks, is_conducted=:new_is_conducted where s.set_exam_id="+setexam.set_exam_id);
+		query.setParameter("new_marks", setexam.marks);
+		query.setParameter("new_is_conducted", 1);
+		int updateCount = query.executeUpdate();
+		if(updateCount > 0){
+			System.out.println("record updated");
+		}
+		entityManager.getTransaction().commit();
 	}
 }

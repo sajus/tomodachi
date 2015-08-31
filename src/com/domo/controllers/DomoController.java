@@ -88,10 +88,10 @@ public class DomoController {
 		System.out.println(setexam);
 		domoservice.setExamService(setexam);
 	}
-	@RequestMapping(value = "/exams/{userid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/exams/{exam_id}", method = RequestMethod.GET)
 	//getAllTemplates method
-	public @ResponseBody List<SetExam> getAllExamStudent(@PathVariable String userid) {
-		List<SetExam> result=domoservice.getAllExamStudentService(userid);
+	public @ResponseBody List<SetExam> getAllExamStudent(@PathVariable int exam_id) {
+		List<SetExam> result=domoservice.getAllExamStudentService(exam_id);
 		System.out.println(result);
 		return result;
 	}
@@ -101,14 +101,6 @@ public class DomoController {
 	public @ResponseBody List<User> getAllStudents() {
 		return domoservice.getAllStudentsService();
 	}
-	
-	/*@RequestMapping(value = "/students/{studentid}", method = RequestMethod.GET)
-	//getStudent method
-	public @ResponseBody List<SetExam> getStudent(@PathVariable String userid) {
-		List<SetExam> result=domoservice.getAllExamStudentService(userid);
-		System.out.println(result);
-		return result;
-	}*/
 	//template module
 	@RequestMapping(value = "/exam/new/template", method = RequestMethod.GET)
 		//getAllTemplates method
@@ -126,5 +118,9 @@ public class DomoController {
 	@ResponseBody
 	public List<SetExam> getAllDurations(@PathVariable int examid) {
 		return domoservice.getAllDurationsService(examid);
+	}
+	@RequestMapping(value = "rest/marks", method = RequestMethod.PUT)
+	public void putMarks(@RequestBody SetExam setexam) {
+		domoservice.putMarksService(setexam);
 	}
 }

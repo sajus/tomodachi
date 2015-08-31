@@ -15,7 +15,7 @@ myapp.config(['$routeProvider',function($routeProvider) {
 	when('/exam', {templateUrl: 'app/partials/get_exam.html'}). 
 	when('/exam/new', {templateUrl: 'app/partials/new_exam.html'}).
 	when('/exam/:exam_id/edit', {templateUrl: 'app/partials/edit_exam.html'}).
-	when('/exam/:userid/show', {templateUrl: 'app/partials/exam_details.html'}).
+	when('/exam/:exam_id/show', {templateUrl: 'app/partials/exam_details.html'}).
 	when('/student/:id/show', {templateUrl: 'app/partials/student_info.html'}).
 	when('/allexams/:id', {templateUrl: 'app/partials/all_exams.html'}).
 	when('/currentexams/:id', {templateUrl: 'app/partials/current_exams.html'}).

@@ -46,9 +46,9 @@ public class DomoService implements DomoServiceInterface{
 		return domodaoimpl.getAllExams();
 	}
 	@Override
-	public List<SetExam> getAllExamStudentService(String userid){
-		System.out.println("inside get exam for particular candidate");
-		return domodaoimpl.getAllExamsStudent(userid);
+	public List<SetExam> getAllExamStudentService(int exam_id){
+		System.out.println("inside get exam for particular exam");
+		return domodaoimpl.getAllExamsStudent(exam_id);
 	}
 	@Override
 	public SetExam showExamService(int id) {
@@ -88,5 +88,9 @@ public class DomoService implements DomoServiceInterface{
 	public List<SetExam> getAllDurationsService(int examid) {
 		// TODO Auto-generated method stub
 		return domodaoimpl.getDurations(examid);
+	}
+	public void putMarksService(SetExam setexam) {
+		// TODO Auto-generated method stub
+		domodaoimpl.putMarkService(setexam);
 	}
 }
