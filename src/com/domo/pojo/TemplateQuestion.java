@@ -18,13 +18,14 @@ public class TemplateQuestion implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="template_question_id")
-	public int template_question_id;
+	private int template_question_id;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="set_exam_id")
-	public SetExam templatequestionsetexam;
-	/*@ManyToOne
-	@PrimaryKeyJoinColumn(name="question_id")*/
-	public int question_number;
+	private SetExam templatequestionsetexam;
+	@Column(name="question_number")
+	private int question_number;
+	@Column(name="user_answer")
+	private int user_answer;
 	
 	//default ctor
 	public TemplateQuestion() {
@@ -55,6 +56,6 @@ public class TemplateQuestion implements Serializable{
 	@Override
 	public String toString() {
 		return "TemplateQuestion [template_question_id=" + template_question_id
-				+ ", templatequestionsetexam=" + templatequestionsetexam + "]";
+				+ ", templatequestionsetexam=" + templatequestionsetexam + ", user_answer=" + user_answer +"]";
 	}
 }

@@ -19,8 +19,6 @@ public class User implements Serializable{
 	private String role="candidate";
 	@OneToMany(mappedBy="user")
 	private Set<SetExam> setexam;
-	@OneToMany(mappedBy="user")
-	private Set<UserAnswer> useranswer;
 	//default ctor
 	public User() {
 	}

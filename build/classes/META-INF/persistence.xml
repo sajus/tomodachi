@@ -13,8 +13,8 @@
 		<class>com.domo.pojo.Template</class>
 		<class>com.domo.pojo.TemplateModules</class>
 		<class>com.domo.pojo.TemplateModuleLevel</class>
+		<class>com.domo.pojo.TemplateQuestion</class>
 		<class>com.domo.pojo.User</class>
-		<class>com.domo.pojo.UserAnswer</class>
 		<properties>
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/domo" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />

@@ -1,7 +1,5 @@
 package com.domo.pojo;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 @Entity
@@ -33,16 +31,12 @@ public class Question implements Serializable{
 	/*@OneToMany(mappedBy="templatequestion")
 	private Set<TemplateQuestion> template_question;*/
 	
-	@OneToMany(mappedBy="question")
-	private Set<UserAnswer> useranswer;
-	
 	//default ctor
 	public Question() {
 	}
 	//paramterized ctor
 	public Question(int question_id, String question, String op1, String op2,
-			String op3, String op4, int answer, Module module, Level level,
-			Set<UserAnswer> useranswer) {
+			String op3, String op4, int answer, Module module, Level level) {
 		super();
 		this.question_id = question_id;
 		this.question = question;
@@ -53,7 +47,6 @@ public class Question implements Serializable{
 		this.answer = answer;
 		this.module = module;
 		this.level = level;
-		this.useranswer = useranswer;
 	}
 	//getters and setters
 	public int getQuestion_id() {
@@ -112,6 +105,6 @@ public class Question implements Serializable{
 		return "Question [question_id=" + question_id + ", question="
 				+ question + ", op1=" + op1 + ", op2=" + op2 + ", op3=" + op3
 				+ ", op4=" + op4 + ", answer=" + answer + ", module=" + module
-				+ ", level=" + level + ", useranswer=" + useranswer + "]";
+				+ ", level=" + level + "]";
 	}
 }
