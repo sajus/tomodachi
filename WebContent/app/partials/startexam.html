@@ -19,11 +19,13 @@ li {
 			</div>
 			<h2 id="question">{{question}}</h2>
 			<br> <br>
-			<table>
-				<tr ng-repeat="option in options">
+			<div style="margin-left:280px;">
+			  <table style="color:#4682B4;width:400px;">
+				<tr style="margin-left:50px" ng-repeat="option in options">
 					<td><input type="radio" ng-click="onOptionSelect(option)" name="option" ng-value="option">{{option}}</td>
 				</tr>
-			</table>
+			  </table>
+		    </div>
 			<br> <br> <br>
 			<button align="right" ng-click="checkAnswer(); nextQuestion();" ng-disabled="isOptionSelected" class="next-question" ng-hide="lastQuestion">Next</button>
 			<button align="right" ng-click="checkAnswer(); nextQuestion(); submitResult();" ng-disabled="isOptionSelected" class="next-question" ng-show="lastQuestion">Finish</button>

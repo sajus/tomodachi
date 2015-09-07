@@ -2,6 +2,7 @@ package com.domo.interfaces;
 import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
+import com.domo.pojo.TemplateQuestion;
 import com.domo.pojo.User;
 
 import java.lang.String;
@@ -20,7 +21,7 @@ public interface DomoServiceInterface {
 	public void setExamService(SetExam setexam);
 	public List<SetExam> getAllExamStudentService(int exam_id);
 	public List<SetExam> showCandidateDetailsByIdNotConductedService(String userid);
-	public List<Question> getAllQuestionsService();
+	public List<Question> getAllQuestionsService(int examid);
 	public List<SetExam> getAllDurationsService(int examid);
 	public void putMarksService(SetExam setexam);
 }

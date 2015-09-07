@@ -6,12 +6,17 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 import com.domo.interfaces.DomoDao;
 import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
+import com.domo.pojo.TemplateQuestion;
 import com.domo.pojo.User;
 public class DomoDaoImpl implements DomoDao{
 	private static final String PERSISTENCE_UNIT_NAME = "domoJPA";
@@ -91,7 +96,7 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query getCandidate = entityManager.createQuery("select s from SetExam s where s.user.userid='"+id+"'");
+		Query getCandidate = entityManager.createQuery("select s from SetExam s where s.user.userid='"+id+"' and s.is_conducted=1");
 		List<SetExam> examList = getCandidate.getResultList();
 		Iterator<SetExam> itr = examList.iterator();
 		while (itr.hasNext()) {
@@ -180,6 +185,9 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		entityManager.getTransaction().commit();
 	}
+
+	
+	
 	@Override
 	public void newExam(SetExam setexam) {
 		// TODO Auto-generated method stub
@@ -219,6 +227,11 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		return templateList;
 	}
+	
+	public List<TemplateQuestion> randomQuestions(int template_id) throws PersistenceException {
+		  Query query=entityManager.createNativeQuery("{CALL random_question(:template_id)}").setParameter("template_id", template_id); 
+		  return query.getResultList(); 
+	}
 	@Override
 	public void setExam(SetExam setexam) {
 		// TODO Auto-generated method stub
@@ -226,22 +239,32 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.merge(setexam);
+		setexam = entityManager.merge(setexam);
+		List list = randomQuestions(setexam.templatesetexam.template_id);
+		Query query1=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id="+setexam.set_exam_id+"where tq.templatequestionsetexam.set_exam_id=null");
+		int updateCount = query1.executeUpdate();
+		if(updateCount > 0){
+			System.out.println("record updated");
+		}
 		entityManager.getTransaction().commit();
 		System.out.println("data added");
 	}
 	//question module
-	public List<Question> getQuestions(){
+	public List<Question> getQuestions(int examid){
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query query = entityManager.createQuery("select q from Question q");
-		List<Question> questionList = query.getResultList();
-		Iterator<Question> itr = questionList.iterator();
+		List<Question> resultList= new ArrayList<Question>();
+		Query query = entityManager.createQuery("select question_number from TemplateQuestion tq where templatequestionsetexam.set_exam_id="+examid);
+		List<Integer> questionList = query.getResultList();
+		System.out.println(questionList);
+		Iterator<Integer> itr = questionList.iterator();
 		while (itr.hasNext()) {
-			System.out.println(itr.next());
+			Query query1 = entityManager.createQuery("select q from Question q where question_id="+itr.next());
+			resultList.add((Question) query1.getResultList().get(0));
 		}
-		return questionList;
+		System.out.println(resultList);
+		return resultList;
 	}
 	@Override
 	public List<SetExam> getDurations(int examid) {

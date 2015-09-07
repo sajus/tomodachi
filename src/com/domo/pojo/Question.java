@@ -29,8 +29,13 @@ public class Question implements Serializable{
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name="level_id")
 	private Level level;
+	
+	/*@OneToMany(mappedBy="templatequestion")
+	private Set<TemplateQuestion> template_question;*/
+	
 	@OneToMany(mappedBy="question")
 	private Set<UserAnswer> useranswer;
+	
 	//default ctor
 	public Question() {
 	}

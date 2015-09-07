@@ -107,7 +107,10 @@ angular.module('myapp.services', [])
 				getQuestions:
 				{
 					method : 'GET',
-					url : 'rest/questions',
+					url : 'rest/questions/'+'/:examid',
+					params : {
+						examid : "@examid"
+					},
 					isArray : true
 				},
 				getDurations:

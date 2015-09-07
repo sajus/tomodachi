@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
+import com.domo.pojo.TemplateQuestion;
 import com.domo.pojo.User;
 import com.domo.services.DomoService;
 @Controller
@@ -85,14 +86,12 @@ public class DomoController {
 	}
 	@RequestMapping(value = "exam/new/setexam", method = RequestMethod.POST)
 	public void setExam(@RequestBody SetExam setexam){
-		System.out.println(setexam);
 		domoservice.setExamService(setexam);
 	}
 	@RequestMapping(value = "/exams/{exam_id}", method = RequestMethod.GET)
 	//getAllTemplates method
 	public @ResponseBody List<SetExam> getAllExamStudent(@PathVariable int exam_id) {
 		List<SetExam> result=domoservice.getAllExamStudentService(exam_id);
-		System.out.println(result);
 		return result;
 	}
 	//student module
@@ -109,10 +108,10 @@ public class DomoController {
 	}
 	
 	//questions module
-	@RequestMapping(value = "/questions", method = RequestMethod.GET)
+	@RequestMapping(value = "/questions/{examid}", method = RequestMethod.GET)
 	//index method
-	public @ResponseBody List<Question> getAllQuestions() {
-		return domoservice.getAllQuestionsService();
+	public @ResponseBody List<Question> getAllQuestions(@PathVariable int examid) {
+		return domoservice.getAllQuestionsService(examid);
 	}
 	@RequestMapping(value = "/duration/{examid}", method = RequestMethod.GET)
 	@ResponseBody

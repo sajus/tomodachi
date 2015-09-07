@@ -9,6 +9,7 @@ import com.domo.interfaces.DomoServiceInterface;
 import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
+import com.domo.pojo.TemplateQuestion;
 import com.domo.pojo.User;
 @Service
 public class DomoService implements DomoServiceInterface{
@@ -81,8 +82,8 @@ public class DomoService implements DomoServiceInterface{
 		domodaoimpl.setExam(setexam);
 	}
 	//question module
-	public List<Question> getAllQuestionsService(){
-		return domodaoimpl.getQuestions();
+	public List<Question> getAllQuestionsService(int examid){
+		return domodaoimpl.getQuestions(examid);
 	}
 	@Override
 	public List<SetExam> getAllDurationsService(int examid) {

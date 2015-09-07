@@ -9,7 +9,7 @@ public class TemplateModuleLevel implements Serializable{
 	@Column(name="template_module_level_id")
 	private int template_module_level_id;
 	@ManyToOne
-	@JoinColumn(name="template_module_id")
+	@JoinColumn(name="module_id")
 	private TemplateModules templatemodules;
 	@ManyToOne
 	@JoinColumn(name="level_id")

@@ -137,7 +137,8 @@ dirObject.directive("examDetails", function(){
             	questionService.putMarks({examid : $scope.setexam[0].set_exam_id}, $scope.setexam[0].marks = $scope.score, $scope.setexam[0]);
             	$scope.setexam = {};
             }
-
+            //getting questions are per template
+            $scope.questions=quizFactory.getQuestions($routeParams.examid);
 			$scope.again=function(){
 				$window.location.href = 'candidate.html';
 			}				
@@ -213,13 +214,17 @@ dirObject.directive("examDetails", function(){
 			}, 1000);
 		}
 	}
-}).factory('quizFactory', function(questionService, _) {
-	var questions=questionService.getQuestions(function(){
-		//getting questions...
-	});
+}).factory('quizFactory', ['questionService', '$routeParams', function(questionService, $routeParams) {
+	var questions;
 	return {
 		getCount: function() {
 			return questions.length;
+		},
+		getQuestions: function(examId) {
+			questions = questionService.getQuestions({examid : examId}, function(){
+				//getting questions as per template
+         	});
+			return questions;
 		},
 		getQuestion: function(id) {
 			if(id < questions.length) {
@@ -233,33 +238,30 @@ dirObject.directive("examDetails", function(){
 			return setexams;
 		}
 	};
-});
+}]);
 dirObject.directive("studentExamInfo", function() {
 	return {
 		restrict: 'EA',
 		transclude: true,
 		scope: {
+			startTime: "=?",
+			startDate: "=?",
+			isConducted:  "=?",
 			showStart: "=?",
+			showMarks: "=?",
 			filterVal: "=?"
 		},
 		templateUrl: "app/partials/studentinfo.html",
 		controller: ["$scope","candidateInfoService","$routeParams", function($scope, candidateInfoService, $routeParams){
 			$scope.$watch("filterVal", function(){
-				console.log($scope.id);
 				if($scope.filterVal === 'all'){
-					candidateInfoService.getCandidateInfo({id : $routeParams.id}).$promise.then(function(data){
-						console.log(data);
-						$scope.candidateInfo = data;
-					});
+					$scope.candidateInfo=candidateInfoService.getCandidateInfo({id : $routeParams.id}),function(){
+						//
+					};
 				} else{
-					candidateInfoService.getCandidateInfo({id : $routeParams.id, filter: 'remaining'}).$promise.then(function(data){
-						console.log(data);
-						$scope.candidateInfo = data;
-					});
-					candidateInfoService.getCandidateInfoNotConducted({id : $routeParams.id, filter: 'remaining'}).$promise.then(function(data){
-						console.log(data);
-						$scope.candidateInfo = data;
-					});
+				  $scope.candidateInfo =candidateInfoService.getCandidateInfoNotConducted({id : $routeParams.id, filter: 'remaining'}),function(){
+					//
+					};
 				}
 			});
 		}],

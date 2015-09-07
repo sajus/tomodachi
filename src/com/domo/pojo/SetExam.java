@@ -4,6 +4,7 @@ import java.sql.Array;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -37,16 +38,16 @@ public class SetExam implements Serializable{
 	public int marks=0;
 	@Column(name="actual_start_time")
 	private String actual_start_time=null;
-	@Column(name="questions")
-	private String questions;
-		public SetExam() {
+	@OneToMany(mappedBy="templatequestionsetexam")
+	private Set<TemplateQuestion> setexam;
+	public SetExam() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	//parameterized ctor
 		public SetExam(int set_exam_id, User user, Template templatesetexam,
 			String start_date, String duration, Time start_time,
-			boolean is_conducted, int marks, Time actual_start_time, String questions) {
+			boolean is_conducted, int marks, Time actual_start_time) {
 		super();
 		this.set_exam_id = set_exam_id;
 		this.user = user;
@@ -57,7 +58,6 @@ public class SetExam implements Serializable{
 		this.is_conducted = is_conducted;
 		this.marks = marks;
 		this.actual_start_time = new SimpleDateFormat("HH.mm.SS").format(actual_start_time.getTime());
-		this.questions=questions;
 		}
 	//getters and setters
 	public int getSet_exam_id() {
@@ -111,12 +111,6 @@ public class SetExam implements Serializable{
 	public void setActual_start_time(String actual_start_time) {
 		this.actual_start_time = actual_start_time;
 	}
-	public String getQuestions() {
-		return questions;
-	}
-	public void setQuestions(String questions) {
-		this.questions = questions;
-	}
 	//toString method
 	@Override
 	public String toString() {
@@ -124,7 +118,7 @@ public class SetExam implements Serializable{
 				+ ", templatesetexam=" + templatesetexam + ", start_date="
 				+ start_date + ", duration=" + duration + ", start_time="
 				+ start_time + ", is_conducted=" + is_conducted + ", marks="
-				+ marks + ", actual_start_time=" + actual_start_time + "questions" + questions
+				+ marks + ", actual_start_time=" + actual_start_time
 				+ "]";
 	}
 }

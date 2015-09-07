@@ -4,6 +4,7 @@ import java.util.List;
 import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
 import com.domo.pojo.Template;
+import com.domo.pojo.TemplateQuestion;
 import com.domo.pojo.User;
 public interface DomoDao {
 	public void addUser(User user);
@@ -20,7 +21,7 @@ public interface DomoDao {
 	public void setExam(SetExam setexam);
 	public void newExam(SetExam setexam);
 	public List<SetExam> getAllExamsStudent(int exam_id);
-	public List<Question> getQuestions();
+	public List<Question> getQuestions(int examid);
 	public List<SetExam> getDurations(int examid);
 	public void putMarkService(SetExam setexam);
 }

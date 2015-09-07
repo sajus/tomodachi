@@ -15,14 +15,16 @@ td {
 	<table border="1">
 		<tr>
 			<th>ExamId</th>
-			<th>Marks</th>
-			<th>IsConducted</th>
+			<th ng-if="showMarks">Marks</th>
+			<th ng-if="startDate">Start Date</th>
+			<th ng-if="startTime">Start Time</th>
 			<th ng-if="showStart">Action</th>
 		</tr>
 		<tr ng-repeat="candidateInfos in candidateInfo">
 			<td>{{candidateInfos.set_exam_id}}</td>
-			<td>{{candidateInfos.marks}}</td>
-			<td>{{candidateInfos.is_conducted}}</td>
+			<td ng-if="showMarks">{{candidateInfos.marks}}</td>
+			<td ng-if="startDate">{{candidateInfos.start_date}}</td>
+			<td ng-if="startTime">{{candidateInfos.start_time}}</td>
 			<td ng-if="showStart && !candidateInfos.is_conducted"><a href="#/startexam/{{candidateInfos.set_exam_id}}"/>Start Exam</td>
 		</tr>
 	</table>
