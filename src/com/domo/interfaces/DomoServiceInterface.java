@@ -24,4 +24,5 @@ public interface DomoServiceInterface {
 	public List<Question> getAllQuestionsService(int examid);
 	public List<SetExam> getAllDurationsService(int examid);
 	public void putMarksService(SetExam setexam);
+	public void putAnswerService(TemplateQuestion template);
 }

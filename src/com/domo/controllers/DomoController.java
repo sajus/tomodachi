@@ -118,8 +118,12 @@ public class DomoController {
 	public List<SetExam> getAllDurations(@PathVariable int examid) {
 		return domoservice.getAllDurationsService(examid);
 	}
-	@RequestMapping(value = "rest/marks", method = RequestMethod.PUT)
+	@RequestMapping(value = "/marks", method = RequestMethod.PUT)
 	public void putMarks(@RequestBody SetExam setexam) {
 		domoservice.putMarksService(setexam);
+	}
+	@RequestMapping(value = "/useranswer", method = RequestMethod.PUT)
+	public void putAnswer(@RequestBody TemplateQuestion template) {
+		domoservice.putAnswerService(template);
 	}
 }

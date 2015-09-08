@@ -94,4 +94,8 @@ public class DomoService implements DomoServiceInterface{
 		// TODO Auto-generated method stub
 		domodaoimpl.putMarkService(setexam);
 	}
+	public void putAnswerService(TemplateQuestion template) {
+		// TODO Auto-generated method stub
+		domodaoimpl.putAnswerService(template);
+	}
 }

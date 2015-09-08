@@ -21,11 +21,11 @@ public class TemplateQuestion implements Serializable{
 	private int template_question_id;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="set_exam_id")
-	private SetExam templatequestionsetexam;
+	public SetExam templatequestionsetexam;
 	@Column(name="question_number")
-	private int question_number;
+	public int question_number;
 	@Column(name="user_answer")
-	private int user_answer;
+	public String user_answer;
 	
 	//default ctor
 	public TemplateQuestion() {
@@ -33,14 +33,24 @@ public class TemplateQuestion implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	//parameterized ctor
-	public TemplateQuestion(int template_question_id, SetExam templatequestionsetexam, int question_number) {
+	public TemplateQuestion(int template_question_id){
 		super();
 		this.template_question_id = template_question_id;
-		this.templatequestionsetexam = templatequestionsetexam;
-		this.question_number = question_number;
 	}
 	
+	public TemplateQuestion(String user_answer){
+		super();
+		this.user_answer = user_answer;
+	}
+	
+	//parameterized ctor
+	public TemplateQuestion(int template_question_id, int question_number, String user_answer) {
+		super();
+		this.template_question_id = template_question_id;
+		this.question_number = question_number;
+		this.user_answer = user_answer;
+	}
+
 	//getters and setters
 	public int getTemplate_question_id() {
 		return template_question_id;
@@ -51,7 +61,22 @@ public class TemplateQuestion implements Serializable{
 	public void setSetexam(SetExam setexam) {
 		this.templatequestionsetexam = setexam;
 	}
+	public int getQuestion_number() {
+		return question_number;
+	}
+	public String getUser_answer() {
+		return user_answer;
+	}
 
+	public void setUser_answer(String user_answer) {
+		this.user_answer = user_answer;
+	}
+
+	public void setQuestion_number(int question_number) {
+		this.question_number = question_number;
+	}
+
+	
 	//toString method
 	@Override
 	public String toString() {

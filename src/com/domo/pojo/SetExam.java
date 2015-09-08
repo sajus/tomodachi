@@ -8,7 +8,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -44,21 +46,30 @@ public class SetExam implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public SetExam(int set_exam_id){
+		super();
+		this.set_exam_id = set_exam_id;
+	}
+	
 	//parameterized ctor
-		public SetExam(int set_exam_id, User user, Template templatesetexam,
-			String start_date, String duration, Time start_time,
-			boolean is_conducted, int marks, Time actual_start_time) {
+	public SetExam(int set_exam_id, User user, Template templatesetexam,
+			String start_date, String duration, String start_time,
+			boolean is_conducted, int marks, String actual_start_time,
+			Set<TemplateQuestion> setexam) {
 		super();
 		this.set_exam_id = set_exam_id;
 		this.user = user;
 		this.templatesetexam = templatesetexam;
 		this.start_date = new SimpleDateFormat("dd/MM/yyyy").format(start_date);
 		this.duration = duration;
-		this.start_time = new SimpleDateFormat("HH.mm.SS").format(start_time.getTime());
+		this.start_time = new SimpleDateFormat("HH.mm.SS").format(start_time);
 		this.is_conducted = is_conducted;
 		this.marks = marks;
-		this.actual_start_time = new SimpleDateFormat("HH.mm.SS").format(actual_start_time.getTime());
-		}
+		this.actual_start_time = new SimpleDateFormat("HH.mm.SS").format(actual_start_time);
+		this.setexam = setexam;
+	}
+
 	//getters and setters
 	public int getSet_exam_id() {
 		return set_exam_id;

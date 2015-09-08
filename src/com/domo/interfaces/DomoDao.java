@@ -24,4 +24,5 @@ public interface DomoDao {
 	public List<Question> getQuestions(int examid);
 	public List<SetExam> getDurations(int examid);
 	public void putMarkService(SetExam setexam);
+	public void putAnswerService(TemplateQuestion template);
 }

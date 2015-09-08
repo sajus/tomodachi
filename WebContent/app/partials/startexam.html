@@ -27,8 +27,8 @@ li {
 			  </table>
 		    </div>
 			<br> <br> <br>
-			<button align="right" ng-click="checkAnswer(); nextQuestion();" ng-disabled="isOptionSelected" class="next-question" ng-hide="lastQuestion">Next</button>
-			<button align="right" ng-click="checkAnswer(); nextQuestion(); submitResult();" ng-disabled="isOptionSelected" class="next-question" ng-show="lastQuestion">Finish</button>
+			<button align="right" ng-click="checkAnswer(); userAnswer(); nextQuestion();" ng-disabled="isOptionSelected" class="next-question" ng-hide="lastQuestion">Next</button>
+			<button align="right" ng-click="checkAnswer(); userAnswer(); nextQuestion(); submitResult();" ng-disabled="isOptionSelected" class="next-question" ng-show="lastQuestion">Finish</button>
 		</div>
 		<div ng-show="quizOver">
 			<h2>Quiz is over</h2>

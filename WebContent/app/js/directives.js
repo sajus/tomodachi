@@ -125,17 +125,25 @@ dirObject.directive("examDetails", function(){
 		restrict: 'AE',
 		scope: {},
 		templateUrl: 'app/partials/startexam.html',
-		controller: ["$scope","$window", "questionService", "$routeParams", function($scope,$window,questionService,$routeParams) { 
+		controller: ["$scope","$window", "questionService", "$routeParams",function($scope,$window,questionService,$routeParams){ 
 			$scope.setexam = questionService.getDurations({examid : $routeParams.examid},function(){
 				
 			});
+			//storing final score
             $scope.submitResult=function(){
-            	/*questionService.putMarks({examid : $routeParams.examid},function(data){
-            		$scope.setexam = data;
-            	});
-            	$scope.setexam.marks = $scope.score;*/
-            	questionService.putMarks({examid : $scope.setexam[0].set_exam_id}, $scope.setexam[0].marks = $scope.score, $scope.setexam[0]);
+            	$scope.setexam[0].marks = $scope.score;
+            	$scope.setexam[0].set_exam_id= parseInt($routeParams.examid);
+            	questionService.putMarks($scope.setexam[0]);
             	$scope.setexam = {};
+            }
+            //storing each answer
+            $scope.userAnswer=function(){
+            	$scope.template = {};
+            	$scope.template.templatequestionsetexam={};
+            	$scope.template.templatequestionsetexam.set_exam_id= parseInt($routeParams.examid);
+            	$scope.template.user_answer = $scope.ans;
+            	$scope.template.question_number = $scope.question_id;
+            	questionService.putAnswer($scope.template);
             }
             //getting questions are per template
             $scope.questions=quizFactory.getQuestions($routeParams.examid);
@@ -159,6 +167,7 @@ dirObject.directive("examDetails", function(){
 				scope.count = quizFactory.getCount();
 				var q = quizFactory.getQuestion(scope.id);
 				if(q) {
+					scope.question_id = q.question_id;
 					scope.question = q.question; 
 					scope.options = [q.op1,q.op2,q.op3,q.op4];
 					scope.isOptionSelected=true;
@@ -174,8 +183,9 @@ dirObject.directive("examDetails", function(){
 			};
 			scope.checkAnswer = function() {
 				if(!$('input[name=option]:checked').length) return;
-				var ans = $('input[name=option]:checked').val();
-				if(ans == scope.options[scope.answer]) {
+					scope.ans = $('input[name=option]:checked').val();
+				
+				if(scope.ans == scope.options[scope.answer]) {
 					scope.score = scope.score + 1;
 				}
 				else {

@@ -125,10 +125,13 @@ angular.module('myapp.services', [])
 				putMarks:
 				{
 					method: 'PUT',
-					url: 'rest/marks',
-					params : {
-						exam_id : "@examid"
-					}
+					url: 'rest/marks'
+					
+				},
+				putAnswer:
+				{
+					method: 'PUT',
+					url: 'rest/useranswer'
 				}
 			});
 	});
