@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+  <head>
+
+    <link rel="stylesheet" type="text/css" href="app/css/mystyle1.css">
+  </head>
+  <body>
+    <header id="background" >
+	  <h1 class="page-header">
+	    <i>Domo Examination Portal</i>
+	  </h1><br>
+	
+	<div class="lb-header" ng-controller="userController">
+	  <a href="#/examinfo" class="active" id="login-box-link">Exam Information</a> 
+	  <a href="#/studentinfo" class="active" id="login-box-link">Student Information</a>
+	  <a href="index.html"><img title="logout" align="right" style="width:21px" src="app/img/logout.png"/></a>
+	</div>
+	</header>
+	<div ng-view=""></div><br>
+	<div class="page-footer">
+	  <p>© 2015 Domo Software Pvt Ltd All Rights Reserved.</p>
+	</div>
+	<script src="app/lib/angular.js"></script>
+	<script src="app/lib/angular-route.js"></script>
+	<script src="app/lib/angular-resource.js"></script>
+	<script src="app/js/underscore.js"></script>
+	<script src="app/js/angular-underscore-module.js"></script>
+	<script src="app/js/angular-cookies.min.js"></script>
+	<script src="app/js/app.js" type="text/javascript"></script>
+	<script src="app/js/controllers/mainController.js"></script>
+	<script src="app/js/controllers/signInController.js"></script>
+	<script src="app/js/controllers/signUpController.js"></script>
+	<script src="app/js/controllers/userController.js"></script>
+	<script src="app/js/controllers/logOutController.js"></script>
+	<script src="app/js/directives/mainDirective.js"></script>
+	<script src="app/js/directives/examDetailsDirective.js"></script>
+	<script src="app/js/directives/examFormDirective.js"></script>
+	<script src="app/js/directives/getExamInfoDirective.js"></script>
+	<script src="app/js/directives/startExamDirective.js"></script>
+	<script src="app/js/directives/studentExamInfoDirective.js"></script>
+	<script src="app/js/directives/getStudentInfoDirective.js"></script>
+	<script src="app/js/services/mainService.js"></script>
+	<script src="app/js/services/candidateInfoService.js"></script>
+	<script src="app/js/services/authenticationService.js"></script>
+	<script src="app/js/services/examInfoService.js"></script>
+	<script src="app/js/services/questionService.js"></script>
+  </body>
+</html>
