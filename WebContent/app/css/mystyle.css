@@ -7,7 +7,6 @@ body {
 }
 
 .lb-header {
-	position: relative;
 	color: #00415d;
 	margin: 25px 5px 10px 5px;
 	padding-bottom: 10px;
@@ -18,7 +17,6 @@ body {
 
 .lb-header a {
 	margin: 0 55px;
-	padding: 0 20px;
 	text-decoration: none;
 	color: #797980;
 	font-weight: bold;

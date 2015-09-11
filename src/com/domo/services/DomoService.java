@@ -23,23 +23,19 @@ public class DomoService implements DomoServiceInterface{
 	public List<String> signinUserService(int userid, String password) {
 		// TODO Auto-generated method stub
 		List<String> user_role=domodaoimpl.signinUser(userid, password);
-		System.out.println(user_role);
 		return user_role;
 	}
 	@Override
 	public List<User> getAllCandidatesService() {
 		// TODO Auto-generated method stub
-		System.out.println("inside get all candidates service");
 		return domodaoimpl.getAllCandidatesFromDatabase();
 	}
 	@Override
 	public List<SetExam> showCandidateDetailsByIdService(int id) {
 		// TODO Auto-generated method stub
-		System.out.println("inside get particular candidate detail service");
 		return domodaoimpl.getCandidateByIdFromDatabase(id);
 	}
 	public List<SetExam> showCandidateDetailsByIdNotConductedService(String userid){
-		System.out.println("inside get candidate details by id whose exam not conducted");
 		return domodaoimpl.getCandidateByIdNotConductedFromDatabase(userid);
 	}
 	@Override
@@ -48,7 +44,6 @@ public class DomoService implements DomoServiceInterface{
 	}
 	@Override
 	public List<SetExam> getAllExamStudentService(int exam_id){
-		System.out.println("inside get exam for particular exam");
 		return domodaoimpl.getAllExamsStudent(exam_id);
 	}
 	@Override
@@ -60,11 +55,6 @@ public class DomoService implements DomoServiceInterface{
 	public void editExamService(SetExam setexam) {
 		// TODO Auto-generated method stub
 		domodaoimpl.editExamService(setexam);
-	}
-	@Override
-	public void newExamService(SetExam setexam) {
-		// TODO Auto-generated method stub
-		domodaoimpl.newExam(setexam);
 	}
 	@Override
 	public List<User> getAllStudentsService() {

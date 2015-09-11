@@ -13,13 +13,11 @@ public interface DomoDao {
 	public List<SetExam> getCandidateByIdFromDatabase(int id);
 	public List<SetExam> getCandidateByIdNotConductedFromDatabase(String id);
 	public List<SetExam> getAllExams();
-	public void createExam(SetExam setexam);
 	public SetExam showExam(int id);
 	public void editExamService(SetExam setexam);
 	public List<User> getAllStudents();
 	public List<Template> getAllTemplates();
 	public void setExam(SetExam setexam);
-	public void newExam(SetExam setexam);
 	public List<SetExam> getAllExamsStudent(int exam_id);
 	public List<Question> getQuestions(int examid);
 	public List<SetExam> getDurations(int examid);

@@ -2,16 +2,11 @@ package com.domo.dao;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
-
 import com.domo.interfaces.DomoDao;
 import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
@@ -30,7 +25,6 @@ public class DomoDaoImpl implements DomoDao{
 	@Override
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
-		System.out.println("Inside dao implementation");
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
@@ -42,7 +36,6 @@ public class DomoDaoImpl implements DomoDao{
 	public List<String> signinUser(int userid, String password)
 	{
 		// TODO Auto-generated method stub
-		System.out.println("inside signin user details");
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
@@ -51,48 +44,39 @@ public class DomoDaoImpl implements DomoDao{
 		Query userid1 = entityManager.createQuery("select u.userid from User u where u.userid='"+userid+"'");
 		List<Integer> useridList = userid1.getResultList();
 		int newElement=useridList.get(0);
-		System.out.println(newElement);
 			if(newElement==userid)
 			{
-				System.out.println(newElement==userid);
 				Query role = entityManager.createQuery("select u.role from User u where u.userid='"+ userid +"' AND u.password='"+ password +"'");
 				List<String> roleList = role.getResultList();
 				System.out.println(roleList.get(0));
 				if(roleList.get(0).equals("admin"))
 				{
-					System.out.println(roleList.get(0).equals("admin"));
 					authenticUserList.add(0,"admin");
-					System.out.println(authenticUserList.get(0));
 				}
 				else
 				{
 					authenticUserList.add(0,"candidate");
-					 System.out.println(authenticUserList.get(0));
 				}
 		    }
 		    else
 		    {
 		        authenticUserList.add(0,"invalid");
-		        System.out.println(authenticUserList.get(0));
 		    }
 			return authenticUserList;
 	}
 	@Override
 	public List<User> getAllCandidatesFromDatabase() {
 		// TODO Auto-generated method stub
-		System.out.println("inside get specific candidate details from database");
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
 		Query getAllCandidate = entityManager.createQuery("select u from User u where u.role='candidate'");
 		List<User> getAllCandidatesList=getAllCandidate.getResultList();
-		
 		return getAllCandidatesList;
 	}
 	@Override
 	public List<SetExam> getCandidateByIdFromDatabase(int id) {
 		// TODO Auto-generated method stub
-		System.out.println("inside get candidate info from database");
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
@@ -105,7 +89,6 @@ public class DomoDaoImpl implements DomoDao{
 		return examList;
 	}
 	public List<SetExam> getCandidateByIdNotConductedFromDatabase(String userid){
-		System.out.println("inside get candidate info from database");
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
@@ -146,17 +129,6 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		return examList;
 	}
-
-	@Override
-	public void createExam(SetExam setexam) {
-		// TODO Auto-generated method stub
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		entityManager = factory.createEntityManager();
-		entityManager.getTransaction().begin();
-		entityManager.merge(setexam);
-		entityManager.getTransaction().commit();
-		System.out.println("data added");
-	}
 	@Override
 	public SetExam showExam(int id) {
 		// TODO Auto-generated method stub
@@ -184,20 +156,6 @@ public class DomoDaoImpl implements DomoDao{
 			System.out.println("record updated");
 		}
 		entityManager.getTransaction().commit();
-	}
-
-	
-	
-	@Override
-	public void newExam(SetExam setexam) {
-		// TODO Auto-generated method stub
-		System.out.println("Inside dao implementation");
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		entityManager = factory.createEntityManager();
-		entityManager.getTransaction().begin();
-		entityManager.merge(setexam);
-		entityManager.getTransaction().commit();
-		System.out.println("data added");
 	}
 	@Override
 	public List<User> getAllStudents() {
@@ -227,7 +185,7 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		return templateList;
 	}
-	
+	//calling stored procedure
 	public List<TemplateQuestion> randomQuestions(int template_id) throws PersistenceException {
 		  Query query=entityManager.createNativeQuery("{CALL random_question(:template_id)}").setParameter("template_id", template_id); 
 		  return query.getResultList(); 
@@ -235,7 +193,6 @@ public class DomoDaoImpl implements DomoDao{
 	@Override
 	public void setExam(SetExam setexam) {
 		// TODO Auto-generated method stub
-		System.out.println("Inside dao implementation-"+setexam);
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();

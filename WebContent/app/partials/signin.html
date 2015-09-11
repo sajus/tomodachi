@@ -1,6 +1,6 @@
 <div>
 	<div class="login-box">
-		<form name="myForm" class="email-login" method="post" ng-submit="signinUser(userid,password)" ng-controller="signincontroller" novalidate>
+		<form name="myForm" class="email-login" method="post" ng-submit="signInUser(userid,password)" ng-controller="signInController" novalidate >
 			<div class="u-form-group">
 				<input type="text" placeholder="User Id" id="userid" name="userid" ng-model="userid" required /> <label id="star" style="color: red">*</label><br>
 				     <span style="color: red" ng-show="myForm.userid.$dirty && myForm.userid.$invalid"> 

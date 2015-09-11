@@ -1,6 +1,6 @@
 <div>
 	<div class="login-box">
-		<form name="myForm" class="email-signup" ng-submit="addUser()" ng-controller="signupcontroller" method="post" novalidate>
+		<form name="myForm" class="email-signup" ng-submit="addUser()" method="post" novalidate ng-controller="signUpController">
 			<div class="u-form-group">
 				<input type="text" placeholder="Username" id="username" name="username" ng-model="newUser.username" required /> <label id="star" style="color: red">*</label><br> 
 				<span style="color: red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
