@@ -7,7 +7,6 @@ body {
 }
 
 .lb-header {
-	color: #00415d;
 	margin: 25px 5px 10px 5px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #eee;
@@ -20,7 +19,7 @@ body {
 	text-decoration: none;
 	color: #797980;
 	font-weight: bold;
-	font-size: 19px;
+	font-size: 22px;
 	-webkit-transition: all 0.1s linear;
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
@@ -109,26 +108,4 @@ body {
 .page-header {
 	color: #4682B4;
 	text-align: center;
-}
-
-.u-form-group1 .active1 {
-	width: 239px;
-	background-color: #268EB8;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	font-weight: normal;
-	padding: 14px 0;
-	border-radius: 7px;
-	text-transform: uppercase;
-	margin-top: 277px;
-}
-
-.u-form-group1 .active1:hover {
-	color: #9999ff;
-}
-
-h1 {
-	color: #4682B4;
-	position: relative;
 }

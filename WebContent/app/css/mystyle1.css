@@ -11,19 +11,18 @@
 
 .box {
 	margin-top: 150px;
-
 }
-
 .lb-header {
-	color: #00415d;
 	margin: 25px 5px 10px 5px;
 	height: 28px;
 	margin-left: 353px;
+	display:inline-block;
 }
 
-.lb-header #login-box-link{
+.lb-header a{
 	padding: 0 50px;
 	text-decoration: none;
+	padding-bottom: 10px;
 	color: #797980;
 	font-weight: bold;
 	font-size: 19px;
@@ -32,11 +31,14 @@
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
 }
-
-.lb-header.active:hover {
+.logout {
+  display:inline-block;
+  position:fixed;
+  right:0;
+}
+.lb-header .active:hover {
 	color: #9999ff;
 }
-
 .page-footer {
   margin-top:700px;
   right: 0;
@@ -49,7 +51,7 @@
 .page-header {
 	color: #4682B4;
 	text-align: center;
-}
+} 
 
 .box input[type="text"], .box input[type="time"], .box input[type="date"]
 	{

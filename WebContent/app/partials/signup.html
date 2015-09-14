@@ -1,32 +1,30 @@
 <div>
-	<div class="login-box">
-		<form name="myForm" class="email-signup" ng-submit="addUser()" method="post" novalidate ng-controller="signUpController">
-			<div class="u-form-group">
-				<input type="text" placeholder="Username" id="username" name="username" ng-model="newUser.username" required /> <label id="star" style="color: red">*</label><br> 
-				<span style="color: red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
-					<span ng-show="myForm.username.$error.required">* required.</span>
-				</span>
-			</div>
-			<div class="u-form-group">
-				<input type="text" placeholder="User Id" id="userid" name="userid" ng-model="newUser.userid" ng-minlength="4" ng-maxlength="6" ng-pattern="/^[0-9]*$/" required /> <label id="star" style="color: red">*</label><br> 
-					<span style="color: red" ng-show="myForm.userid.$dirty && myForm.userid.$invalid"> 
-						<span ng-show="myForm.userid.$error.required">* required.</span> 
-						<span ng-show="!myForm.userid.$error.minLength && !myForm.userid.$error.maxLength && myForm.userid.$error.pattern && myForm.userid.$dirty" style="color: red">* Must have digits only</span> 
-						<span ng-show="!myForm.userid.$error.required && (myForm.userid.$error.minlength || myForm.userid.$error.maxlength) && myForm.userid.$dirty" style="color: red">* Must be between 5 and 20 characters.</span>
-					</span>
-			</div>
-			<div class="u-form-group">
-				<input type="password" placeholder="Password" id="password" name="password" ng-model="newUser.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required /> <label id="star" style="color: red">*</label><br> 
-					<span style="color: red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
-						<span ng-show="myForm.password.$error.required">* required.</span>
-						<span ng-show="!myForm.password.$error.required && (myForm.password.$error.minlength || myForm.password.$error.maxlength) && myForm.password.$dirty" style="color: red">* Must be between 8 and 20 characters.</span> 
-						<span ng-show="!myForm.password.$error.required && !myForm.password.$error.minlength && !myForm.password.$error.maxlength && myForm.password.$error.pattern && myForm.password.$dirty" style="color: red">* Must be alphanumeric with 1 upercase</span>
-					</span>
-			</div>
-			<div class="u-form-group">
-				<input type="submit" value="Sign Up" />
-			</div>
-		</form>
+  <form name="myForm" class="email-signup" ng-submit="addUser()" method="post" novalidate ng-controller="signUpController">
+    <div class="u-form-group">
+	  <input type="text" placeholder="Username" id="username" name="username" ng-model="newUser.username" required /> <label id="star" style="color: red">*</label><br> 
+	    <span style="color: red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+		  <span ng-show="myForm.username.$error.required">* required.</span>
+		</span>
 	</div>
+	<div class="u-form-group">
+	  <input type="text" placeholder="User Id" id="userid" name="userid" ng-model="newUser.userid" ng-minlength="4" ng-maxlength="6" ng-pattern="/^[0-9]*$/" required /> <label id="star" style="color: red">*</label><br> 
+	    <span style="color: red" ng-show="myForm.userid.$dirty && myForm.userid.$invalid"> 
+		  <span ng-show="myForm.userid.$error.required">* required.</span> 
+		  <span ng-show="!myForm.userid.$error.minLength && !myForm.userid.$error.maxLength && myForm.userid.$error.pattern && myForm.userid.$dirty" style="color: red">* Must have digits only</span> 
+		  <span ng-show="!myForm.userid.$error.required && (myForm.userid.$error.minlength || myForm.userid.$error.maxlength) && myForm.userid.$dirty" style="color: red">* Must be between 5 and 20 characters.</span>
+		</span>
+	</div>
+	<div class="u-form-group">
+	  <input type="password" placeholder="Password" id="password" name="password" ng-model="newUser.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required /> <label id="star" style="color: red">*</label><br> 
+	    <span style="color: red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+		  <span ng-show="myForm.password.$error.required">* required.</span>
+		  <span ng-show="!myForm.password.$error.required && (myForm.password.$error.minlength || myForm.password.$error.maxlength) && myForm.password.$dirty" style="color: red">* Must be between 8 and 20 characters.</span> 
+		  <span ng-show="!myForm.password.$error.required && !myForm.password.$error.minlength && !myForm.password.$error.maxlength && myForm.password.$error.pattern && myForm.password.$dirty" style="color: red">* Must be alphanumeric with 1 upercase</span>
+		</span>
+	</div>
+	<div class="u-form-group">
+	  <input type="submit" value="Sign Up" />
+	</div>
+  </form>
 </div>
 

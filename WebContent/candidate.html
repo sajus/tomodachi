@@ -13,10 +13,12 @@
     </header>
     <section>
       <div  class="lb-header" ng-controller="userController">
-        <a href="#/previousexams/{{userid}}" class="active" id="login-box-link">View Previous Result</a>
-	    <a href="#/currentexams/{{userid}}" class="active" id="login-box-link">View Upcoming Exams</a>
-	     <a href="index.html"><img title="logout" align="right" style="width:21px" src="app/img/logout.png" /></a>
-      </div>
+        <a href="#/previousexams/{{userid}}" class="active" id="login-box-link">Previous Result</a>
+	    <a href="#/currentexams/{{userid}}" class="active" id="login-box-link">Upcoming Exams</a>
+	    </div>
+	    <div style="display:inline-block;">
+	      <a class="active" href="index.html"><img title="logout" align="right" style="width:21px" src="app/img/logout.png"/></a>
+	    </div>
       <div ng-view=""></div><br>
       <div class="page-footer">
         <p>© 2015 Domo Software Pvt Ltd All Rights Reserved.</p>
