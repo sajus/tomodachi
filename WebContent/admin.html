@@ -11,11 +11,11 @@
 	    <i>Domo Examination Portal</i>
 	  </h1><br>
 	<div class="lb-header" ng-controller="userController">
-	  <a href="#/examinfo" class="active" id="login-box-link">Exam Information</a> 
+	  <a href="#/examinfo" class="active" id="login-box-link">Exam Information</a>
 	  <a href="#/studentinfo" class="active" id="login-box-link">Student Information</a>
 	  </div>
 	 <div style="display:inline-block;">
-	  <a class="active" href="index.html"><img title="logout" align="right" style="width:21px" src="app/img/logout.png"/></a>
+	  <a href="index.html"><img title="logout" align="right" style="width:21px" src="app/img/logout.png"/></a>
 	</div>
 	</header>
 	<div ng-view=""></div><br>
@@ -46,5 +46,8 @@
 	<script src="app/js/services/authenticationService.js"></script>
 	<script src="app/js/services/examInfoService.js"></script>
 	<script src="app/js/services/questionService.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="app/js/active.js"></script>
   </body>
 </html>

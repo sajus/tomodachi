@@ -15,9 +15,9 @@
       <div  class="lb-header" ng-controller="userController">
         <a href="#/previousexams/{{userid}}" class="active" id="login-box-link">Previous Result</a>
 	    <a href="#/currentexams/{{userid}}" class="active" id="login-box-link">Upcoming Exams</a>
-	    </div>
+	  </div>
 	    <div style="display:inline-block;">
-	      <a class="active" href="index.html"><img title="logout" align="right" style="width:21px" src="app/img/logout.png"/></a>
+	      <a href="index.html"><img title="logout" align="right" style="width:21px" src="app/img/logout.png"/></a>
 	    </div>
       <div ng-view=""></div><br>
       <div class="page-footer">
@@ -49,5 +49,8 @@
     <script src="app/js/services/authenticationService.js"></script>
     <script src="app/js/services/examInfoService.js"></script>
     <script src="app/js/services/questionService.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="app/js/active.js"></script>
   </body>
 </html>

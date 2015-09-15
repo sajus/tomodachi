@@ -30,15 +30,17 @@
 	-webkit-transition: all 0.1s linear;
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
+	padding-top: 7px;
 }
 .logout {
   display:inline-block;
   position:fixed;
   right:0;
 }
-.lb-header .active:hover {
+.lb-header a:hover {
 	color: #9999ff;
 }
+
 .page-footer {
   margin-top:700px;
   right: 0;
@@ -47,12 +49,10 @@
   color: #4682B4;
   text-align: center;
 }
-
 .page-header {
 	color: #4682B4;
 	text-align: center;
 } 
-
 .box input[type="text"], .box input[type="time"], .box input[type="date"]
 	{
 	width: 93%;
@@ -119,16 +119,18 @@
 	font-weight: normal;
 	padding: 14px 0;
 	border-radius: 7px;
-	text-transform: uppercase; .
-	u-form-group1 .active1: hover{
-  color: #9999ff;
+	text-transform: uppercase; 
+	.u-form-group1 a:hover{
+ 	  color: #9999ff;
+ 	}
 }
 
 h1 {
 	color: #4682B4;
 	position: relative;
 }
-.top
- 
-input
-[type="text"]
+
+.active-tab {
+	background-color: #ebebeb;
+	border-radius: 50px;
+}
