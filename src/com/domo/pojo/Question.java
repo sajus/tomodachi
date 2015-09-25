@@ -21,6 +21,8 @@ public class Question implements Serializable{
 	private String op4;
 	@Column(name="answer")
 	private int answer;
+	@Column(name="author")
+	private String author;
 	@ManyToOne
     @PrimaryKeyJoinColumn(name="module_id")
 	private Module module;

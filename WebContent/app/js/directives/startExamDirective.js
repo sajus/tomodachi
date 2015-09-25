@@ -47,7 +47,8 @@ angular.module("myapp.directives").directive("startExam", function(quizFactory, 
 		if(q){
 		  scope.question_id = q.question_id;
 		  scope.question = q.question; 
-		  scope.options = [q.op1,q.op2,q.op3,q.op4];
+		  setOptions(q);
+		 // scope.options = [q.op1,q.op2,q.op3,q.op4];
 		  scope.isOptionSelected=true;
 		  scope.answer = q.answer;
 		  if(scope.id == scope.count-1){
@@ -59,6 +60,23 @@ angular.module("myapp.directives").directive("startExam", function(quizFactory, 
 		  scope.startTime = false;
 		}
 	  };
+	  
+	  function setOptions(q) {
+		  scope.options = [];
+		  if(q.op1 !== null) {
+			  scope.options.push(q.op1);
+		  }
+		  if(q.op2 !== null) {
+			  scope.options.push(q.op2);
+		  }
+		  if(q.op3 !== null) {
+			  scope.options.push(q.op3);
+		  }
+		  if(q.op4 !== null) {
+			  scope.options.push(q.op4);
+		  }
+		  
+	  }
 	  scope.checkAnswer = function(){
 	    if(!$('input[name=option]:checked').length) return;
 	    scope.ans = $('input[name=option]:checked').val();
