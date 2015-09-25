@@ -21,7 +21,7 @@ li {
 			<br> <br>
 			<div style="margin-left:280px;">
 			  <table style="color:#4682B4;width:400px;">
-				<tr style="margin-left:50px" ng-repeat="option in options|option!==undefined">
+				<tr style="margin-left:50px" ng-repeat="option in options">
 					<td><input type="radio" ng-click="onOptionSelect(option)" name="option" ng-value="option">{{option}}</td>
 				</tr>
 			  </table>
