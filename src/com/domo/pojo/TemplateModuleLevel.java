@@ -1,6 +1,9 @@
 package com.domo.pojo;
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 @Entity
 @Table(name="template_module_level")
 public class TemplateModuleLevel implements Serializable{
@@ -8,20 +11,17 @@ public class TemplateModuleLevel implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="template_module_level_id")
 	private int template_module_level_id;
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="module_id")
 	private TemplateModules templatemodules;
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="level_id")
 	private Level level;
-	public Level getLevel() {
-		return level;
-	}
-	public void setLevel(Level level) {
-		this.level = level;
-	}
 	@Column(name="count")
 	private int count;
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="template_id")
 	private TemplateModules templatemodules_count;
@@ -35,6 +35,12 @@ public class TemplateModuleLevel implements Serializable{
 		this.count = count;
 	}
 	//getters and setters
+	public Level getLevel() {
+		return level;
+	}
+	public void setLevel(Level level) {
+		this.level = level;
+	}
 	public int getTemplate_module_level_id() {
 		return template_module_level_id;
 	}

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 
@@ -19,30 +20,28 @@ public class TemplateQuestion implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="template_question_id")
 	private int template_question_id;
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="set_exam_id")
-	public SetExam templatequestionsetexam;
+	private SetExam templatequestionsetexam;
 	@Column(name="question_number")
-	public int question_number;
+	private int question_number;
 	@Column(name="user_answer")
-	public String user_answer;
+	private String user_answer;
 	
 	//default ctor
 	public TemplateQuestion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 	public TemplateQuestion(int template_question_id){
 		super();
 		this.template_question_id = template_question_id;
 	}
-	
 	public TemplateQuestion(String user_answer){
 		super();
 		this.user_answer = user_answer;
 	}
-	
 	//parameterized ctor
 	public TemplateQuestion(int template_question_id, int question_number, String user_answer) {
 		super();
@@ -75,7 +74,17 @@ public class TemplateQuestion implements Serializable{
 	public void setQuestion_number(int question_number) {
 		this.question_number = question_number;
 	}
+	public SetExam getTemplatequestionsetexam() {
+		return templatequestionsetexam;
+	}
 
+	public void setTemplatequestionsetexam(SetExam templatequestionsetexam) {
+		this.templatequestionsetexam = templatequestionsetexam;
+	}
+
+	public void setTemplate_question_id(int template_question_id) {
+		this.template_question_id = template_question_id;
+	}
 	
 	//toString method
 	@Override

@@ -8,8 +8,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,26 +22,29 @@ public class SetExam implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="set_exam_id")
-	public int set_exam_id;
+	private int set_exam_id;
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="userid")
-	public User user;
+	private User user;
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="template_id")
-	public Template templatesetexam;
+	private Template templatesetexam;
 	@Column(name="start_date")
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
-	public String start_date;
+	private String start_date;
 	@Column(name="duration")
-	public String duration;
+	private String duration;
 	@Column(name="start_time")
-	public String start_time;
+	private String start_time;
 	@Column(name="is_conducted")
-	public boolean is_conducted=false;
+	private boolean is_conducted=false;
 	@Column(name="marks")
-	public int marks=0;
+	private int marks=0;
 	@Column(name="actual_start_time")
 	private String actual_start_time=null;
+	@JsonManagedReference
 	@OneToMany(mappedBy="templatequestionsetexam")
 	private Set<TemplateQuestion> setexam;
 	public SetExam() {

@@ -6,6 +6,7 @@ import com.domo.pojo.TemplateModules;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="template")
@@ -13,16 +14,18 @@ public class Template implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="template_id")
-	public int template_id;
+	private int template_id;
 	@Column(name="template_name")
 	private String template_name;
 	@Column(name="question_count")
 	private int question_count;
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy="template")
 	private Set<TemplateModules> templatemodules;
+	@JsonManagedReference
 	@OneToMany(mappedBy="templatemodules_count")
 	private Set<TemplateModuleLevel> templatemodulelevel;
+	@JsonManagedReference
 	@OneToMany(mappedBy="templatesetexam")
 	private Set<SetExam> setexam;
 	//default ctor

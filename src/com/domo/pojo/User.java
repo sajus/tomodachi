@@ -4,19 +4,22 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @Table(name="user")
 public class User implements Serializable{
 	@Id
 	@Column(name="userid")
-	public int userid;
+	private int userid;
 	@Column(name="username")
 	private String username;
+	@JsonIgnore
 	@Column(name="password")
 	private String password;
 	@Column(name="role")
 	private String role="candidate";
+	@JsonManagedReference
 	@OneToMany(mappedBy="user")
 	private Set<SetExam> setexam;
 	//default ctor
@@ -31,26 +34,23 @@ public class User implements Serializable{
 		this.role = role;
 	}
 	//getters and setters
-	public int getuserid() {
+	public int getUserid() {
 		return userid;
 	}
-	public void setuserid(int userid) {
-		this.userid = userid;
-	}
-	public String getusername() {
+	public String getUsername() {
 		return username;
-	}
-	public void setusername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getRole() {
 		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public Set<SetExam> getSetexam() {
+		return setexam;
+	}
+	public void setSetexam(Set<SetExam> setexam) {
+		this.setexam = setexam;
 	}
 	//toString method
 	@Override

@@ -145,12 +145,12 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query query=entityManager.createQuery("update SetExam s set start_date=:new_start_date, start_time=:new_start_time, duration=:new_duration, user.userid=:new_userid, templatesetexam.template_id=:new_template_id where s.set_exam_id="+setexam.set_exam_id);
-		query.setParameter("new_start_date", setexam.start_date);
-		query.setParameter("new_start_time", setexam.start_time);
-		query.setParameter("new_duration", setexam.duration);
-		query.setParameter("new_userid", setexam.user.userid);
-		query.setParameter("new_template_id", setexam.templatesetexam.template_id);
+		Query query=entityManager.createQuery("update SetExam s set start_date=:new_start_date, start_time=:new_start_time, duration=:new_duration, user.userid=:new_userid, templatesetexam.template_id=:new_template_id where s.set_exam_id="+setexam.getSet_exam_id());
+		query.setParameter("new_start_date", setexam.getStart_date());
+		query.setParameter("new_start_time", setexam.getStart_time());
+		query.setParameter("new_duration", setexam.getDuration());
+		query.setParameter("new_userid", setexam.getUser().getUserid());
+		query.setParameter("new_template_id", setexam.getTemplatesetexam().getTemplate_id());
 		int updateCount = query.executeUpdate();
 		if(updateCount > 0){
 			System.out.println("record updated");
@@ -197,8 +197,8 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
 		setexam = entityManager.merge(setexam);
-		List list = randomQuestions(setexam.templatesetexam.template_id);
-		Query query1=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id="+setexam.set_exam_id+"where tq.templatequestionsetexam.set_exam_id=null");
+		List list = randomQuestions(setexam.getTemplatesetexam().getTemplate_id());
+		Query query1=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+"where tq.templatequestionsetexam.set_exam_id=null");
 		int updateCount = query1.executeUpdate();
 		if(updateCount > 0){
 			System.out.println("record updated");
@@ -242,8 +242,8 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query query=entityManager.createQuery("update SetExam s set marks=:new_marks, is_conducted=:new_is_conducted where set_exam_id="+setexam.set_exam_id);
-		query.setParameter("new_marks", setexam.marks);
+		Query query=entityManager.createQuery("update SetExam s set marks=:new_marks, is_conducted=:new_is_conducted where set_exam_id="+setexam.getSet_exam_id());
+		query.setParameter("new_marks", setexam.getMarks());
 		query.setParameter("new_is_conducted", true);
 		int updateCount = query.executeUpdate();
 		if(updateCount > 0){
@@ -257,8 +257,8 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query query=entityManager.createQuery("update TemplateQuestion tq set user_answer=:new_user_answer where templatequestionsetexam.set_exam_id="+template.templatequestionsetexam.set_exam_id+"and question_number="+template.question_number);
-		query.setParameter("new_user_answer", template.user_answer);
+		Query query=entityManager.createQuery("update TemplateQuestion tq set user_answer=:new_user_answer where templatequestionsetexam.set_exam_id="+template.getTemplatequestionsetexam().getSet_exam_id()+"and question_number="+template.getQuestion_number());
+		query.setParameter("new_user_answer", template.getUser_answer());
 		int updateCount = query.executeUpdate();
 		if(updateCount > 0){
 			System.out.println("record updated");

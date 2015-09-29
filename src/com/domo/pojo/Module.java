@@ -1,8 +1,12 @@
 package com.domo.pojo;
 import java.io.Serializable;
 import java.util.Set;
+
 import com.domo.pojo.Question;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @Table(name="module")
 public class Module implements Serializable{
@@ -12,8 +16,10 @@ public class Module implements Serializable{
 	private int module_id;
 	@Column(name="module_name")
 	private String module_name;
+	@JsonManagedReference
 	@OneToMany(mappedBy="module")
 	private Set<Question> questions;
+	@JsonManagedReference
 	@OneToMany(mappedBy="module")
 	private Set<TemplateModules> templatemodules;
 	//default ctor

@@ -2,6 +2,8 @@ package com.domo.pojo;
 import java.io.Serializable;
 
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 @Entity
 @Table(name="question")
 public class Question implements Serializable{
@@ -23,9 +25,11 @@ public class Question implements Serializable{
 	private int answer;
 	@Column(name="author")
 	private String author;
+	@JsonBackReference
 	@ManyToOne
     @PrimaryKeyJoinColumn(name="module_id")
 	private Module module;
+	@JsonBackReference
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name="level_id")
 	private Level level;

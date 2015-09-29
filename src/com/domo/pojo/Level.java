@@ -1,7 +1,10 @@
 package com.domo.pojo;
 import java.io.Serializable;
 import java.util.Set;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @Table(name="level")
 public class Level implements Serializable{
@@ -11,8 +14,10 @@ public class Level implements Serializable{
      private int level_id;
 	@Column(name="level_name")
      private String level_name;
+	@JsonManagedReference
 	@OneToMany(mappedBy="level")
 	private Set<Question> questions;
+	@JsonManagedReference
 	@OneToMany(mappedBy="level")
 	private Set<TemplateModuleLevel> templatemodulelevel;
 	//default ctor

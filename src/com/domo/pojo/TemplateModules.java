@@ -1,7 +1,11 @@
 package com.domo.pojo;
 import java.io.Serializable;
 import java.util.Set;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @Table(name="template_modules")
 public class TemplateModules implements Serializable{
@@ -9,12 +13,15 @@ public class TemplateModules implements Serializable{
 	@Column(name="template_module_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int template_module_id;
+	@JsonBackReference
 	@ManyToOne
     @JoinColumn(name="template_id")
 	private Template template;
+	@JsonBackReference
 	@ManyToOne
     @JoinColumn(name="module_id")
 	private Module module;
+	@JsonManagedReference
 	@OneToMany(mappedBy="templatemodules")
 	private Set<TemplateModuleLevel> tempaltemodulelevel;
 	public TemplateModules(int template_module_id, Template template,Module module) {
