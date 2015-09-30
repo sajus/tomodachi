@@ -14,7 +14,7 @@ public interface DomoDao {
 	public List<SetExam> getCandidateByIdNotConductedFromDatabase(String id);
 	public List<SetExam> getAllExams();
 	public SetExam showExam(int id);
-	public void editExamService(SetExam setexam);
+	public void editExam(SetExam setexam);
 	public List<User> getAllStudents();
 	public List<Template> getAllTemplates();
 	public void setExam(SetExam setexam);

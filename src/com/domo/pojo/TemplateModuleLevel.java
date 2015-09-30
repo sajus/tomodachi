@@ -14,12 +14,6 @@ public class TemplateModuleLevel implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="level_id")
 	private Level level;
-	public Level getLevel() {
-		return level;
-	}
-	public void setLevel(Level level) {
-		this.level = level;
-	}
 	@Column(name="count")
 	private int count;
 	@ManyToOne
@@ -35,6 +29,12 @@ public class TemplateModuleLevel implements Serializable{
 		this.count = count;
 	}
 	//getters and setters
+	public Level getLevel() {
+		return level;
+	}
+	public void setLevel(Level level) {
+		this.level = level;
+	}
 	public int getTemplate_module_level_id() {
 		return template_module_level_id;
 	}

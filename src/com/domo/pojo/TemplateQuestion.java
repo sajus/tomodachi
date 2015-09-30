@@ -21,23 +21,21 @@ public class TemplateQuestion implements Serializable{
 	private int template_question_id;
 	@ManyToOne(cascade = CascadeType.ALL, optional=true)
 	@PrimaryKeyJoinColumn(name="set_exam_id")
-	public SetExam templatequestionsetexam;
+	private SetExam templatequestionsetexam;
 	@Column(name="question_number")
-	public int question_number;
+	private int question_number;
 	@Column(name="user_answer")
-	public String user_answer;
+	private String user_answer;
 	
 	//default ctor
 	public TemplateQuestion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 	public TemplateQuestion(int template_question_id){
 		super();
 		this.template_question_id = template_question_id;
 	}
-	
 	public TemplateQuestion(String user_answer){
 		super();
 		this.user_answer = user_answer;
@@ -67,15 +65,12 @@ public class TemplateQuestion implements Serializable{
 	public String getUser_answer() {
 		return user_answer;
 	}
-
 	public void setUser_answer(String user_answer) {
 		this.user_answer = user_answer;
 	}
-
 	public void setQuestion_number(int question_number) {
 		this.question_number = question_number;
 	}
-
 	
 	//toString method
 	@Override

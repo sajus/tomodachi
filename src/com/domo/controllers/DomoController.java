@@ -25,7 +25,7 @@ public class DomoController {
 	}
 	@RequestMapping(value = "/usersign", method = RequestMethod.POST)
 	@ResponseBody
-	public List<String> signinUser(@RequestParam Map<String, String> params) {
+	public List<String> signinUser(@RequestBody Map<String, String> params) {
 		String password = params.get("password");
 		int userId = Integer.parseInt(params.get("userid"));
 		List<String> user_role=domoservice.signinUserService(userId, password);

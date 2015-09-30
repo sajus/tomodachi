@@ -13,7 +13,7 @@ public class Template implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="template_id")
-	public int template_id;
+	private int template_id;
 	@Column(name="template_name")
 	private String template_name;
 	@Column(name="question_count")

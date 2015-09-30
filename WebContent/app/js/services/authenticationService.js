@@ -7,7 +7,7 @@ angular.module('myapp.services').service('authenticationService',function($resou
 	signIn : {
 	  method : 'POST',
 	  url : 'rest/usersign',
-	  params : {
+	  data : {
 	    userid : "@userid",
 		password : "@password"		
 	  },

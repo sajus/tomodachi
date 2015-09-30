@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class User implements Serializable{
 	@Id
 	@Column(name="userid")
-	public int userid;
+	private int userid;
 	@Column(name="username")
 	private String username;
 	@Column(name="password")
@@ -31,23 +31,17 @@ public class User implements Serializable{
 		this.role = role;
 	}
 	//getters and setters
-	public int getuserid() {
+	public int getUserid() {
 		return userid;
 	}
-	public void setuserid(int userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public String getusername() {
+	public String getUsername() {
 		return username;
 	}
-	public void setusername(String username) {
+	public void setUsername(String username) {
 		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getRole() {
 		return role;
