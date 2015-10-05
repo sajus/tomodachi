@@ -97,11 +97,9 @@ public class Question implements Serializable{
 	public void setAnswer(int answer) {
 		this.answer = answer;
 	}
-	
 	public Level getLevel() {
 		return level;
 	}
-
 	public void setLevel(Level level) {
 		this.level = level;
 	}

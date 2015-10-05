@@ -66,24 +66,11 @@ public class TemplateQuestion implements Serializable{
 	public String getUser_answer() {
 		return user_answer;
 	}
-
 	public void setUser_answer(String user_answer) {
 		this.user_answer = user_answer;
 	}
-
 	public void setQuestion_number(int question_number) {
 		this.question_number = question_number;
-	}
-	public SetExam getTemplatequestionsetexam() {
-		return templatequestionsetexam;
-	}
-
-	public void setTemplatequestionsetexam(SetExam templatequestionsetexam) {
-		this.templatequestionsetexam = templatequestionsetexam;
-	}
-
-	public void setTemplate_question_id(int template_question_id) {
-		this.template_question_id = template_question_id;
 	}
 	
 	//toString method

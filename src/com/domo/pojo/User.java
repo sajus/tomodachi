@@ -37,20 +37,17 @@ public class User implements Serializable{
 	public int getUserid() {
 		return userid;
 	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 	public String getUsername() {
 		return username;
 	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public String getRole() {
 		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	public Set<SetExam> getSetexam() {
-		return setexam;
-	}
-	public void setSetexam(Set<SetExam> setexam) {
-		this.setexam = setexam;
 	}
 	//toString method
 	@Override
