@@ -17,10 +17,8 @@ public class Module implements Serializable{
 	private int module_id;
 	@Column(name="module_name")
 	private String module_name;
-	@JsonManagedReference
 	@OneToMany(mappedBy="module")
 	private Set<Question> questions;
-	@JsonManagedReference
 	@OneToMany(mappedBy="module")
 	private Set<TemplateModules> templatemodules;
 	//default ctor

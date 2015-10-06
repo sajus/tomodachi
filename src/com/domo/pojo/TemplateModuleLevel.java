@@ -13,17 +13,14 @@ public class TemplateModuleLevel implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="template_module_level_id")
 	private int template_module_level_id;
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="module_id")
 	private TemplateModules templatemodules;
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="level_id")
 	private Level level;
 	@Column(name="count")
 	private int count;
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="template_id")
 	private TemplateModules templatemodules_count;

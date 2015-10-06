@@ -42,7 +42,6 @@ public class SetExam implements Serializable{
 	private int marks=0;
 	@Column(name="actual_start_time")
 	private String actual_start_time=null;
-	@JsonManagedReference
 	@OneToMany(mappedBy="templatequestionsetexam")
 	private Set<TemplateQuestion> setexam;
 	public SetExam() {

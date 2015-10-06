@@ -21,7 +21,6 @@ public class User implements Serializable{
 	private String password;
 	@Column(name="role")
 	private String role="candidate";
-	@JsonManagedReference
 	@OneToMany(mappedBy="user")
 	private Set<SetExam> setexam;
 	//default ctor

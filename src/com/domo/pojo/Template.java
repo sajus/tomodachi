@@ -24,7 +24,6 @@ public class Template implements Serializable{
 	private Set<TemplateModules> templatemodules;
 	@OneToMany(mappedBy="templatemodules_count", cascade=CascadeType.ALL)
 	private Set<TemplateModuleLevel> templatemodulelevel;
-	@JsonManagedReference
 	@OneToMany(mappedBy="templatesetexam")
 	private Set<SetExam> setexam;
 	//default ctor

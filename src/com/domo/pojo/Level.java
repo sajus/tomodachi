@@ -17,7 +17,6 @@ public class Level implements Serializable{
     private String level_name;
 	@OneToMany(mappedBy="level")
 	private Set<Question> questions;
-	@JsonManagedReference
 	@OneToMany(mappedBy="level")
 	private Set<TemplateModuleLevel> templatemodulelevel;
 	//default ctor
