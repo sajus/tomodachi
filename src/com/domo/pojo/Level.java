@@ -3,18 +3,18 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @Table(name="level")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Level implements Serializable{
 	@Id
 	@Column(name="level_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-     private int level_id;
+    private int level_id;
 	@Column(name="level_name")
-     private String level_name;
-	@JsonManagedReference
+    private String level_name;
 	@OneToMany(mappedBy="level")
 	private Set<Question> questions;
 	@JsonManagedReference

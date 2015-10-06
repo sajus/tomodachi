@@ -5,10 +5,11 @@ import java.util.Set;
 import com.domo.pojo.Question;
 
 import javax.persistence.*;
-
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @Table(name="module")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Module implements Serializable{
 	@Id
 	@Column(name="module_id")

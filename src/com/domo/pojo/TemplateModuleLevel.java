@@ -4,8 +4,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Entity
 @Table(name="template_module_level")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TemplateModuleLevel implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

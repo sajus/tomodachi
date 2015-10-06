@@ -23,10 +23,10 @@ public class SetExam implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="set_exam_id")
 	private int set_exam_id;
-	@ManyToOne(cascade = CascadeType.ALL, optional=true)
+	@ManyToOne
 	@PrimaryKeyJoinColumn(name="userid")
 	private User user;
-	@ManyToOne(cascade = CascadeType.ALL, optional=true)
+	@ManyToOne
 	@PrimaryKeyJoinColumn(name="template_id")
 	private Template templatesetexam;
 	@Column(name="start_date")

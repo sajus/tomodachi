@@ -3,11 +3,12 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @Table(name="template_modules")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TemplateModules implements Serializable{
 	@Id
 	@Column(name="template_module_id")

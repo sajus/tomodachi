@@ -5,11 +5,12 @@ import java.util.Set;
 import com.domo.pojo.TemplateModules;
 
 import javax.persistence.*;
-
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="template")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Template implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,11 +20,9 @@ public class Template implements Serializable{
 	private String template_name;
 	@Column(name="question_count")
 	private int question_count;
-	@JsonManagedReference
 	@OneToMany(mappedBy="template")
 	private Set<TemplateModules> templatemodules;
-	@JsonManagedReference
-	@OneToMany(mappedBy="templatemodules_count")
+	@OneToMany(mappedBy="templatemodules_count", cascade=CascadeType.ALL)
 	private Set<TemplateModuleLevel> templatemodulelevel;
 	@JsonManagedReference
 	@OneToMany(mappedBy="templatesetexam")

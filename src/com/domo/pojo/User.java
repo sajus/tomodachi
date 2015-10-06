@@ -3,11 +3,13 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="user")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable{
 	@Id
 	@Column(name="userid")
