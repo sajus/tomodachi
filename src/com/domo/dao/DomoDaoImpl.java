@@ -88,6 +88,7 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		return examList;
 	}
+	@Override
 	public List<SetExam> getCandidateByIdNotConductedFromDatabase(String userid){
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
@@ -216,6 +217,7 @@ public class DomoDaoImpl implements DomoDao{
 		System.out.println("data added");
 	}
 	//question module
+	@Override
 	public List<Question> getQuestions(int examid){
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
@@ -238,7 +240,7 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query query = entityManager.createQuery("select s from SetExam s where set_exam_id="+examid);
+		Query query = entityManager.createQuery("select s from SetExam s where s.set_exam_id="+examid);
 		List<SetExam> durationList = query.getResultList();
 		Iterator<SetExam> itr = durationList.iterator();
 		while (itr.hasNext()) {
@@ -246,6 +248,7 @@ public class DomoDaoImpl implements DomoDao{
 		}
 		return durationList;
 	}
+	@Override
 	public void putMarkService(SetExam setexam) {
 		// TODO Auto-generated method stub
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -261,12 +264,12 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager.getTransaction().commit();
 	}
 	@Override
-	public void putAnswerService(TemplateQuestion template) {
+	public void putAnswer(TemplateQuestion template) {
 		// TODO Auto-generated method stub
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Query query=entityManager.createQuery("update TemplateQuestion tq set user_answer=:new_user_answer where templatequestionsetexam.set_exam_id="+template.getSetexam().getSet_exam_id()+"and question_number="+template.getQuestion_number());
+		Query query=entityManager.createQuery("update TemplateQuestion tq set tq.user_answer=:new_user_answer where tq.templatequestionsetexam.set_exam_id="+template.getSetexam().getSet_exam_id()+" and tq.question_number="+template.getQuestion_number());
 		query.setParameter("new_user_answer", template.getUser_answer());
 		int updateCount = query.executeUpdate();
 		if(updateCount > 0){

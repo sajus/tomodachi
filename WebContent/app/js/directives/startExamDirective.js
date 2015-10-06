@@ -18,7 +18,9 @@ angular.module("myapp.directives").directive("startExam", function(quizFactory, 
       $scope.userAnswer=function(){
         $scope.template = {};
         $scope.template.templatequestionsetexam={};
-        $scope.template.templatequestionsetexam.set_exam_id= parseInt($routeParams.examid);
+        var setexam = {};
+        setexam.set_exam_id = parseInt($routeParams.examid);
+        $scope.template.templatequestionsetexam = setexam;
         $scope.template.user_answer = $scope.ans;
         $scope.template.question_number = $scope.question_id;
         questionService.putAnswer($scope.template);

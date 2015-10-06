@@ -9,6 +9,8 @@ import java.util.Set;
 import javax.persistence.*;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Entity
@@ -19,9 +21,9 @@ public class TemplateQuestion implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="template_question_id")
 	private int template_question_id;
-	@ManyToOne(cascade = CascadeType.ALL, optional=true)
+	@ManyToOne
 	@PrimaryKeyJoinColumn(name="set_exam_id")
-	private SetExam templatequestionsetexam;
+	public SetExam templatequestionsetexam;
 	@Column(name="question_number")
 	private int question_number;
 	@Column(name="user_answer")
@@ -32,21 +34,14 @@ public class TemplateQuestion implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TemplateQuestion(int template_question_id){
-		super();
-		this.template_question_id = template_question_id;
-	}
-	public TemplateQuestion(String user_answer){
-		super();
-		this.user_answer = user_answer;
-	}
 	
 	//parameterized ctor
-	public TemplateQuestion(int template_question_id, int question_number, String user_answer) {
+	public TemplateQuestion(int template_question_id, int question_number, String user_answer, SetExam templatequestionsetexam) {
 		super();
 		this.template_question_id = template_question_id;
 		this.question_number = question_number;
 		this.user_answer = user_answer;
+		this.templatequestionsetexam = templatequestionsetexam;
 	}
 
 	//getters and setters
@@ -56,8 +51,8 @@ public class TemplateQuestion implements Serializable{
 	public SetExam getSetexam() {
 		return templatequestionsetexam;
 	}
-	public void setSetexam(SetExam setexam) {
-		this.templatequestionsetexam = setexam;
+	public void setSetexam(SetExam templatequestionsetexam) {
+		this.templatequestionsetexam = templatequestionsetexam;
 	}
 	public int getQuestion_number() {
 		return question_number;

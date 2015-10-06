@@ -8,8 +8,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,10 +23,10 @@ public class SetExam implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="set_exam_id")
 	private int set_exam_id;
-	@ManyToOne(cascade = CascadeType.ALL, optional=true)
+	@ManyToOne
 	@PrimaryKeyJoinColumn(name="userid")
 	private User user;
-	@ManyToOne(cascade = CascadeType.ALL, optional=true)
+	@ManyToOne
 	@PrimaryKeyJoinColumn(name="template_id")
 	private Template templatesetexam;
 	@Column(name="start_date")
