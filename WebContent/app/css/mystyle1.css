@@ -98,10 +98,27 @@ h2 {
 }
 
 .new:hover,.button:hover,.next-question:hover, .startQuiz:hover, .startAgain:hover {
-	color: #A1A8CE;
+	border-radius: 41px;
 }
 
 .active-tab {
 	background-color: #F7F7F7;
 	border-radius: 6px;
+}
+
+table {
+  border-collapse: collapse;
+  background: white;
+}
+th {
+  background: steelblue;
+  font-weight: lighter;
+  text-shadow: 0 1px 0 #38678f;
+  color: white;
+  border: 1px solid #38678f;
+  box-shadow: inset 0px 1px 2px #568ebd;
+  transition: all 0.2s;
+}
+td {
+  transition: all 0.2s;
 }
