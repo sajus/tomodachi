@@ -153,7 +153,8 @@ public class DomoDaoImpl implements DomoDao{
 		query.setParameter("new_userid", setexam.getUser().getUserid());
 		query.setParameter("new_template_id", setexam.getTemplatesetexam().getTemplate_id());
 		List list = updateRandomQuestions(setexam.getTemplatesetexam().getTemplate_id(), setexam.getSet_exam_id());
-		Query query1=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+"where tq.templatequestionsetexam.set_exam_id=null");
+		Query query1=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id= :set_exam_id where tq.templatequestionsetexam.set_exam_id=null");
+		query1.setParameter("set_exam_id", setexam.getSet_exam_id());
 		int updateCount1 = query.executeUpdate();
 		int updateCount2 = query1.executeUpdate();
 		if((updateCount1 & updateCount2) > 0){
