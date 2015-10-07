@@ -25,7 +25,7 @@ td {
 				<th>Conducted</th>
 				<th>Actions</th>
 			</tr>
-			<tr ng-repeat="exam in exams | filter :test">
+			<tr ng-repeat="exam in exams | orderBy: 'set_exam_id' | filter :test">
 				<td>{{exam.user.username}}</td>
 				<td>{{exam.templatesetexam.template_name}}</td>
 				<td>{{exam.start_time}}</td>
