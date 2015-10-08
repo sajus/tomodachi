@@ -2,11 +2,15 @@ package com.domo.dao;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import com.domo.interfaces.DomoDao;
 import com.domo.pojo.Question;
 import com.domo.pojo.SetExam;
@@ -152,13 +156,12 @@ public class DomoDaoImpl implements DomoDao{
 		query.setParameter("new_duration", setexam.getDuration());
 		query.setParameter("new_userid", setexam.getUser().getUserid());
 		query.setParameter("new_template_id", setexam.getTemplatesetexam().getTemplate_id());
-		List list = updateRandomQuestions(setexam.getTemplatesetexam().getTemplate_id(), setexam.getSet_exam_id());
-		Query query1=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id= :set_exam_id where tq.templatequestionsetexam.set_exam_id=null");
-		query1.setParameter("set_exam_id", setexam.getSet_exam_id());
 		int updateCount1 = query.executeUpdate();
+		List list = updateRandomQuestions(setexam.getTemplatesetexam().getTemplate_id(), setexam.getSet_exam_id());
+		Query query1=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+" where tq.templatequestionsetexam.set_exam_id=null");
 		int updateCount2 = query1.executeUpdate();
 		if((updateCount1 & updateCount2) > 0){
-			System.out.println("records updated");
+			System.out.println("records updated!");
 		}
 		entityManager.getTransaction().commit();
 	}
@@ -192,7 +195,7 @@ public class DomoDaoImpl implements DomoDao{
 	}
 	//calling stored procedure
 	public List<TemplateQuestion> randomQuestions(int template_id) throws PersistenceException {
-		  Query query=entityManager.createNativeQuery("{CALL random_question(:template_id)}").setParameter("template_id", template_id); 
+		  Query query=entityManager.createNativeQuery("{CALL random_question(:template_id)}").setParameter("template_id", template_id);
 		  return query.getResultList(); 
 	}
 	public List<TemplateQuestion> updateRandomQuestions(int template_id, int set_exam_id) throws PersistenceException {
@@ -207,9 +210,10 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
+		System.out.println(setexam);
 		setexam = entityManager.merge(setexam);
-		List list = randomQuestions(setexam.getTemplatesetexam().getTemplate_id());
-		Query query=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+"where tq.templatequestionsetexam.set_exam_id=null");
+		List<TemplateQuestion> list = randomQuestions(setexam.getTemplatesetexam().getTemplate_id());
+		Query query=entityManager.createQuery("update TemplateQuestion tq set templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+" where templatequestionsetexam.set_exam_id=null");
 		int updateCount = query.executeUpdate();
 		if(updateCount > 0){
 			System.out.println("record updated");
