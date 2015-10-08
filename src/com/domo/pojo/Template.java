@@ -5,7 +5,6 @@ import java.util.Set;
 import com.domo.pojo.TemplateModules;
 
 import javax.persistence.*;
-
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;

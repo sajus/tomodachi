@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
@@ -16,6 +16,7 @@ public class User implements Serializable{
 	private int userid;
 	@Column(name="username")
 	private String username;
+	@JsonIgnore
 	@Column(name="password")
 	private String password;
 	@Column(name="role")

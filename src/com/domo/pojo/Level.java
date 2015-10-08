@@ -3,7 +3,6 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity

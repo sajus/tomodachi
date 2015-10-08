@@ -10,6 +10,7 @@ angular.module("myapp.directives").directive("examForm", function(){
 	  $scope.exam = {};
 	  $scope.getExams = function(){
 	    $window.location.href = '#/examinfo';
+	    $window.location.reload();
 	  }
 	  $scope.examId = $routeParams.exam_id;
 	  //edit exam
