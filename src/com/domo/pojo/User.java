@@ -9,14 +9,12 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="user")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable{
 	@Id
 	@Column(name="userid")
 	private int userid;
 	@Column(name="username")
 	private String username;
-	@JsonIgnore
 	@Column(name="password")
 	private String password;
 	@Column(name="role")
@@ -40,6 +38,9 @@ public class User implements Serializable{
 	}
 	public void setUserid(int userid) {
 		this.userid = userid;
+	}
+	public String getPassword() {
+		return password;
 	}
 	public String getUsername() {
 		return username;
