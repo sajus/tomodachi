@@ -2,7 +2,7 @@
 -- MySQL Workbench Migration
 -- Migrated Schemata: domo1
 -- Source Schemata: domo
--- Created: Tue Sep 15 17:36:08 2015
+-- Created: Mon Oct 12 17:05:05 2015
 -- ----------------------------------------------------------------------------
 
 SET FOREIGN_KEY_CHECKS = 0;;
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `domo1`.`module` (
   `module_name` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`module_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = latin1;
 
 -- ----------------------------------------------------------------------------
@@ -41,6 +41,7 @@ DEFAULT CHARACTER SET = latin1;
 CREATE TABLE IF NOT EXISTS `domo1`.`question` (
   `question_id` INT(11) NOT NULL AUTO_INCREMENT,
   `answer` INT(11) NULL DEFAULT NULL,
+  `author` VARCHAR(255) NULL DEFAULT NULL,
   `op1` VARCHAR(255) NULL DEFAULT NULL,
   `op2` VARCHAR(255) NULL DEFAULT NULL,
   `op3` VARCHAR(255) NULL DEFAULT NULL,
@@ -51,14 +52,14 @@ CREATE TABLE IF NOT EXISTS `domo1`.`question` (
   PRIMARY KEY (`question_id`),
   INDEX `FKBA823BE64E4813F` (`level_level_id` ASC),
   INDEX `FKBA823BE6BFD25BD` (`module_module_id` ASC),
-  CONSTRAINT `FKBA823BE64E4813F`
-    FOREIGN KEY (`level_level_id`)
-    REFERENCES `domo1`.`level` (`level_id`),
   CONSTRAINT `FKBA823BE6BFD25BD`
     FOREIGN KEY (`module_module_id`)
-    REFERENCES `domo1`.`module` (`module_id`))
+    REFERENCES `domo1`.`module` (`module_id`),
+  CONSTRAINT `FKBA823BE64E4813F`
+    FOREIGN KEY (`level_level_id`)
+    REFERENCES `domo1`.`level` (`level_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 51
+AUTO_INCREMENT = 162
 DEFAULT CHARACTER SET = latin1;
 
 -- ----------------------------------------------------------------------------
@@ -68,96 +69,23 @@ CREATE TABLE IF NOT EXISTS `domo1`.`set_exam` (
   `set_exam_id` INT(11) NOT NULL AUTO_INCREMENT,
   `actual_start_time` VARCHAR(255) NULL DEFAULT NULL,
   `duration` VARCHAR(255) NULL DEFAULT NULL,
-  `is_conducted` TINYINT(1) NOT NULL,
+  `is_conducted` TINYINT(1) NULL DEFAULT NULL,
   `marks` INT(11) NULL DEFAULT NULL,
-  `start_date` VARCHAR(255) NOT NULL,
-  `start_time` VARCHAR(255) NOT NULL,
-  `templatesetexam_template_id` INT(11) NOT NULL,
-  `user_userid` INT(11) NOT NULL,
+  `start_date` VARCHAR(255) NULL DEFAULT NULL,
+  `start_time` VARCHAR(255) NULL DEFAULT NULL,
+  `templatesetexam_template_id` INT(11) NULL DEFAULT NULL,
+  `user_userid` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`set_exam_id`),
   INDEX `FK545921DCA2BBA118` (`templatesetexam_template_id` ASC),
-  INDEX `FK545921DC1972A3FB` (`user_userid` ASC))
-ENGINE = InnoDB
-AUTO_INCREMENT = 56
-DEFAULT CHARACTER SET = latin1;
-
--- ----------------------------------------------------------------------------
--- Table domo1.template
--- ----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS `domo1`.`template` (
-  `template_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `question_count` INT(11) NULL DEFAULT NULL,
-  `template_name` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`template_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = latin1;
-
--- ----------------------------------------------------------------------------
--- Table domo1.template_module_level
--- ----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS `domo1`.`template_module_level` (
-  `template_module_level_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `count` INT(11) NULL DEFAULT NULL,
-  `level_id` INT(11) NULL DEFAULT NULL,
-  `template_id` INT(11) NULL DEFAULT NULL,
-  `module_id` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`template_module_level_id`),
-  INDEX `FKDFD85796432436E4` (`level_id` ASC),
-  INDEX `FKDFD85796C63307D7` (`template_id` ASC),
-  INDEX `FKDFD857966F0B2B90` (`template_id` ASC),
-  INDEX `FKDFD857963590A5` (`module_id` ASC),
-  CONSTRAINT `FKDFD857963590A5`
-    FOREIGN KEY (`module_id`)
-    REFERENCES `domo1`.`template_modules` (`template_module_id`),
-  CONSTRAINT `FKDFD85796432436E4`
-    FOREIGN KEY (`level_id`)
-    REFERENCES `domo1`.`level` (`level_id`),
-  CONSTRAINT `FKDFD857966F0B2B90`
-    FOREIGN KEY (`template_id`)
-    REFERENCES `domo1`.`template` (`template_id`),
-  CONSTRAINT `FKDFD85796C63307D7`
-    FOREIGN KEY (`template_id`)
-    REFERENCES `domo1`.`template_modules` (`template_module_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 16
-DEFAULT CHARACTER SET = latin1;
-
--- ----------------------------------------------------------------------------
--- Table domo1.template_modules
--- ----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS `domo1`.`template_modules` (
-  `template_module_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `module_id` INT(11) NULL DEFAULT NULL,
-  `template_id` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`template_module_id`),
-  INDEX `FKDE0480C229CC9BD0` (`module_id` ASC),
-  INDEX `FKDE0480C26F0B2B90` (`template_id` ASC),
-  CONSTRAINT `FKDE0480C229CC9BD0`
-    FOREIGN KEY (`module_id`)
-    REFERENCES `domo1`.`module` (`module_id`),
-  CONSTRAINT `FKDE0480C26F0B2B90`
-    FOREIGN KEY (`template_id`)
+  INDEX `FK545921DC1972A3FB` (`user_userid` ASC),
+  CONSTRAINT `FK545921DC1972A3FB`
+    FOREIGN KEY (`user_userid`)
+    REFERENCES `domo1`.`user` (`userid`),
+  CONSTRAINT `FK545921DCA2BBA118`
+    FOREIGN KEY (`templatesetexam_template_id`)
     REFERENCES `domo1`.`template` (`template_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
-DEFAULT CHARACTER SET = latin1;
-
--- ----------------------------------------------------------------------------
--- Table domo1.template_question
--- ----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS `domo1`.`template_question` (
-  `template_question_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `templatequestionsetexam_set_exam_id` INT(11) NULL DEFAULT NULL,
-  `question_number` INT(11) NOT NULL,
-  `user_answer` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`template_question_id`),
-  INDEX `FKC1120A0BB473490B` (`templatequestionsetexam_set_exam_id` ASC),
-  CONSTRAINT `FKC1120A0BB473490B`
-    FOREIGN KEY (`templatequestionsetexam_set_exam_id`)
-    REFERENCES `domo1`.`set_exam` (`set_exam_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 49
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
 
 -- ----------------------------------------------------------------------------
@@ -170,6 +98,85 @@ CREATE TABLE IF NOT EXISTS `domo1`.`user` (
   `username` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`userid`))
 ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+-- ----------------------------------------------------------------------------
+-- Table domo1.template
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `domo1`.`template` (
+  `template_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `question_count` INT(11) NULL DEFAULT NULL,
+  `template_name` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`template_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+-- ----------------------------------------------------------------------------
+-- Table domo1.template_module_level
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `domo1`.`template_module_level` (
+  `template_module_level_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `count` INT(11) NULL DEFAULT NULL,
+  `level_id` INT(11) NULL DEFAULT NULL,
+  `module_id` INT(11) NULL DEFAULT NULL,
+  `template_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`template_module_level_id`),
+  INDEX `FKDFD85796432436E4` (`level_id` ASC),
+  INDEX `FKDFD857963590A5` (`module_id` ASC),
+  INDEX `FKDFD85796C63307D7` (`template_id` ASC),
+  INDEX `FKDFD857966F0B2B90` (`template_id` ASC),
+  CONSTRAINT `FKDFD857966F0B2B90`
+    FOREIGN KEY (`template_id`)
+    REFERENCES `domo1`.`template` (`template_id`),
+  CONSTRAINT `FKDFD857963590A5`
+    FOREIGN KEY (`module_id`)
+    REFERENCES `domo1`.`template_modules` (`template_module_id`),
+  CONSTRAINT `FKDFD85796432436E4`
+    FOREIGN KEY (`level_id`)
+    REFERENCES `domo1`.`level` (`level_id`),
+  CONSTRAINT `FKDFD85796C63307D7`
+    FOREIGN KEY (`template_id`)
+    REFERENCES `domo1`.`template_modules` (`template_module_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = latin1;
+
+-- ----------------------------------------------------------------------------
+-- Table domo1.template_modules
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `domo1`.`template_modules` (
+  `template_module_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `module_id` INT(11) NULL DEFAULT NULL,
+  `template_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`template_module_id`),
+  INDEX `FKDE0480C229CC9BD0` (`module_id` ASC),
+  INDEX `FKDE0480C26F0B2B90` (`template_id` ASC),
+  CONSTRAINT `FKDE0480C26F0B2B90`
+    FOREIGN KEY (`template_id`)
+    REFERENCES `domo1`.`template` (`template_id`),
+  CONSTRAINT `FKDE0480C229CC9BD0`
+    FOREIGN KEY (`module_id`)
+    REFERENCES `domo1`.`module` (`module_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+-- ----------------------------------------------------------------------------
+-- Table domo1.template_question
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `domo1`.`template_question` (
+  `template_question_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `question_number` INT(11) NULL DEFAULT NULL,
+  `user_answer` VARCHAR(255) NULL DEFAULT NULL,
+  `templatequestionsetexam_set_exam_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`template_question_id`),
+  INDEX `FKC1120A0BB473490B` (`templatequestionsetexam_set_exam_id` ASC),
+  CONSTRAINT `FKC1120A0BB473490B`
+    FOREIGN KEY (`templatequestionsetexam_set_exam_id`)
+    REFERENCES `domo1`.`set_exam` (`set_exam_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 499
 DEFAULT CHARACTER SET = latin1;
 
 -- ----------------------------------------------------------------------------
@@ -213,13 +220,13 @@ END$$
 DELIMITER ;
 
 -- ----------------------------------------------------------------------------
--- Routine domo1.random_questions
+-- Routine domo1.update_random_question
 -- ----------------------------------------------------------------------------
 DELIMITER $$
 
 DELIMITER $$
 USE `domo1`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `random_questions`(IN selected_template int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_random_question`(IN selected_template int, IN selected_set_exam_id int)
 BEGIN
 	#declare variable
 	declare v_template_id, v_module_id, v_level_id, v_count, result, result_list int;
@@ -244,7 +251,8 @@ BEGIN
 			leave the_loop;
 		END if;
 		#Do some post processing
-			insert into template_question(templatequestionsetexam_set_exam_id, questions)(select question_id from question where module_module_id=v_module_id and level_level_id=v_level_id order by rand() limit v_count);
+			delete from template_question where templatequestionsetexam_set_exam_id=selected_set_exam_id;
+			insert into template_question(question_number)(select question_id from question where module_module_id=v_module_id and level_level_id=v_level_id order by rand() limit v_count);
 	END loop the_loop;
 	close cur1;
 	select * from template_question;
