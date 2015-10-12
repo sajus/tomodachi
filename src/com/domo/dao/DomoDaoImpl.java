@@ -210,9 +210,8 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		System.out.println(setexam);
 		setexam = entityManager.merge(setexam);
-		List<TemplateQuestion> list = randomQuestions(setexam.getTemplatesetexam().getTemplate_id());
+		List list = randomQuestions(setexam.getTemplatesetexam().getTemplate_id());
 		Query query=entityManager.createQuery("update TemplateQuestion tq set templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+" where templatequestionsetexam.set_exam_id=null");
 		int updateCount = query.executeUpdate();
 		if(updateCount > 0){
