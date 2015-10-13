@@ -209,7 +209,7 @@ public class DomoDaoImpl implements DomoDao{
 		entityManager.getTransaction().begin();
 		setexam = entityManager.merge(setexam);
 		List list = randomQuestions(setexam.getTemplatesetexam().getTemplate_id());
-		Query query=entityManager.createQuery("update TemplateQuestion tq set tq.templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+"where tq.templatequestionsetexam.set_exam_id=null");
+		Query query=entityManager.createQuery("update TemplateQuestion tq set templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+" where templatequestionsetexam.set_exam_id=null");
 		int updateCount = query.executeUpdate();
 		if(updateCount > 0){
 			System.out.println("record updated");
