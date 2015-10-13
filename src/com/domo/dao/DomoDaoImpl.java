@@ -210,13 +210,8 @@ public class DomoDaoImpl implements DomoDao{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		System.out.println(setexam);
 		setexam = entityManager.merge(setexam);
-<<<<<<< HEAD
 		List list = randomQuestions(setexam.getTemplatesetexam().getTemplate_id());
-=======
-		List<TemplateQuestion> list = randomQuestions(setexam.getTemplatesetexam().getTemplate_id());
->>>>>>> 3083d9d... issue of creating a new exam and editing solved (set_exam_id is being set in template_question table on both new exam and edit exam)
 		Query query=entityManager.createQuery("update TemplateQuestion tq set templatequestionsetexam.set_exam_id="+setexam.getSet_exam_id()+" where templatequestionsetexam.set_exam_id=null");
 		int updateCount = query.executeUpdate();
 		if(updateCount > 0){
