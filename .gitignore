@@ -4,5 +4,6 @@ app/lib/*
 .classpath
 .project
 dist
+node_modules
 .iml
 --
