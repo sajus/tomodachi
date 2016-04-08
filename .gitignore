@@ -3,4 +3,6 @@ app/lib/*
 .settings
 .classpath
 .project
+dist
+.iml
 --

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="tomodachi" default="war" basedir=".">
+
+    <!-- INIT -->
+    <target name="init">
+      <property name="sourceDir" value="src"/>
+      <property name="dist" value="dist" />
+      <property name="outputDir" value="${dist}/classes" />
+      <property name="library" value="lib" />
+      <property name="deployProperties" value="/web/deploy/conf" />
+
+    </target>
+
+    <!-- CLEAN -->
+    <target name="clean" depends="init">
+      <echo message="Removing old directory structure..." />
+      <delete dir="${dist}" />
+    </target>
+
+    <!-- PREPARE -->
+    <target name="prepare" depends="clean">
+        <echo message="Creating Dist Folder"/>
+        <mkdir dir="${dist}" />
+        <mkdir dir="${dist}/classes" />
+    </target>
+
+    <!-- DEFINE CLASS PATH TO INCLUDE ALL THE LIB FILES -->
+    <path id="compile.classpath">
+      <fileset dir="lib">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+
+    <!-- COMPILE -->
+    <target name="compile" depends="prepare">
+        <echo message="Compiling Java Files" />
+        <javac srcdir="${sourceDir}"
+               destdir="${outputDir}"
+               debug="true">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <!-- PACKAGING WAR FILES -->
+    <target name="war" depends="compile">
+      <mkdir dir="${outputDir}/META-INF" />
+      <copy file="${sourceDir}/META-INF/persistence.xml" tofile="${outputDir}/META-INF/persistence.xml" />
+      <copy file="${sourceDir}/META-INF/MANIFEST.MF" tofile="${outputDir}/META-INF/MANIFEST.MF" />
+      <war destfile="${dist}/tomodachi.war" webxml="WebContent/WEB-INF/web.xml">
+        <fileset dir="WebContent"/>
+        <lib dir="${library}"/>
+        <classes dir="${outputDir}"/>
+      </war>
+    </target>
+
+</project>

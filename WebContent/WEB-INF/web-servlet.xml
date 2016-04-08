@@ -20,7 +20,7 @@
 	<context:component-scan base-package="com.domo.controllers" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
-        <property name="prefix" value="/WEB-INF/app/partials/" />  
+        <property name="prefix" value="/WEB-INF/app/partials/" />
         <property name="suffix" value=".html" />  
 	</bean> 
 

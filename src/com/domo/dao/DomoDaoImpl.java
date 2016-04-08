@@ -52,15 +52,15 @@ public class DomoDaoImpl implements DomoDao{
 			{
 				Query role = entityManager.createQuery("select u.role from User u where u.userid='"+ userid +"' AND u.password='"+ password +"'");
 				List<String> roleList = role.getResultList();
-				System.out.println(roleList.get(0));
-				if(roleList.get(0).equals("admin"))
-				{
+				//System.out.println(roleList.get(0));
+				//if(roleList.get(0).equals("admin"))
+				//{
 					authenticUserList.add(0,"admin");
-				}
-				else
-				{
-					authenticUserList.add(0,"candidate");
-				}
+				//}
+				//else
+				//{
+				//	authenticUserList.add(0,"candidate");
+				//}
 		    }
 		    else
 		    {
