@@ -1,0 +1,19 @@
+<div>
+  <form name="myForm" class="email-login" method="post" ng-submit="signInUser(userid,password)" ng-controller="signInController" novalidate >
+    <div class="u-form-group">
+	  <input type="text" placeholder="User Id" id="userid" name="userid" ng-model="userid" required /> <label id="star" style="color: red">*</label><br>
+	    <span style="color: red" ng-show="myForm.userid.$dirty && myForm.userid.$invalid"> 
+		  <span ng-show="myForm.userid.$error.required">* required.</span>
+		</span>
+	</div>
+	<div class="u-form-group">
+	  <input type="password" placeholder="Password" id="password" name="password" ng-model="password" required /> <label id="star" style="color: red">*</label><br> 
+	    <span style="color: red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+		  <span ng-show="myForm.password.$error.required">* required.</span>
+		</span>
+	</div>
+	<div class="u-form-group">
+	  <input type="submit" value="Log in" ng-disabled="!myForm.$valid" />
+	</div>
+  </form>
+</div>

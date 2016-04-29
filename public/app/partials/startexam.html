@@ -1,0 +1,41 @@
+<head>
+<style>
+li {
+	list-style: none;
+}
+.time {
+	font-size: 33px;
+}
+</style>
+<div align="center">
+	<div class="intro" ng-show="!inProgress">
+		<h2>Best Of Luck !!!!!</h2>
+		<button class="startQuiz" ng-click="start()">Start</button>
+	</div>
+	<div class="quiz-area" ng-show="inProgress">
+		<div ng-show="!quizOver">
+			<div class="time" align="right" style="color: blue" ng-repeat="setexams in setexam">
+				<span>{{setexams.duration}}</span>
+			</div>
+			<h2 id="question">{{question}}</h2>
+			<br> <br>
+			<div style="margin-left:280px;">
+			  <table style="color:#4682B4;width:400px;">
+				<tr style="margin-left:50px" ng-repeat="option in options">
+					<td><input type="radio" ng-click="onOptionSelect(option)" name="option" ng-value="option">{{option}}</td>
+				</tr>
+			  </table>
+		    </div>
+			<br> <br> <br>
+			<button align="right" ng-click="checkAnswer(); userAnswer(); nextQuestion();" ng-disabled="isOptionSelected" class="next-question" ng-hide="lastQuestion">Next</button>
+			<button align="right" ng-click="checkAnswer(); userAnswer(); nextQuestion(); submitResult();" ng-disabled="isOptionSelected" class="next-question" ng-show="lastQuestion">Finish</button>
+		</div>
+		<div ng-show="quizOver">
+			<h2>Quiz is over</h2>
+			<div id="score">
+				Your result is {{score}} / {{count}}
+			</div>
+			<button class="startAgain" ng-click="again()">Start again</button>
+		</div>	
+	</div>
+</div>

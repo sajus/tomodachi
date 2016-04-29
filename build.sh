@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ant war
+ant minifyJavascript

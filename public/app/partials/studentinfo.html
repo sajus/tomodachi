@@ -1,0 +1,31 @@
+<head>
+<style>
+th {
+	background-color: #7A98B2;
+	color: white;
+	padding: 20px;
+}
+
+td {
+	padding: 20px 20px;
+}
+</style>
+</head>
+<div class="box" align="center" ng-controller="userController">
+	<table border="1">
+		<tr>
+			<th>ExamId</th>
+			<th ng-if="showMarks">Marks</th>
+			<th ng-if="startDate">Start Date</th>
+			<th ng-if="startTime">Start Time</th>
+			<th ng-if="showStart">Action</th>
+		</tr>
+		<tr ng-repeat="candidateInfos in candidateInfo">
+			<td>{{candidateInfos.set_exam_id}}</td>
+			<td ng-if="showMarks">{{candidateInfos.marks}}</td>
+			<td ng-if="startDate">{{candidateInfos.start_date}}</td>
+			<td ng-if="startTime">{{candidateInfos.start_time}}</td>
+			<td ng-if="showStart && !candidateInfos.is_conducted"><a href="#/startexam/{{candidateInfos.set_exam_id}}"/>Start Exam</td>
+		</tr>
+	</table>
+</div>

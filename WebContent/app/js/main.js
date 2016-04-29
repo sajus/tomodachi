@@ -22,11 +22,12 @@ requirejs.config({
     paths: {
 
       /* List of frameworks/libraries to be included in this architecture. */
-      'angular': 'lib/angular/angular',
+      'angular': 'lib/angular/angular.min',
       'angular-route': 'lib/angular/angular-route',
       'angular-resource': 'lib/angular/angular-resource',
       'bootstrap': 'lib/bootstrap/js/bootstrap.min',
       'jquery': 'lib/jQuery/jquery-2.2.3.min',
+
       /* List of Require plugins */
       'text': 'lib/require/plugins/text'
     },
@@ -51,5 +52,5 @@ requirejs.config({
 });
 
 ///* Load app.js to initialize your application module. */
-require(['js/app'], function(App) {
+require(['js/app', 'angular', 'angular-route', 'angular-resource'], function(App) {
 });

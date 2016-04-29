@@ -1,0 +1,50 @@
+<head>
+<style>
+td {
+	width: 150px;
+}
+</style>
+</head>
+<div align="center" class="box">
+	<table align="center">
+		<tr>
+			<td>Select Student:</td>
+			<td>
+			<select ng-model="exam.selectedStudent" ng-options="student.userid as student.username for student in students">
+	        	<option value="">--Select Students--</option>
+	    	</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Select Template:</td>
+			<td>
+			<select ng-model="exam.selectedTemplate" ng-options="template.template_id as template.template_name for template in templates">
+	        	<option value="">--Select template--</option>
+	    	</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Start Date:</td>
+			<div ng-repeat="editExam in editExams">
+				<td><input type="date" name="exam.start_date" ng-selected="exam.selectedDate == editExam.start_date" ng-model="exam.selectedDate"></td>
+			</div>
+		</tr>
+		<tr>
+			<td>Start Time:</td>
+			<div ng-repeat="editExam in editExams">
+				<td><input type="time" name="exam.start_time" ng-selected="exam.selectedTime == editExam.start_time" ng-model="exam.selectedTime"></td>
+			</div>
+		</tr>
+		<tr>
+			<td>Duration:</td>
+			<div ng-repeat="editExam in editExams">
+				<td><input type="text" name="exam.duration" ng-selected="exam.selectedDuration == editExam.duration" ng-model="exam.selectedDuration"></td>
+			</div>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<button class="button" ng-click="setExam()"/>Done
+	
+	<button ng-click="getExams()" class="button" />Back
+</div>

@@ -8,6 +8,8 @@
       <property name="outputDir" value="${dist}/classes" />
       <property name="library" value="lib" />
       <property name="deployProperties" value="/web/deploy/conf" />
+      <property name="javascriptSrc" value="public" />
+      <property name="javascriptBuild" value="WebContent" />
 
     </target>
 
@@ -31,7 +33,7 @@
       </fileset>
     </path>
 
-    <!-- COMPILE -->
+    <!-- COMPILE JAVA -->
     <target name="compile" depends="prepare">
         <echo message="Compiling Java Files" />
         <javac srcdir="${sourceDir}"
@@ -39,6 +41,21 @@
                debug="true">
             <classpath refid="compile.classpath"/>
         </javac>
+    </target>
+
+    <!-- MINIFY AND PACK JAVASCRIPT FILES -->
+    <target name="minifyJavascript">
+      <taskdef name="yuicompressor"
+        classname="com.metrosix.yuicompressor.anttask.YuiCompressorTask"
+        classpathref="compile.classpath" >
+      </taskdef>
+      <yuicompressor todir="WebContent" charset="utf-8"
+                       preserveallsemicolons="true" munge="true" >
+        <fileset dir="public">
+          <!-- <include name="**/*.css"/> -->
+          <include name="**/*.js"/>
+        </fileset>
+      </yuicompressor>
     </target>
 
     <!-- PACKAGING WAR FILES -->
